@@ -1,2 +1,2 @@
-cart = [];
+const cart = [];
 console.log(cart);
