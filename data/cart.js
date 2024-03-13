@@ -1,2 +1,2 @@
-const cart = [];
-console.log(cart);
+export const cart = [];
+
