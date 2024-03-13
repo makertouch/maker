@@ -1,2 +1,2 @@
-export const cart = [];
+cart = [];
 console.log(cart);
