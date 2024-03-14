@@ -94,4 +94,6 @@ document.querySelector(`.js-cart-quantity`).innerHTML = cartQuantity;
 
 });
 });
+
+
 //https://makertouch.github.io/maker/amazon.html
