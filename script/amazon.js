@@ -61,8 +61,8 @@ productsHTML += `
 document.querySelector(`.js-products-grid`).innerHTML = productsHTML;
 
 const buttonElement = document.querySelectorAll(`.js-add-to-cart`);
-
-buttonElement.forEach((button) => {
+// addEventListener takes class.addEventListener
+buttonElement.forEach((button) => { 
 button.addEventListener(`click`, () => {
 const productId = button.dataset.productId;
 
