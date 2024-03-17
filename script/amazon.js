@@ -64,9 +64,9 @@ function addToCart(productId) {
 
 	let matchingItem;
 
-cart.forEach((item) => {
-if (productId === item.productId) {
-matchingItem = item;  /* make a shortcut of the item (refrences) */
+cart.forEach((cartItem) => {
+if (productId === cartItem.productId) {
+matchingItem = cartItem;  /* make a shortcut of the item (refrences) */
 }
 }); 
 
