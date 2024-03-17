@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+
+<title> Test </title>
+
+<style>
+
+.button-color {
+background-color: black;
+color: white;
+padding: 10px;
+border-radius: 5px;
+font-family: Arial;
+font-size: 12px;
+}
+
+.is-toggled {
+background-color: #a4e3ff;
+color: black;
+padding: 10px;
+border-radius: 5px;
+font-family: Arial;
+font-size: 12px;
+corsur: pointer;
+}
+
+
+
+</style>
+
+</head>
+
+
+
+<body>
+
+<button onclick= "toggleButton(`.js-gaming`)" class= "button-color js-gaming">Gaming</button>
+<button onclick= "toggleButton(`.js-music`)" class= "button-color js-music">Music</button>
+<button onclick= "toggleButton(`.js-tech`)" class= "button-color js-tech">Tech</button>
+
+
+<script>
+
+function toggleButton(buttonChoise) {
+
+const button = document.querySelector(buttonChoise);
+
+if (!button.classList.contains(`is-toggled`)) { /* If it's not exists */
+checkLastButton(); 				/* Checks if there is a previous button */
+button.classList.add(`is-toggled`);
+} else {
+button.classList.remove(`is-toggled`);
+}
+
+}
+
+function checkLastButton() {
+
+const lastButton = document.querySelector(`.is-toggled`);
+
+if (lastButton) {
+lastButton.classList.remove(`is-toggled`);
+}
+
+}
+
+
+
+
+
+
+
+
+
+
+</script>
+
+
+</body>
+
+</html>
+
+
+
+

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+
+<title> Test </title>
+
+<style>
+
+
+
+
+</style>
+
+</head>
+
+
+
+<body>
+
+
+<input class= "js-todo-input" placeholder= "insert somthing">
+<input type= "date" class= "js-date-input">
+<button onclick= "addTodo();"> add </button>
+<div class= "js-todo-list"> </div>
+
+<script>
+
+function addTodo() {
+
+const nameInputElement = document.querySelector(`.js-todo-input`);
+const name = nameInputElement.value;
+
+const dateInputElement = document.querySelector(`.js-date-input`);
+const dueDate = dateInputElement.value;
+
+todoList.push({
+name: name,
+dueDate: dueDate,
+});
+
+renderTodoList();
+
+}
+
+//  hows it looks inside todoList[];
+
+// [{name: 'dfdf', dueDate: '2024-02-14'}];
+
+const todoList = [];
+
+
+function renderTodoList() {
+let todoListHTML = ``;
+
+for (let i = 0; i < todoList.length; i++) {
+
+const todoObject = todoList[i];
+
+const name = todoObject.name;
+const dueDate = todoObject.dueDate;
+
+const html = 
+`<p>
+${name} ${dueDate}
+<button onclick= "
+todoList.splice(${i}, 1);
+renderTodoList();
+">delete</button>
+</p>`;
+
+todoListHTML += html;
+
+}
+
+document.querySelector(`.js-todo-list`).innerHTML = todoListHTML;
+
+}
+
+
+</script>
+
+
+</body>
+
+</html>
+
