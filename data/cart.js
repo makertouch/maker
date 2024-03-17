@@ -20,8 +20,7 @@ matchingItem.quantity += 1;
 cart.push({
 productId: productId,
 quantity: 1
-}
-	 console.log(cart););
+});
 }	
 }
 
