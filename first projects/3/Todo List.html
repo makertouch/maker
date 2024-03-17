@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="3.css">
+
+<title> Todo List </title>
+
+</head>
+
+<body>
+<div class="container">
+	
+	<p class="Todo-title"> Todo List - Closing Department </p>
+
+<div class="todo-input-grid">
+
+	<input placeholder="Add Task" type="Search" class="js-name-input name-input" onkeydown="
+	handleCostKeydown();">
+	
+	<button class="add-todo js-add-todo-button"> Add </button>
+</div>
+	<div class="js-todo-list todo-grid"></div>
+
+</div>
+
+<script> 
+	 window.onload = () => {
+	 document.querySelector(`.js-name-input`).focus();
+	 loadTodoList();
+
+	 }
+
+	function loadTodoList() {
+	const storedTodoList = localStorage.getItem('todoList');
+	if (storedTodoList) {
+	todoList.push(...JSON.parse(storedTodoList));
+	renderTodoList();
+	}	
+
+	}
+
+	function handleCostKeydown() {
+	if (event.key === `Enter`) {addTodo();} 
+	}
+	
+	const todoList = [];
+		
+	 function renderTodoList() {     
+
+ 	 let todoListHTML = ``;
+	// for (let i = 0; i < todoList.length; i++) {
+	// const todoObject = todoList[i];
+	 
+	todoList.forEach((todoObject, index) => {
+	
+	 const name = todoObject.name;
+	 const html = `
+	 <div class="input-text"> ${name} </div>  
+	 <button class="delete-button js-delete-button" data-index="${index}">Delete</button>`; 					
+
+	 todoListHTML += html;	
+	 });
+
+	 document.querySelector(`.js-todo-list`).innerHTML = todoListHTML;
+
+	 document.querySelectorAll(`.js-delete-button`).forEach((deleteButton, index) => {
+	 deleteButton.addEventListener(`click`, () => {
+	 todoList.splice(index, 1);
+	 renderTodoList();
+	 saveTodoList();
+	 	 
+	 });
+	 });
+}
+
+	 document.querySelector(`.js-add-todo-button`).addEventListener(`click`, () => {addTodo();
+	 })
+
+	 function addTodo() {
+	 
+	 const inputElement = document.querySelector(`.js-name-input`);  /* the all element */
+	 const name = inputElement.value; 				/* the value inside */
+	 if (name === ``) {
+	 return;
+	 }
+	
+	
+	 todoList.push({
+	 name
+	 });
+
+	 inputElement.value = ``;
+	 saveTodoList();
+	 renderTodoList();
+
+}
+
+	 function saveTodoList() {
+	 localStorage.setItem('todoList', JSON.stringify(todoList));
+	 }
+
+</script>
+</body>
+</html>

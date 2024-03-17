@@ -1,0 +1,45 @@
+
+	body {
+	background-color: black;
+	color: white;
+	font-size: 25px;
+	font-family: Arial;
+	zoom: 80%;
+	}
+	
+	.title {
+	font-size: 30px;
+	font-weight: bold;
+	}
+
+	.rock-paper-scissors-img {
+	height: 100px;
+	background-color: black;
+	corsur: pointer;
+	width: 100px;
+	height: 100px;
+	margin-right: 10px;
+	cursor: pointer;
+	}
+
+	.out-img {
+	background-color: black;
+	border: 5px solid white;
+	border-radius: 40px;
+	}
+
+	.result {
+	size: 25px;
+	font-family: Arial;
+	font-weight: bold;
+	margin-top: 55px;
+	margin-bottom: 55px;
+	}
+
+	.score {
+	margin-top: 40px;
+	}
+
+	.reset-score {
+	padding: 10px;
+	}

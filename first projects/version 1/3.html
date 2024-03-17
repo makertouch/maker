@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<title> 3 </title>
+
+<style>
+
+.Todo-title {
+font-family: Arial;
+font-size: 20px;
+}
+
+.name-input {
+padding: 10px;
+}
+
+.due-date-input {
+padding: 10px;
+}
+
+.add-todo {
+padding-top: 8px;
+padding-bottom: 10px;
+color: white;
+font-family: arial;
+font-size: 18px;
+background-color: green;
+cursor: pointer;
+}
+
+.delete-button {
+background-color: red;
+padding-top: 8px;
+padding-bottom: 10px;
+color: white;
+font-family: arial;
+font-size: 18px;
+cursor: pointer;
+}
+
+.todo-grid,
+.todo-input-grid {
+display: grid;
+grid-template-columns: 200px 150px 100px;
+column-gap: 10px;
+row-gap: 10px;
+margin-top: 10px;
+padding-left: 10px;
+
+}
+
+</style>
+
+</head>
+
+<body>
+	
+	<p class="Todo-title"> Todo List Practice 1 </p>
+
+<div class="todo-input-grid">
+
+	<input placeholder="Todo name" class="js-name-input name-input">
+	
+	<input type="date" class="js-due-date-input due-date-input">
+
+	<button onclick="addTodo();" class="add-todo"> Add </button>
+</div>
+	<div class="js-todo-list todo-grid"> </div>
+
+<script> 
+
+	const todoList = [];
+	
+	renderTodoList(); /* showing before the click */ 
+		
+	 function renderTodoList() {	/* HTMLמסדר את כל הנתונים ב*/
+
+ 	 let todoListHTML = ``;
+	
+	 todoList.forEach((todoObject, index) => 
+{
+	 const { name, dueDate } = todoObject;
+	 const html = `
+	 <div> ${name} </div> 
+	 <div> ${dueDate} </div> 
+	 <button onclick="
+	 todoList.splice(${index}, 1);
+	 renderTodoList(); 	
+	 "class="delete-button">Delete</button>`; 					
+	 todoListHTML += html;
+	 });
+	
+
+
+     /*
+	 for (let i = 0; i < todoList.length; i++) {
+
+	 ** const todoObject = todoList[i];
+
+	 //const name = todoObject.name;
+	 //const dueDate = todoObject.dueDate;
+	 const { name, dueDate } = todoObject;
+	 const html = `
+	 <div> ${name} </div> 
+	 <div> ${dueDate} </div> 
+	 <button onclick="
+	 todoList.splice(${i}, 1);
+	 renderTodoList(); 	
+	 "class="delete-button">Delete</button>`; 					
+	 todoListHTML += html;
+	 }
+
+     */
+
+	 document.querySelector(`.js-todo-list`).innerHTML = todoListHTML;
+}
+
+	 function addTodo() {
+
+	 const inputElement = document.querySelector(`.js-name-input`);  /* the all element */
+	 const name = inputElement.value; 				/* the value inside */
+	
+	const dateInputElement = document.querySelector(`.js-due-date-input`);
+	const dueDate = dateInputElement.value;
+	
+	 todoList.push({
+	//name: name,
+	//dueDate: dueDate,
+	 name,
+	 dueDate
+	 });
+
+	 inputElement.value = ``;
+	 renderTodoList();
+
+}
+
+</script>
+</body>
+</html>
+
+
