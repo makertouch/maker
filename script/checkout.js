@@ -13,7 +13,9 @@ let matchingProduct;
      matchingProduct = product;
    }
  });
+ 
 console.log(matchingProducts);  
+ 
   checkOutHTML += `
   <div class="cart-item-container">
             <div class="delivery-date">
