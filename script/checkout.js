@@ -1,6 +1,6 @@
 import {cart} from `../data/cart.js`;
 
-forEach((cartItem) => {
+cart.forEach((cartItem) => {
   
 });
 
