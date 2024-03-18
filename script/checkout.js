@@ -13,9 +13,10 @@ cart.forEach((cartItem) => {
       matchingProduct = product;
     }
   });
+  console.log(matchingProduct);
 });
 
-console.log(matchingProduct); 
+ 
  
   /* checkOutHTML += `
   <div class="cart-item-container">
