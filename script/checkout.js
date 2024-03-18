@@ -27,7 +27,7 @@ checkOutHTML += `
 
               <div class="cart-item-details">
                 <div class="product-name">
-                  Black and Gray Athletic Cotton Socks - 6 Pairs
+                  ${matchingProduct.name}
                 </div>
                 <div class="product-price">
                   $10.90
