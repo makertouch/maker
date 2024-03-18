@@ -94,5 +94,5 @@ checkOutHTML += `
   `;
 });
 
-let checkOutHTML = ``;
+
 
