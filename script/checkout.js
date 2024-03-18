@@ -34,7 +34,7 @@ checkOutHTML += `
                 </div>
                 <div class="product-quantity">
                   <span>
-                    Quantity: <span class="quantity-label">2</span>
+                    Quantity: <span class="quantity-label">${cart.quantity}</span>
                   </span>
                   <span class="update-quantity-link link-primary">
                     Update
