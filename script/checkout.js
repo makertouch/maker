@@ -1,20 +1,21 @@
-import {cart} from `../data/cart.js`;
-import {products} from `../data/products.js`;
+import { cart } from '../data/cart.js';
+import { products } from '../data/products.js';
 
-let checkOutHTML = ``;
+let checkOutHTML = '';
 
 cart.forEach((cartItem) => {
- const productId = cartItem.productId;
+  const productId = cartItem.productId;
 
-let matchingProduct;
- 
- products.forEach((product) => {
-   if (product.id === productId) {
-     matchingProduct = product;
-   }
- });
- 
-console.log(123);  
+  let matchingProduct;
+
+  products.forEach((product) => {
+    if (product.id === productId) {
+      matchingProduct = product;
+    }
+  });
+});
+
+console.log(123); 
  
   /* checkOutHTML += `
   <div class="cart-item-container">
