@@ -97,4 +97,4 @@ console.log(matchingProduct);
 });
 
 let checkOutHTML = ``;
-/*
+*/
