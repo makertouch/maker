@@ -15,7 +15,7 @@ cart.forEach((cartItem) => {
   });
 });
 
-console.log(123); 
+console.log(matchingProduct); 
  
   /* checkOutHTML += `
   <div class="cart-item-container">
