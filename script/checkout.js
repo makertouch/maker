@@ -12,7 +12,6 @@ let matchingProduct;
    if (product.id === productId) {
      matchingProduct = product;
    }
- }
  });
  
 console.log(123);  
