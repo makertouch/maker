@@ -15,7 +15,7 @@ let matchingProduct;
  }
  });
  
-console.log(matchingProduct);  
+console.log(123);  
  
   /* checkOutHTML += `
   <div class="cart-item-container">
