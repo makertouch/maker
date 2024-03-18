@@ -17,7 +17,7 @@ let matchingProduct;
  
 console.log(123);  
  
-  */ checkOutHTML += `
+  /* checkOutHTML += `
   <div class="cart-item-container">
             <div class="delivery-date">
               Delivery date: Tuesday, June 21
