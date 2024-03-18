@@ -30,7 +30,7 @@ checkOutHTML += `
                   ${matchingProduct.name}
                 </div>
                 <div class="product-price">
-                  $10.90
+${(matchingProduct.priceCents / 100).toFixed(2)}
                 </div>
                 <div class="product-quantity">
                   <span>
