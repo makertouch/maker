@@ -15,7 +15,7 @@ let matchingProduct;
  }
  });
  
-console.log(matchingProducts);  
+console.log(matchingProduct);  
  
   checkOutHTML += `
   <div class="cart-item-container">
