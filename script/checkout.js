@@ -3,6 +3,7 @@ import { products } from '../data/products.js';
 
 let checkOutHTML = '';
 
+// Transfer info form products to cart after indentify same id.
 cart.forEach((cartItem) => {
   const productId = cartItem.productId;
 
