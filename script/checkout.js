@@ -15,9 +15,6 @@ cart.forEach((cartItem) => {
     }
   });
 
-
- 
- 
 checkOutHTML += `
   <div class="cart-item-container">
             <div class="delivery-date">
