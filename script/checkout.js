@@ -23,7 +23,7 @@ checkOutHTML += `
 
             <div class="cart-item-details-grid">
               <img class="product-image"
-                src="images/products/athletic-cotton-socks-6-pairs.jpg">
+                src="${matchingProduct.image}">
 
               <div class="cart-item-details">
                 <div class="product-name">
