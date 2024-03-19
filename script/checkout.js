@@ -94,5 +94,6 @@ ${(matchingProduct.priceCents / 100).toFixed(2)}
   `;
 });
 
+document.querySelector(`.js-order-summary`).innerHTML = checkOutHTML;
 
 
