@@ -1,5 +1,6 @@
 import { cart } from '../data/cart.js';
 import { products } from '../data/products.js';
+import {formatCurrency} from `./utils/money.js`;
 
 let checkOutHTML = '';
 
@@ -30,7 +31,7 @@ checkOutHTML += `
                   ${matchingProduct.name}
                 </div>
                 <div class="product-price">
-${(matchingProduct.priceCents / 100).toFixed(2)}
+$${(formatCurrency(matchingProduct.priceCents)}
                 </div>
                 <div class="product-quantity">
                   <span>
