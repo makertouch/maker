@@ -67,7 +67,7 @@ $${formatCurrency(matchingProduct.priceCents)}
                 <div class="delivery-option">
                   <input type="radio"
                     class="delivery-option-input"
-                    name="delivery-option-${radioSelector += 1}">
+                    name="delivery-option-${radioSelector}">
                   <div>
                     <div class="delivery-option-date">
                       Wednesday, June 15
@@ -80,7 +80,7 @@ $${formatCurrency(matchingProduct.priceCents)}
                 <div class="delivery-option">
                   <input type="radio"
                     class="delivery-option-input"
-                    name="delivery-option-${radioSelector += 1}">
+                    name="delivery-option-${radioSelector}">
                   <div>
                     <div class="delivery-option-date">
                       Monday, June 13
