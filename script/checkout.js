@@ -3,7 +3,6 @@ import { products } from '../data/products.js';
 import {formatCurrency} from './utils/money.js';
 
 let checkOutHTML = '';
-let radioSelector = 0;
 
 // Transfer info to cart from products after indentify the same id.
 cart.forEach((cartItem) => {
@@ -54,7 +53,7 @@ $${formatCurrency(matchingProduct.priceCents)}
                 <div class="delivery-option">
                   <input type="radio" checked
                     class="delivery-option-input"
-                    name="delivery-option-${radioSelector += 1}">
+                    name="${cartItem.productId}">
                   <div>
                     <div class="delivery-option-date">
                       Tuesday, June 21
@@ -67,7 +66,7 @@ $${formatCurrency(matchingProduct.priceCents)}
                 <div class="delivery-option">
                   <input type="radio"
                     class="delivery-option-input"
-                    name="delivery-option-${radioSelector}">
+                    name="${cartItem.productId}">
                   <div>
                     <div class="delivery-option-date">
                       Wednesday, June 15
@@ -80,7 +79,7 @@ $${formatCurrency(matchingProduct.priceCents)}
                 <div class="delivery-option">
                   <input type="radio"
                     class="delivery-option-input"
-                    name="delivery-option-${radioSelector}">
+                    name="${cartItem.productId}">
                   <div>
                     <div class="delivery-option-date">
                       Monday, June 13
