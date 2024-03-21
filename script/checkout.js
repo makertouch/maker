@@ -39,7 +39,7 @@ $${formatCurrency(matchingProduct.priceCents)}
                   <span class="update-quantity-link link-primary">
                     Update
                   </span>
-                  <span class="delete-quantity-link link-primary">
+                  <span class="delete-quantity-link link-primary js-delete-link" data-product-id="${productId}">
                     Delete
                   </span>
                 </div>
@@ -52,7 +52,7 @@ $${formatCurrency(matchingProduct.priceCents)}
                 <div class="delivery-option">
                   <input type="radio" checked
                     class="delivery-option-input"
-                    name="${cartItem.productId}">
+                    name="${productId}">
                   <div>
                     <div class="delivery-option-date">
                       Tuesday, June 21
@@ -65,7 +65,7 @@ $${formatCurrency(matchingProduct.priceCents)}
                 <div class="delivery-option">
                   <input type="radio"
                     class="delivery-option-input"
-                    name="${cartItem.productId}">
+                    name="${productId}">
                   <div>
                     <div class="delivery-option-date">
                       Wednesday, June 15
@@ -78,7 +78,7 @@ $${formatCurrency(matchingProduct.priceCents)}
                 <div class="delivery-option">
                   <input type="radio"
                     class="delivery-option-input"
-                    name="${cartItem.productId}">
+                    name="${productId}">
                   <div>
                     <div class="delivery-option-date">
                       Monday, June 13
@@ -96,4 +96,11 @@ $${formatCurrency(matchingProduct.priceCents)}
 
 document.querySelector(`.js-order-summary`).innerHTML = checkOutHTML;
 
+document.querySelectorAll(`.js-delete-link`)
+  .forEach((link) => {
+  link.addEventListener(`click`, () => {
+    const buttonId = button.dataSet.buttonId;
+    cartItem.splice(index, 1);
+  });
+});
 
