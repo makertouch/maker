@@ -4,7 +4,6 @@ import {formatCurrency} from './utils/money.js';
 
 let checkOutHTML = '';
 
-// Transfer info to cart from products after indentify the same id.
 cart.forEach((cartItem) => {
   const productId = cartItem.productId;
 
