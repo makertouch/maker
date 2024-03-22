@@ -27,7 +27,7 @@ quantity: 1
 }	
 }
 
-export function removeItemFromCart(productId) {
+export function removeFromCart(productId) {
 	
 const newCart = [];
 
