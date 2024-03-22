@@ -99,8 +99,8 @@ document.querySelector(`.js-order-summary`).innerHTML = checkOutHTML;
 document.querySelectorAll(`.js-delete-link`)
   .forEach((link) => {
   link.addEventListener(`click`, () => {
-    const buttonId = button.dataSet.buttonId;
-    cartItem.splice(index, 1);
+    const productId = button.dataSet.productId;
+    console.log(productId);
   });
 });
 
