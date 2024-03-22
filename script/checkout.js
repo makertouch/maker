@@ -105,11 +105,10 @@ document.querySelectorAll(`.js-delete-link`)
 	  if(cartItem.productId === productId) {
 		cartItem.classList.remove("cart-item-container");
 	}
-    }
+    });
     
     removeFromCart(productId);
     
-
     
   });
 });
