@@ -100,7 +100,16 @@ document.querySelectorAll(`.js-delete-link`)
   .forEach((link) => {
   link.addEventListener(`click`, () => {
     const productId = link.dataset.productId;
+    
+    cart.forEach((cartItem) => {
+	  if(cartItem.productId === productId) {
+		cartItem.classList.remove("cart-item-container");
+	}
+    
     removeFromCart(productId);
+    
+
+    
   });
 });
 
