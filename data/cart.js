@@ -1,6 +1,9 @@
 export let cart = JSON.parse(localStorage.getItem(`cart`)); 
+// When you enter the page for the first time the cart is an array because the defult value, 
+// When it saved it's already an array.
+// That's why you must have a defult value.
 if (!cart) {
-cart = [{
+cart = [{ 
 productId: `e43638ce-6aa0-4b85-b27f-e1d07eb678c6`,
 quantity: 2
 }, {
