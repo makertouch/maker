@@ -28,7 +28,8 @@ cart.push({
 productId: productId,
 quantity: 1
 });
-}	
+}
+	updateCart();
 }
 
 export function removeFromCart(productId) {
