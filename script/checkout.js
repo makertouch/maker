@@ -115,7 +115,7 @@ cart.forEach((cartItem) => {
 cartQuantity += cartItem.quantity;
 });	
 	
-document.querySelector(`.js-return-to-home-link`).innerHTML = cartQuantity;
+document.querySelector(`.js-return-to-home-link`).innerHTML = "${cartQuantity} Items";
 }
  updateCartQuantity();
 
