@@ -117,5 +117,5 @@ cartQuantity += cartItem.quantity;
 	
 document.querySelector(`.js-return-to-home-link`).innerHTML = cartQuantity;
 }
- updatCartQuantity();
+ updateCartQuantity();
 
