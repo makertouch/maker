@@ -107,6 +107,9 @@ document.querySelectorAll(`.js-delete-link`)
   });
 });
 
+
+document.querySelectorAll('.js-link-primary');
+
 function updateCartQuantity() {
 	
 let cartQuantity = 0;
