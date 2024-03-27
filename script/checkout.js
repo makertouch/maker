@@ -114,7 +114,7 @@ document.querySelectorAll('.js-link-primary').forEach((updateButton) => {
 	updateButton.addEventListener(`click`, () => {
 	const productId = updateButton.dataset.productId;
 	const productContainer = document.QuerySelector(`.cart-item-container`);
-	productContainer.classList.add('is-editing-container');
+	productContainer.classList.add('is-editing-quantity');
 	console.log(productId);
 	
 	});
