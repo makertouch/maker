@@ -121,10 +121,16 @@ zoom: 50%;
 
 .product-quantity .link-primary {
   margin-left: 3px;
+  
+}
+
+.save-quantity-link {
+  display: none;
 }
 
 .quantity-input {
   width: 30px;
+  display: none;
 }
 
 @media (max-width: 1000px) {
