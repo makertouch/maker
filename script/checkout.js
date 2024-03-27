@@ -40,7 +40,7 @@ $${formatCurrency(matchingProduct.priceCents)}
                     Update
                   </span>
 		  <input class="quantity-input">
-    		  <span class="save-quantity-link">Save</span>
+    		  <span class="save-quantity-link link-primary">Save</span>
                   <span class="delete-quantity-link link-primary js-delete-link" data-product-id="${productId}">
                     Delete
                   </span>
