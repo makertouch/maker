@@ -115,6 +115,7 @@ document.querySelectorAll('.js-link-primary').forEach((updateButton) => {
 	const productId = updateButton.dataset.productId;
 	const container = document.querySelector(`.js-cart-item-container-${productId}`);
 	container.classList.add('is-editing-quantity');
+	updateButton.remove();
 	
 	
 	});
