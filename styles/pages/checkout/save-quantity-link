@@ -121,7 +121,6 @@ zoom: 50%;
 
 .product-quantity .link-primary {
   margin-left: 3px;
-  
 }
 
 .save-quantity-link {
