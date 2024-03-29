@@ -145,6 +145,10 @@ zoom: 50%;
   display: none;
 }
 
+.is-editing-quantity .quantity-label {
+  display: none;
+}
+
 
 @media (max-width: 1000px) {
   .delivery-options {
