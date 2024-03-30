@@ -128,7 +128,7 @@ document.querySelectorAll(`.js-save-link`).forEach((saveButton) => {
 	const container = document.querySelector(`.js-cart-item-container-${productId}`);
 	container.classList.remove(`is-editing-quantity`);
 		const quantityInput = document.querySelector(`.js-quantity-input-${productId}`);
-		addToCart(productId);
+		const newQuantity = number(quantityInput.value);
 	});
 });
 
