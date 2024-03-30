@@ -53,10 +53,12 @@ cart.forEach((cartItem) => {
 }
 
 export function updateQuantity(productId, newQuantity) {
+	let matchingItem;
 	cart.forEach((cartItem) => {
 		if (cartItem.productId === productId) {
-		cartItem.quantity = newQuantity;	
+		matchingItem = cartItem;	
 		}
 	});
+	matchingItem.quantity = newQuantity;
 	saveToStorage();
 }
