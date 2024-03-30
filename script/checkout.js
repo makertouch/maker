@@ -39,9 +39,10 @@ $${formatCurrency(matchingProduct.priceCents)}
                   <span class="update-quantity-link link-primary js-link-primary" data-product-id="${productId}">
                     Update
                   </span>
-		  <input class="quantity-input">
+		  <input class="quantity-input js-quantity-input-${productId}">
     		  <span class="save-quantity-link link-primary js-save-link" data-product-id="${productId}">
-		    Save</span>
+		    Save
+      		  </span>
                   <span class="delete-quantity-link link-primary js-delete-link" data-product-id="${productId}">
                     Delete
                   </span>
@@ -125,9 +126,13 @@ document.querySelectorAll(`.js-save-link`).forEach((saveButton) => {
 	saveButton.addEventListener(`click`, () => {
 	const productId = saveButton.dataset.productId;
 	const container = document.querySelector(`.js-cart-item-container-${productId}`);
-		container.classList.remove(`is-editing-quantity`);
+	container.classList.remove(`is-editing-quantity`);
+		const quantityInput = document.querySelector(`.js-quantity-input-${productId}`);
+		console.log(quantityInput);
 	});
 });
+
+
 
 
 
