@@ -122,7 +122,7 @@ document.querySelectorAll('.js-link-primary').forEach((updateButton) => {
 
 
 document.querySelectorAll(`.js-save-link`).forEach((saveButton) => {
-	addEventListener(`click`, () => {
+	saveButton.addEventListener(`click`, () => {
 	const productId = saveButton.dataset.productId;
 	const container = document.querySelector(`.js-cart-item-container-${productId}`);
 		container.classList.remove(`is-editing-quantity`);
