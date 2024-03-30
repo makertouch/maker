@@ -130,6 +130,7 @@ document.querySelectorAll(`.js-save-link`).forEach((saveButton) => {
 	 const quantityInput = document.querySelector(`.js-quantity-input-${productId}`);
 	 const newQuantity = Number(quantityInput.value);
 		updateQuantity(productId, newQuantity);
+		updateCartQuantity();
 	});
 });
 
