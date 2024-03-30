@@ -58,5 +58,5 @@ export function updateQuantity(productId, newQuantity) {
 		cartItem.quantity = newQuantity;	
 		}
 	});
-	
+	saveToStorage();
 }
