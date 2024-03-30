@@ -34,7 +34,7 @@ $${formatCurrency(matchingProduct.priceCents)}
                 </div>
                 <div class="product-quantity">
                   <span>
-                    Quantity: <span class="quantity-label">${cartItem.quantity}</span>
+                    Quantity: <span class="quantity-label js-quantity-label-${productId}">${cartItem.quantity}</span>
                   </span>
                   <span class="update-quantity-link link-primary js-link-primary" data-product-id="${productId}">
                     Update
@@ -131,6 +131,7 @@ document.querySelectorAll(`.js-save-link`).forEach((saveButton) => {
 	 const newQuantity = Number(quantityInput.value);
 		updateQuantity(productId, newQuantity);
 		updateCartQuantity();
+		document.querySelector(`.js-quantity-label-${productId}`).innerHTML = newQuantity;
 	});
 });
 
