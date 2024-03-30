@@ -129,7 +129,12 @@ document.querySelectorAll(`.js-save-link`).forEach((saveButton) => {
 	container.classList.remove(`is-editing-quantity`);
 	 const quantityInput = document.querySelector(`.js-quantity-input-${productId}`);
 	 const newQuantity = Number(quantityInput.value);
-		updateQuantity(productId, newQuantity);
+		if (newQuantity > 0 && newQuantity <= 1000) {
+			updateQuantity(productId, newQuantity);
+		} else {
+			console.log(`Pick number between 1 and 1000`);
+		}
+		
 		updateCartQuantity();
 		document.querySelector(`.js-quantity-label-${productId}`).innerHTML = newQuantity;
 	});
