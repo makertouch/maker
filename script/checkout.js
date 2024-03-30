@@ -133,6 +133,7 @@ document.querySelectorAll(`.js-save-link`).forEach((saveButton) => {
 	 const newQuantity = Number(quantityInput.value);
 		if (newQuantity > 0 && newQuantity <= 1000) {
 			updateQuantity(productId, newQuantity);
+			document.querySelector(`.js-quantity-note-${productId}`).innerHTML = ``;
 		} else {
 			document.querySelector(`.js-quantity-note-${productId}`).innerHTML = `Pick number between 1 and 1000`;
 		}
