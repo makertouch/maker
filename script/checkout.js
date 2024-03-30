@@ -47,7 +47,6 @@ $${formatCurrency(matchingProduct.priceCents)}
                   <span class="delete-quantity-link link-primary js-delete-link" data-product-id="${productId}">
                     Delete
                   </span>
-		  <div class="quantity-note js-quantity-note-${productId}">
                 </div>
               </div>
 
@@ -134,7 +133,7 @@ document.querySelectorAll(`.js-save-link`).forEach((saveButton) => {
 		if (newQuantity > 0 && newQuantity <= 1000) {
 			updateQuantity(productId, newQuantity);
 		} else {
-		Alert(`Pick a number between 1 and 1000.
+		alert(`Pick a number between 1 and 1000.
   Thank you and have a nice day :)`);	
 		}
 		
