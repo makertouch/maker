@@ -29,6 +29,7 @@ checkOutHTML += `
                 <div class="product-name">
                   ${matchingProduct.name}
                 </div>
+
                 <div class="product-price">
 $${formatCurrency(matchingProduct.priceCents)}
                 </div>
@@ -46,6 +47,7 @@ $${formatCurrency(matchingProduct.priceCents)}
                   <span class="delete-quantity-link link-primary js-delete-link" data-product-id="${productId}">
                     Delete
                   </span>
+		  <div class="quantity-note js-quantity-note">
                 </div>
               </div>
 
