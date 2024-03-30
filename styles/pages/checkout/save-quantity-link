@@ -141,11 +141,11 @@ zoom: 50%;
 }
 
 .is-editing-quantity .quantity-label {
-  display: none;
+  display: initial;
 }
 
 .is-editing-quantity .update-quantity-link {
-  display: none;
+  display: initial;
 }
 
 
