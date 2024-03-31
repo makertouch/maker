@@ -140,7 +140,7 @@ document.querySelectorAll(`.js-save-link`).forEach((saveButton) => {
 		alert(`Pick a number between 1 and 1000.
   Thank you and have a nice day :)`);	
 		}
-		
+		// Displaying at the same moment without refreshing the page.
 		updateCartQuantity();
 		document.querySelector(`.js-quantity-label-${productId}`).innerHTML = newQuantity;
 	});
