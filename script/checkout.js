@@ -4,7 +4,7 @@ import {formatCurrency} from './utils/money.js';
 
 const today = dayjs();
 const delivaryDate = today.add(7, `days`);
-console.log(delivaryDate);
+console.log(deliveryDate.format(`dddd, MMMM D`));
 
 let checkOutHTML = '';
 
