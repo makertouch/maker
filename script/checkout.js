@@ -118,7 +118,7 @@ document.querySelectorAll(`.js-delete-link`).forEach((link) => {
 
 document.querySelectorAll('.js-link-primary').forEach((updateButton) => {
 	updateButton.addEventListener(`click`, () => {
-	const productId = updateButton.dataset.productId; const productId = link.dataset.productId; // takes the product id from the button to controll the all product.
+	const productId = updateButton.dataset.productId; // takes the product id from the button to controll the all product.
 	const container = document.querySelector(`.js-cart-item-container-${productId}`);
 	container.classList.add('is-editing-quantity');
 	
