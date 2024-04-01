@@ -55,6 +55,7 @@ $${formatCurrency(matchingProduct.priceCents)}
               <div class="delivery-options">
                 <div class="delivery-options-title">
                   Choose a delivery option:
+		  </div>
                 ${deliveryOptionsHTML(productId)}
               </div>
             </div>
