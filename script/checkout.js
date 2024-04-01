@@ -65,7 +65,7 @@ $${formatCurrency(matchingProduct.priceCents)}
                     name="${productId}">
                   <div>
                     <div class="delivery-option-date">
-                      Tuesday, June 21
+                      ${delivaryDate.format(`dddd, MMMM D`)}
                     </div>
                     <div class="delivery-option-price">
                       FREE Shipping
