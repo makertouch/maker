@@ -1,7 +1,7 @@
 import { cart, removeFromCart, updateQuantity } from '../data/cart.js';
 import { products } from '../data/products.js';
 import {formatCurrency} from './utils/money.js';
-import dayjs from `https://unpkg.com/dayjs@1.11.10/esm/index.js`;
+import dayjs from 'https://unpkg.com/dayjs@1.11.10/esm/index.js';
 
 const today = dayjs();
 const delivaryDate = today.add(7, `days`);
