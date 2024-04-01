@@ -88,9 +88,9 @@ function deliveryOptionsHTML(productId) {
                     </div>
                   </div>
                 </div>`
-		
+		return HTML;
 	})
-	return HTML;
+	
 }
 
 
