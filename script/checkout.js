@@ -90,8 +90,9 @@ function deliveryOptionsHTML(productId) {
                 </div>`
 		
 	})
+	return HTML;
 }
-return HTML;
+
 
 document.querySelector(`.js-order-summary`).innerHTML = checkOutHTML;
 
