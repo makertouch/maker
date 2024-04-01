@@ -74,8 +74,8 @@ function deliveryOptionsHTML(productId) {
 		const priceString = deliveryOption.priceCents === 0
 			? `Free`
 			: `$${formatCurrency(deliveryOption.priceCents)} -`;
-		HTML +=	
-		`<div class="delivery-option">
+		HTML += `
+  		<div class="delivery-option">
                   <input type="radio"
                     class="delivery-option-input"
                     name="${productId}">
@@ -87,7 +87,8 @@ function deliveryOptionsHTML(productId) {
                       ${priceString} Shipping
                     </div>
                   </div>
-                </div>`
+                </div>
+		`
 	});
 	return HTML;
 }
