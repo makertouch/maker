@@ -67,9 +67,7 @@ function deliveryOptionsHTML(productId) {
 	let HTML = ``;
 	deliveryOptions.forEach((deliveryOption) => {
 		const today = dayjs();
-		const deliveryDate = today.add(
-		deliveryOption.deliveryDays, `days`
-		);
+		const deliveryDate = today.add(deliveryOption.deliveryDays, `days`);
 
 		const dateString = deliveryDate.format(`dddd, MMMM D`); 
 		const priceString = deliveryOption.priceCents === 0
