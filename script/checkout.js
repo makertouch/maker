@@ -75,7 +75,7 @@ function deliveryOptionsHTML(productId) {
 			: `$${formatCurrency(deliveryOption.priceCents)} -`;
 		HTML += `
   		<div class="delivery-option">
-                  <input type="radio"
+                  <input type="radio" checked
                     class="delivery-option-input"
                     name="${productId}">
                   <div>
