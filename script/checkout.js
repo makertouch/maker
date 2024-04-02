@@ -56,15 +56,16 @@ $${formatCurrency(matchingProduct.priceCents)}
                 <div class="delivery-options-title">
                   Choose a delivery option:
 		  </div>
-                ${deliveryOptionsHTML(productId)}
+                ${deliveryOptionsHTML(productId, cartItem)}
               </div>
             </div>
           </div>
   `;
 });
 
-function deliveryOptionsHTML(productId) {
+function deliveryOptionsHTML(productId, cartItem) {
 	let HTML = ``;
+	
 	deliveryOptions.forEach((deliveryOption) => {
 		const today = dayjs();
 		const deliveryDate = today.add(deliveryOption.deliveryDays, `days`);
@@ -73,9 +74,12 @@ function deliveryOptionsHTML(productId) {
 		const priceString = deliveryOption.priceCents === 0
 			? `Free`
 			: `$${formatCurrency(deliveryOption.priceCents)} -`;
+		
+		const isChecked = deliveryOption.id === cartItem.deliveryOptionId;
+		
 		HTML += `
   		<div class="delivery-option">
-                  <input type="radio" checked
+                  <input type="radio" ${isChecked ? `checked` : ``}
                     class="delivery-option-input"
                     name="${productId}">
                   <div>
