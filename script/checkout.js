@@ -167,4 +167,3 @@ document.querySelector(`.js-return-to-home-link`).innerHTML = `${cartQuantity} I
 }
  updateCartQuantity();
 
-console.log(`test`);
