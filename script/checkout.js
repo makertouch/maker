@@ -56,14 +56,14 @@ $${formatCurrency(matchingProduct.priceCents)}
                 <div class="delivery-options-title">
                   Choose a delivery option:
 		  </div>
-                ${deliveryOptionsHTML(productId, cartItem, dateString)}
+                ${deliveryOptionsHTML(productId, cartItem, today)}
               </div>
             </div>
           </div>
   `;
 });
 
-function deliveryOptionsHTML(productId, cartItem, dateString) {
+function deliveryOptionsHTML(productId, cartItem, today) {
 	let HTML = ``;
 	
 	deliveryOptions.forEach((deliveryOption) => {
