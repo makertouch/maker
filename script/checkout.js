@@ -34,7 +34,7 @@ deliveryOptions.forEach((option) => {
 checkOutHTML += `
   <div class="cart-item-container js-cart-item-container-${productId}">
             <div class="delivery-date">
-              Delivery date: ${dataString}
+              Delivery date: ${dateString}
             </div>
 
             <div class="cart-item-details-grid">
