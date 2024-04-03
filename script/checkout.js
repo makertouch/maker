@@ -20,7 +20,7 @@ cart.forEach((cartItem) => {
 checkOutHTML += `
   <div class="cart-item-container js-cart-item-container-${productId}">
             <div class="delivery-date">
-              Delivery date: Tuesday, June 21
+              Delivery date: ${dateString}
             </div>
 
             <div class="cart-item-details-grid">
@@ -56,14 +56,14 @@ $${formatCurrency(matchingProduct.priceCents)}
                 <div class="delivery-options-title">
                   Choose a delivery option:
 		  </div>
-                ${deliveryOptionsHTML(productId, cartItem)}
+                ${deliveryOptionsHTML(productId, cartItem, dateString)}
               </div>
             </div>
           </div>
   `;
 });
 
-function deliveryOptionsHTML(productId, cartItem) {
+function deliveryOptionsHTML(productId, cartItem, dateString) {
 	let HTML = ``;
 	
 	deliveryOptions.forEach((deliveryOption) => {
