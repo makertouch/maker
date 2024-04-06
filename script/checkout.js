@@ -4,6 +4,8 @@ import {formatCurrency} from './utils/money.js';
 import dayjs from 'https://unpkg.com/dayjs@1.11.10/esm/index.js';
 import {deliveryOptions} from '../data/deliveryOptions.js';
 
+function renderOrderSummary() {
+
 let checkOutHTML = '';
 
 cart.forEach((cartItem) => {
@@ -36,7 +38,7 @@ deliveryOptions.forEach((option) => {
 
 checkOutHTML += `
   <div class="cart-item-container js-cart-item-container-${productId}">
-            <div class="delivery-date">
+            <div class="delivery-date js-delivery-date">
               Delivery date: ${dateString}
             </div>
 
@@ -144,6 +146,7 @@ document.querySelectorAll(`.js-delivery-option`).forEach
 element.addEventListener(`click`, () => {
   const {productId, deliveryOptionId} = element.dataset;
 updateDeliveryOption(productId, deliveryOptionId);
+renderOrderSummary();
 });
 });
 
@@ -181,7 +184,7 @@ cartQuantity += cartItem.quantity;
 document.querySelector(`.js-return-to-home-link`).innerHTML = `${cartQuantity} Items`;
 }
  updateCartQuantity();
+}
 
-
-
+renderOrderSummary();
 
