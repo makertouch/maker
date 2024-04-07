@@ -187,4 +187,5 @@ document.querySelector(`.js-return-to-home-link`).innerHTML = `${cartQuantity} I
 }
 
 renderOrderSummary();
+console.log('hello');
 
