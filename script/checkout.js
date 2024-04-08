@@ -187,5 +187,21 @@ document.querySelector(`.js-return-to-home-link`).innerHTML = `${cartQuantity} I
  updateCartQuantity();
 }
 
+//My coding, continue tommorow
+
+const orderSummary =
+
+function orderSummary() {
+
+  let cartQuantity = `0`;
+
+  cart.forEach((cartItem) => {
+  cartQuantity += cartItem.quantity;
+  }) 
+
+
+
+}
+
 renderOrderSummary();
 
