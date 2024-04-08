@@ -57,7 +57,7 @@ cart.forEach((cartItem) => {
 
 export function updateQuantity(productId, newQuantity) {
     cart.forEach((cartItem) => {
-        if (cartItem.productId === productId) {
+        if (productId === cartItem.productId) {
             cartItem.quantity = newQuantity;
         }
     });
