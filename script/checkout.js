@@ -192,15 +192,30 @@ renderOrderSummary();
 
 
 
-/*
-function orderSummary() {
 
-  let cartQuantity = `0`;
+function paymantSummary() {
+
+  let cartQuantitySummary = `0`;
 
   cart.forEach((cartItem) => {
-  cartQuantity += cartItem.quantity;
+
+  const productId = cartItem.productId;
+
+  cartQuantitySummary += cartItem.quantity;
+
+  let priceSummary = `0`;
+
+  products.forEach((product) => {
+    if (product.id === productId) {
+      priceSummary += product.priceCents;
+    }
+  });
+console.log(cartQuantitySummary);
+console.log(priceSummary);
   }) 
 }
-*/
+
+
+
 
 
