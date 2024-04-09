@@ -189,7 +189,7 @@ document.querySelector(`.js-return-to-home-link`).innerHTML = `${cartQuantity} I
 
 //My coding, continue tommorow
 
-const orderSummary =
+
 
 function orderSummary() {
 
