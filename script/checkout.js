@@ -181,16 +181,18 @@ let cartQuantity = 0;
 cart.forEach((cartItem) => {
 cartQuantity += cartItem.quantity;
 });	
-	
+
+
 document.querySelector(`.js-return-to-home-link`).innerHTML = `${cartQuantity} Items`;
 }
  updateCartQuantity();
 }
 
-//My coding, continue tommorow
+renderOrderSummary();
 
 
 
+/*
 function orderSummary() {
 
   let cartQuantity = `0`;
@@ -198,10 +200,7 @@ function orderSummary() {
   cart.forEach((cartItem) => {
   cartQuantity += cartItem.quantity;
   }) 
-
-
-
 }
+*/
 
-renderOrderSummary();
 
