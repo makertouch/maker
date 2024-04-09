@@ -195,7 +195,7 @@ paymantSummary();
 
 function paymantSummary() {
 
-  let cartQuantitySummary = `0`;
+  let cartQuantitySummary = 0;
 
   cart.forEach((cartItem) => {
 
@@ -203,7 +203,7 @@ function paymantSummary() {
 
   cartQuantitySummary += cartItem.quantity;
 
-  let priceSummary = `0`;
+  let priceSummary = 0;
 
   products.forEach((product) => {
     if (product.id === productId) {
