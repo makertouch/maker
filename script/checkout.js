@@ -191,7 +191,7 @@ document.querySelector(`.js-return-to-home-link`).innerHTML = `${cartQuantity} I
 renderOrderSummary();
 
 
-
+paymantSummary();
 
 function paymantSummary() {
 
