@@ -200,9 +200,9 @@ function paymantSummary() {
   
   cart.forEach((cartItem) => {
 
-  const productId = cartItem.productId;
-
   cartQuantitySummary += cartItem.quantity;
+
+  const productId = cartItem.productId;
 
   products.forEach((product) => {
     if (product.id === productId) {
