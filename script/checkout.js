@@ -210,9 +210,10 @@ function paymantSummary() {
       priceSummary += product.priceCents;
     }
   });
-console.log(cartQuantitySummary);
-console.log(priceSummary);
+
   }) 
+  console.log(cartQuantitySummary);
+console.log(priceSummary);
 }
 
 
