@@ -197,10 +197,23 @@ function paymantSummary() {
 
   let cartQuantitySummary = 0;
   let priceSummary = 0;
+  let shippingPrice = 0;
   
   cart.forEach((cartItem) => {
 
   cartQuantitySummary += cartItem.quantity;
+
+  const deliveryOptionId = cart.deliveryOptionId;
+  
+  let deliveryOption;
+
+  deliveryOptions.forEach((option) => {
+    if(option.id === deliveryOptionId) {
+      deliveryOption = option;
+    }
+  });
+
+  shippingPrice += formatCurrency(deliveryOption.priceCents);
 
   const productId = cartItem.productId;
 
@@ -211,8 +224,9 @@ function paymantSummary() {
   });
 
   }) 
-  console.log(cartQuantitySummary);
+console.log(cartQuantitySummary);
 console.log(priceSummary);
+console.log(shippingPrice);
 }
 
 
