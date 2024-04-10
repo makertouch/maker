@@ -205,15 +205,12 @@ function paymantSummary() {
 
   const deliveryOptionId = cart.deliveryOptionId;
   
-  let deliveryOption;
 
   deliveryOptions.forEach((option) => {
     if(option.id === deliveryOptionId) {
-      deliveryOption = option;
+      shippingPrice += formatCurrency(option.priceCents);
     }
   });
-
-  shippingPrice += formatCurrency(deliveryOption.priceCents);
 
   const productId = cartItem.productId;
 
