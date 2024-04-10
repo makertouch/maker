@@ -220,12 +220,12 @@ function paymantSummary() {
   });
 
   }) 
-const totalBeforeTax = Number(formatCurrency(priceSummary + shippingPrice));
+const totalBeforeTax = priceSummary + shippingPrice;
 
 console.log(cartQuantitySummary);
 console.log(formatCurrency(priceSummary));
 console.log(formatCurrency(shippingPrice));
-console.log(totalBeforeTax);
+console.log(formatCurrency(totalBeforeTax));
 }
 
 
