@@ -207,7 +207,7 @@ function paymantSummary() {
 
   deliveryOptions.forEach((option) => {
     if (option.id === deliveryOptionId) {
-      shippingPrice += formatCurrency(option.priceCents);
+      shippingPrice += option.priceCents;
     }
   });
 
@@ -215,14 +215,14 @@ function paymantSummary() {
 
   products.forEach((product) => {
     if (product.id === productId) {
-      priceSummary += formatCurrency(product.priceCents);
+      priceSummary += product.priceCents;
     }
   });
 
   }) 
 console.log(cartQuantitySummary);
-console.log(priceSummary);
-console.log(shippingPrice);
+console.log(formatCurrency(priceSummary));
+console.log(formatCurrency(shippingPrice));
 }
 
 
