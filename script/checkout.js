@@ -209,6 +209,7 @@ function paymantSummary() {
   deliveryOptions.forEach((option) => {
     if(option.id === deliveryOptionId) {
       shippingPrice += option.priceCents;
+      console.log(shippingPrice);
     }
   });
 
