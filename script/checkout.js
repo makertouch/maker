@@ -203,9 +203,7 @@ function paymantSummary() {
 
   cartQuantitySummary += cartItem.quantity;
 
-  const deliveryOptionId = cart.deliveryOptionId;
-  console.log(deliveryOptionId);
-  
+  const deliveryOptionId = cartItem.deliveryOptionId;
 
   deliveryOptions.forEach((option) => {
     if (option.id === deliveryOptionId) {
