@@ -206,7 +206,7 @@ function paymantSummary() {
 
   products.forEach((product) => {
     if (product.id === productId) {
-      priceSummary += product.priceCents;
+      priceSummary += formatCurrency(product.priceCents);
     }
   });
 
