@@ -207,8 +207,7 @@ function paymantSummary() {
   
 
   deliveryOptions.forEach((option) => {
-    if(option.id === deliveryOptionId) {
-      console.log(`Found matching delivery option: ${option.id}`);
+    if (option.id === deliveryOptionId) {
       shippingPrice += option.priceCents;
     }
   });
