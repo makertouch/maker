@@ -229,28 +229,28 @@ const HTML = `
 </div>
 
 <div class="payment-summary-row">
-  <div>Items ($${cartQuantitySummary}}):</div>
-  <div class="payment-summary-money">$${priceSummary}</div>
+  <div>Items (${cartQuantitySummary}}):</div>
+  <div class="payment-summary-money">$${formatCurrency(priceSummary)}</div>
 </div>
 
 <div class="payment-summary-row">
   <div>Shipping &amp; handling:</div>
-  <div class="payment-summary-money">$${shippingPrice}</div>
+  <div class="payment-summary-money">$${formatCurrency(shippingPrice)}</div>
 </div>
 
 <div class="payment-summary-row subtotal-row">
   <div>Total before tax:</div>
-  <div class="payment-summary-money">$${totalBeforeTax}</div>
+  <div class="payment-summary-money">$${formatCurrency(totalBeforeTax)}</div>
 </div>
 
 <div class="payment-summary-row">
   <div>Estimated tax (10%):</div>
-  <div class="payment-summary-money">$${estimatedTax}</div>
+  <div class="payment-summary-money">$${formatCurrency(estimatedTax)}</div>
 </div>
 
 <div class="payment-summary-row total-row">
   <div>Order total:</div>
-  <div class="payment-summary-money">$${orderTotal}</div>
+  <div class="payment-summary-money">$${formatCurrency(orderTotal)}</div>
 </div>
 
 <button class="place-order-button button-primary">
