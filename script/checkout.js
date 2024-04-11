@@ -169,7 +169,7 @@ document.querySelectorAll(`.js-save-link`).forEach((saveButton) => {
 		// Displaying at the same moment without refreshing the page.
 		updateCartQuantity();
 		document.querySelector(`.js-quantity-label-${productId}`).innerHTML = newQuantity;
-    renderOrderSummary()
+    renderOrderSummary();
 	});
 });
 
