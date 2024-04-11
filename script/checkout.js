@@ -210,7 +210,7 @@ document.querySelector(`.js-return-to-home-link`).innerHTML = `${cartQuantity} I
 
   products.forEach((product) => {
     if (product.id === productId) {
-      priceSummary += product.priceCents;
+      priceSummary += product.priceCents * cartItem.quantity;
     }
   });
 
