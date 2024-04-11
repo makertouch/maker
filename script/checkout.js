@@ -52,7 +52,7 @@ checkOutHTML += `
                 </div>
 
                 <div class="product-price">
-$${formatCurrency(matchingProduct.priceCents)}
+$${formatCurrency(matchingProduct.priceCents * cartItem.quantity)}
                 </div>
                 <div class="product-quantity">
                   <span>
@@ -259,7 +259,7 @@ return HTML;
 
 }
 
-document.querySelector(`.js-payment-summary`).innerHTML = paymantSummary();;
+document.querySelector(`.js-payment-summary`).innerHTML = paymantSummary();
 
 
 }
