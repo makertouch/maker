@@ -225,7 +225,7 @@ const HTML = `
 </div>
 
 <div class="payment-summary-row">
-  <div>Items (${cartQuantitySummary}}):</div>
+  <div>Items (${cartQuantitySummary}):</div>
   <div class="payment-summary-money">$${formatCurrency(priceSummary)}</div>
 </div>
 
