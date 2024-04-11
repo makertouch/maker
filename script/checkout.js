@@ -186,12 +186,8 @@ cartQuantity += cartItem.quantity;
 document.querySelector(`.js-return-to-home-link`).innerHTML = `${cartQuantity} Items`;
 }
  updateCartQuantity();
-}
 
-renderOrderSummary();
-
-
-function paymantSummary() {
+ function paymantSummary() {
 
   let cartQuantitySummary = 0;
   let priceSummary = 0;
@@ -261,16 +257,16 @@ const HTML = `
 
 return HTML;
 
-console.log(cartQuantitySummary);
-console.log(formatCurrency(priceSummary));
-console.log(formatCurrency(shippingPrice));
-console.log(formatCurrency(totalBeforeTax));
-console.log(formatCurrency(estimatedTax));
-console.log(formatCurrency(orderTotal));
-
 }
 
 document.querySelector(`.js-payment-summary`).innerHTML = paymantSummary();;
+
+
+}
+
+renderOrderSummary();
+
+
 
 
 
