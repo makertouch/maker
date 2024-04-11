@@ -191,8 +191,6 @@ document.querySelector(`.js-return-to-home-link`).innerHTML = `${cartQuantity} I
 renderOrderSummary();
 
 
-paymantSummary();
-
 function paymantSummary() {
 
   let cartQuantitySummary = 0;
@@ -225,6 +223,44 @@ const totalBeforeTax = priceSummary + shippingPrice;
 const estimatedTax = Number(totalBeforeTax / 10);
 const orderTotal = totalBeforeTax + estimatedTax;
 
+const HTML = `
+<div class="payment-summary-title">
+  Order Summary
+</div>
+
+<div class="payment-summary-row">
+  <div>Items ($${cartQuantitySummary}}):</div>
+  <div class="payment-summary-money">$${priceSummary}</div>
+</div>
+
+<div class="payment-summary-row">
+  <div>Shipping &amp; handling:</div>
+  <div class="payment-summary-money">$${shippingPrice}</div>
+</div>
+
+<div class="payment-summary-row subtotal-row">
+  <div>Total before tax:</div>
+  <div class="payment-summary-money">$${totalBeforeTax}</div>
+</div>
+
+<div class="payment-summary-row">
+  <div>Estimated tax (10%):</div>
+  <div class="payment-summary-money">$${estimatedTax}</div>
+</div>
+
+<div class="payment-summary-row total-row">
+  <div>Order total:</div>
+  <div class="payment-summary-money">$${orderTotal}</div>
+</div>
+
+<button class="place-order-button button-primary">
+  Place your order
+</button>
+</div>
+`;
+
+return HTML;
+
 console.log(cartQuantitySummary);
 console.log(formatCurrency(priceSummary));
 console.log(formatCurrency(shippingPrice));
@@ -234,6 +270,7 @@ console.log(formatCurrency(orderTotal));
 
 }
 
+document.querySelector(`.js-payment-summary`).innerHTML = paymantSummary();;
 
 
 
