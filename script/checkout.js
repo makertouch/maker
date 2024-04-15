@@ -1,3 +1,3 @@
-import {renderOrderSummary} from `./chקckout/orderSummary.js`;
+import {renderOrderSummary} from `./checkout/orderSummary.js`;
 
 renderOrderSummary();
