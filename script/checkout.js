@@ -1,3 +1,3 @@
-import {renderOrderSummary} from `./chackout/orderSummary.js`;
+import {renderOrderSummary} from `./chקckout/orderSummary.js`;
 
 renderOrderSummary();
