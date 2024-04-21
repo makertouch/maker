@@ -1,3 +1,3 @@
-export function renderPaymantSummary () {
+export function renderPaymentSummary () {
     console.log(`paymantSummary`);
 }
