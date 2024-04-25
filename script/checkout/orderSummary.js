@@ -3,6 +3,7 @@ import { products, getProduct } from '../../data/products.js';
 import {formatCurrency} from '../utils/money.js';
 import dayjs from 'https://unpkg.com/dayjs@1.11.10/esm/index.js';
 import {deliveryOptions, getDeliveryOption} from '../../data/deliveryOptions.js';
+import { renderPaymentSummary } from './paymentSummary.js';
 
 export function renderOrderSummary() {
 
@@ -117,7 +118,7 @@ document.querySelectorAll(`.js-delete-link`).forEach((link) => {
     removeFromCart(productId);
     const container = document.querySelector(`.js-cart-item-container-${productId}`);
     container.remove();
-    updateCart();
+    renderPaymentSummary();
   });
 });
 
@@ -127,6 +128,8 @@ document.querySelectorAll('.js-link-primary').forEach((updateButton) => {
 	const productId = updateButton.dataset.productId; // takes the product id from the button to controll the all product.
 	const container = document.querySelector(`.js-cart-item-container-${productId}`);
 	container.classList.add('is-editing-quantity');
+  renderPaymentSummary();
+  renderPaymentSummary();
 	
 	});
 });
@@ -137,6 +140,7 @@ element.addEventListener(`click`, () => {
   const {productId, deliveryOptionId} = element.dataset;
 updateDeliveryOption(productId, deliveryOptionId);
 renderOrderSummary();
+renderPaymentSummary();
 });
 });
 
@@ -159,6 +163,7 @@ document.querySelectorAll(`.js-save-link`).forEach((saveButton) => {
 		updateCartQuantity();
 		document.querySelector(`.js-quantity-label-${productId}`).innerHTML = newQuantity;
     renderOrderSummary();
+    renderPaymentSummary();
 	});
 });
 
