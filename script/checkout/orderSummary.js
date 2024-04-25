@@ -1,8 +1,8 @@
 import { cart, removeFromCart, updateQuantity, updateDeliveryOption } from '../../data/cart.js';
-import { products } from '../../data/products.js';
+import { products, getProduct } from '../../data/products.js';
 import {formatCurrency} from '../utils/money.js';
 import dayjs from 'https://unpkg.com/dayjs@1.11.10/esm/index.js';
-import {deliveryOptions} from '../../data/deliveryOptions.js';
+import {deliveryOptions, getDeliveryOption} from '../../data/deliveryOptions.js';
 
 export function renderOrderSummary() {
 
@@ -11,23 +11,13 @@ let checkOutHTML = '';
 cart.forEach((cartItem) => {
   const productId = cartItem.productId;
 
-  let matchingProduct;
+  const matchingProduct = getProduct(productId);
 
-  products.forEach((product) => {
-    if (product.id === productId) {
-      matchingProduct = product;
-    }
-  });
 
 const deliveryOptionId = cartItem.deliveryOptionId;
 
-	let deliveryOption;
+	const deliveryOption = getDeliveryOption(deliveryOptionId);
 	
-deliveryOptions.forEach((option) => {
-	if (option.id === deliveryOptionId) {
-	  deliveryOption = option;
-	}
-});
 
 	const today = dayjs();
 	const deliveryDate = today.add(deliveryOption.deliveryDays, `days`);
@@ -187,79 +177,7 @@ document.querySelector(`.js-return-to-home-link`).innerHTML = `${cartQuantity} I
 }
  updateCartQuantity();
 
- function paymantSummary() {
 
-  let cartQuantitySummary = 0;
-  let priceSummary = 0;
-  let shippingPrice = 0;
-  
-  cart.forEach((cartItem) => {
-
-  cartQuantitySummary += cartItem.quantity;
-
-  const deliveryOptionId = cartItem.deliveryOptionId;
-
-  deliveryOptions.forEach((option) => {
-    if (option.id === deliveryOptionId) {
-      shippingPrice += option.priceCents;
-    }
-  });
-
-  const productId = cartItem.productId;
-
-  products.forEach((product) => {
-    if (product.id === productId) {
-      priceSummary += product.priceCents * cartItem.quantity;
-    }
-  });
-
-  }) 
-
-const totalBeforeTax = priceSummary + shippingPrice;
-const estimatedTax = Number(totalBeforeTax / 10);
-const orderTotal = totalBeforeTax + estimatedTax;
-
-const HTML = `
-<div class="payment-summary-title">
-  Order Summary
-</div>
-
-<div class="payment-summary-row">
-  <div>Items (${cartQuantitySummary}):</div>
-  <div class="payment-summary-money">$${formatCurrency(priceSummary)}</div>
-</div>
-
-<div class="payment-summary-row">
-  <div>Shipping &amp; handling:</div>
-  <div class="payment-summary-money">$${formatCurrency(shippingPrice)}</div>
-</div>
-
-<div class="payment-summary-row subtotal-row">
-  <div>Total before tax:</div>
-  <div class="payment-summary-money">$${formatCurrency(totalBeforeTax)}</div>
-</div>
-
-<div class="payment-summary-row">
-  <div>Estimated tax (10%):</div>
-  <div class="payment-summary-money">$${formatCurrency(estimatedTax)}</div>
-</div>
-
-<div class="payment-summary-row total-row">
-  <div>Order total:</div>
-  <div class="payment-summary-money">$${formatCurrency(orderTotal)}</div>
-</div>
-
-<button class="place-order-button button-primary">
-  Place your order
-</button>
-</div>
-`;
-
-return HTML;
-
-}
-
-document.querySelector(`.js-payment-summary`).innerHTML = paymantSummary();
 
 
 }
