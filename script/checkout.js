@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { cart, removeFromCart, updateQuantity, updateDeliveryOption } from '../data/cart.js';
 import { products } from '../data/products.js';
 import {formatCurrency} from './utils/money.js';
@@ -147,128 +148,9 @@ document.querySelectorAll(`.js-delivery-option`).forEach
 element.addEventListener(`click`, () => {
   const {productId, deliveryOptionId} = element.dataset;
 updateDeliveryOption(productId, deliveryOptionId);
+=======
+import {renderOrderSummary} from './checkout/orderSummary.js';
+import {renderPaymentSummary} from './checkout/paymentSummary.js';
+>>>>>>> d6739416420ec276f5da5ce127595e31172281e5
 renderOrderSummary();
-});
-});
-
-
-
-document.querySelectorAll(`.js-save-link`).forEach((saveButton) => {
-	saveButton.addEventListener(`click`, () => {
-	const productId = saveButton.dataset.productId; // takes the product id from the button to controll the all product.
-	const container = document.querySelector(`.js-cart-item-container-${productId}`);
-	container.classList.remove(`is-editing-quantity`);
-	 const quantityInput = document.querySelector(`.js-quantity-input-${productId}`);
-	 const newQuantity = Number(quantityInput.value);
-		if (newQuantity > 0 && newQuantity <= 1000) {
-			updateQuantity(productId, newQuantity);
-		} else {
-		alert(`Pick a number between 1 and 1000.
-  Thank you and have a nice day :)`);	
-		}
-		// Displaying at the same moment without refreshing the page.
-		updateCartQuantity();
-		document.querySelector(`.js-quantity-label-${productId}`).innerHTML = newQuantity;
-    renderOrderSummary();
-	});
-});
-
-
-
-function updateCartQuantity() {
-	
-let cartQuantity = 0;
-	
-cart.forEach((cartItem) => {
-cartQuantity += cartItem.quantity;
-});	
-
-
-document.querySelector(`.js-return-to-home-link`).innerHTML = `${cartQuantity} Items`;
-}
- updateCartQuantity();
-
- function paymantSummary() {
-
-  let cartQuantitySummary = 0;
-  let priceSummary = 0;
-  let shippingPrice = 0;
-  
-  cart.forEach((cartItem) => {
-
-  cartQuantitySummary += cartItem.quantity;
-
-  const deliveryOptionId = cartItem.deliveryOptionId;
-
-  deliveryOptions.forEach((option) => {
-    if (option.id === deliveryOptionId) {
-      shippingPrice += option.priceCents;
-    }
-  });
-
-  const productId = cartItem.productId;
-
-  products.forEach((product) => {
-    if (product.id === productId) {
-      priceSummary += product.priceCents * cartItem.quantity;
-    }
-  });
-
-  }) 
-
-const totalBeforeTax = priceSummary + shippingPrice;
-const estimatedTax = Number(totalBeforeTax / 10);
-const orderTotal = totalBeforeTax + estimatedTax;
-
-const HTML = `
-<div class="payment-summary-title">
-  Order Summary
-</div>
-
-<div class="payment-summary-row">
-  <div>Items (${cartQuantitySummary}):</div>
-  <div class="payment-summary-money">$${formatCurrency(priceSummary)}</div>
-</div>
-
-<div class="payment-summary-row">
-  <div>Shipping &amp; handling:</div>
-  <div class="payment-summary-money">$${formatCurrency(shippingPrice)}</div>
-</div>
-
-<div class="payment-summary-row subtotal-row">
-  <div>Total before tax:</div>
-  <div class="payment-summary-money">$${formatCurrency(totalBeforeTax)}</div>
-</div>
-
-<div class="payment-summary-row">
-  <div>Estimated tax (10%):</div>
-  <div class="payment-summary-money">$${formatCurrency(estimatedTax)}</div>
-</div>
-
-<div class="payment-summary-row total-row">
-  <div>Order total:</div>
-  <div class="payment-summary-money">$${formatCurrency(orderTotal)}</div>
-</div>
-
-<button class="place-order-button button-primary">
-  Place your order
-</button>
-</div>
-`;
-
-return HTML;
-
-}
-
-document.querySelector(`.js-payment-summary`).innerHTML = paymantSummary();
-
-
-}
-
-renderOrderSummary();
-
-
-
-
-
-
+renderPaymentSummary();
