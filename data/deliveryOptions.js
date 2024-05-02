@@ -29,7 +29,7 @@ export function getDeliveryOptionDate(deliveryOption) {
   let deliveryDate = dayjs();
   let remainingDays = deliveryOption.deliveryDays;
   
-  while (remainingDays > 0) {  // All of this exist as long remainingDays > 0
+  while (remainingDays > 0) {  // All the scope exists as long as remainingDays > 0
     deliveryDate = deliveryDate.add(1, `day`);
 
     if (!isWeekend(deliveryDate)) {
