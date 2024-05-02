@@ -74,10 +74,8 @@ function deliveryOptionsHTML(productId, cartItem, matchingProduct) {
 	let HTML = ``;
 	
 	deliveryOptions.forEach((deliveryOption) => {
-		const today = dayjs();
-		const deliveryDate = today.add(deliveryOption.deliveryDays, `days`);
-
-		const dateString = deliveryDate.format(`dddd, MMMM D`); 
+		
+		const dateString = getDeliveryOptionDate(deliveryOption);
 		const priceString = deliveryOption.priceCents === 0
 			? `Free`
 			: `$${formatCurrency(deliveryOption.priceCents)} -`;
