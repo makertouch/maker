@@ -18,6 +18,7 @@ cart.forEach((cartItem) => {
   const deliveryOptionId = cartItem.deliveryOptionId;
 
 	const deliveryOption = getDeliveryOption(deliveryOptionId);
+  
 	
 	const dateString = getDeliveryOptionDate(deliveryOption);
   
