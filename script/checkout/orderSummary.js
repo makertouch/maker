@@ -15,7 +15,7 @@ cart.forEach((cartItem) => {
   const matchingProduct = getProduct(productId);
 
 
-const deliveryOptionId = cartItem.deliveryOptionId;
+  const deliveryOptionId = cartItem.deliveryOptionId;
 
 	const deliveryOption = getDeliveryOption(deliveryOptionId);
 	
@@ -129,7 +129,7 @@ document.querySelectorAll('.js-link-primary').forEach((updateButton) => {
 	const container = document.querySelector(`.js-cart-item-container-${productId}`);
 	container.classList.add('is-editing-quantity');
   renderPaymentSummary();
-  renderPaymentSummary();
+
 	
 	});
 });
