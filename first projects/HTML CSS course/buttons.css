@@ -1,0 +1,92 @@
+<style>
+
+.request-now {
+background-color: black;
+color: white;
+padding: 8px;
+cursor: pointer;
+transition: opacity 0.15s;
+}
+
+.request-now:hover {
+opacity: 0.7;
+}
+
+
+.add-to-cart {
+background-color: yellow;
+border-radius: 15px;
+width: 140;
+height:30;
+border: none;
+cursor: pointer;
+}
+
+.add-to-cart:active {
+background-color: blue;
+color: white;
+}
+
+.sign-up {
+background-color: rgb(46, 164, 79);
+color: white;
+border-radius: 10px;
+padding: 10px;
+font-weight: bold;
+border: none;
+width: 100px;
+cursor: pointer;
+}
+
+.sign-up:hover {
+width:150px;
+padding: 20px;
+}
+
+.save {
+background-color: white;
+color: rgb(10, 102, 194);
+border-color: rgb(10, 102, 194);
+border-radius: 30px;
+padding: 10px;
+font-weight: bold;
+width: 100px;
+font-size: 15px;
+cursor: pointer;
+
+}
+
+.save:active {
+border-color: red;
+color: red;
+}
+
+</style>
+
+<button class="request-now">
+ Request now
+</button>
+
+<br>
+<br>
+
+
+<button class="add-to-cart">
+  Add to Cart
+</button>
+
+<br>
+<br>
+
+<button class="sign-up">
+  Sign Up
+</button> 
+
+<br>
+</br>
+
+<button class="save">
+  Save
+</button>
+
+
