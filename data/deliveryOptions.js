@@ -31,9 +31,10 @@ export function getDeliveryOptionDate(deliveryOption) {
   
   while (remainingDays > 0) {  // All the scope exists as long as remainingDays > 0
     deliveryDate = deliveryDate.add(1, `day`);
+    remainingDays --;
 
-    if (!isWeekend(deliveryDate)) {
-      remainingDays--;
+    if (isWeekend(deliveryDate)) {
+      remainingDays ++;
     }
   }
 
