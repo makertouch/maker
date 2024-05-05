@@ -36,11 +36,11 @@ font-weight: bold;
 border: none;
 width: 100px;
 cursor: pointer;
+transition: box-shadow 0.15s;
 }
 
 .sign-up:hover {
-width:150px;
-padding: 20px;
+box-shadow: 0px 5px 8px rgba(0, 0, 0, 0.15);
 }
 
 .save {
@@ -88,5 +88,156 @@ color: red;
 <button class="save">
   Save
 </button>
+
+
+<style>
+
+a {
+color: white;
+font-family: Arial;
+font-weight: bold;
+font-style: normal;
+text-decoration-line: none;
+margin-left: 2px;
+}
+
+a:hover {
+text-decoration: underline;
+}
+
+.shop-early {
+text-align: center;
+font-family: Arial;
+font-weight: bold;
+background-color: red;
+padding: 20px;
+color: white;
+border-radius: 15px;
+}
+
+
+</style>
+
+
+<p class="shop-early"> 
+Shop early for the best selection of holiday favourite.
+<a href="https://google.com" class="link">
+ Shop now >
+</a>
+</p>
+
+
+//leason 5
+
+<style>
+
+p {
+font-family: Tahoma;
+}
+
+.font {
+  font-weight: bold;
+  font-size: 25px;
+  margin-bottom: 0px;
+}
+
+.font-red {
+color: red;
+font-style: Italic;
+margin-top: 5px;
+}
+
+</style>
+
+<p class="font"> 
+  Biggest Deals of the Year!
+</p>
+<p class="font-red">
+  Sales end Tuesday
+</p>
+
+<style>
+
+.HTML-CSS-HeadLine {
+font-size: 15px;
+font-family: Arial;
+font-weight: bold;
+margin-bottom: 4px;
+}
+
+.second-line {
+color: gray;
+margin-top: 0px;
+font-size: 15px;
+}
+
+.text {
+width: 260px;
+font-style: Arial;
+line-height: 25px;
+}
+
+.get-started {
+background: rgb(46, 164, 79);
+color: white;
+font-weight: bold;
+border-radius: 10px;
+padding: 10px;
+transition: box-shadow 0.2s;
+border: none;
+width: 100px;
+cursor: pointer;
+}
+
+.get-started:hover {
+box-shadow: 0px 8px 5px rgba(0, 0, 0, 0.15);
+}
+
+.head-line2 {
+font-family: Arial;
+text-align: center;
+font-size: 24px;
+}
+
+.no-name {
+text-align: center;
+font-size: 15px;
+}
+
+.learn-more {
+text-decoration: none;
+}
+</style>
+
+
+<p class="HTML-CSS-HeadLine"> 
+  HTML CSS course
+</p>
+<p class="second-line">
+Begginer to Pro
+</p>
+
+<p class="text">
+ In this course, we'll learn the skills you need to become a developer.
+</p>
+
+<button class="get-started">
+  Get Started
+</button>
+
+<h1 class="head-line2"> 
+Shopping for your buisness?
+</h1>
+
+<p class="no-name">
+See how Apple at Work can help.
+</p>
+
+<span class="learn-more">
+
+Learn-More >
+
+</span>
+
 
 
