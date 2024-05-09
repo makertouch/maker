@@ -31,3 +31,14 @@ font-size: 12px;
 .search-bar {
 display: block;
 }
+
+.channel-picture {
+display: inline-block;
+width: 50px;
+
+}
+
+.video-info {
+display: inline-block;
+width: 200px;
+}
