@@ -1,4 +1,21 @@
+p {
+width: 300px;
+font-family: Arial;
+}
 
-.main-image {
-width: 20px;
+.thumbnail {
+object-fit: contain;
+object-position: center;
+width: 300px;
+display: block;
+}
+
+.video-title {
+font-weight: bold;
+font-size: 13px;
+}
+
+.video-author, .video-stats {
+color: gray;
+font-size: 12px;
 }
