@@ -1,6 +1,14 @@
+
 p {
 width: 300px;
 font-family: Arial;
+}
+
+.video-preview {
+display: inline-block;
+width: 300px;
+vertical-align: top;
+margin-right: 15px;
 }
 
 .thumbnail {
@@ -18,4 +26,8 @@ font-size: 13px;
 .video-author, .video-stats {
 color: gray;
 font-size: 12px;
+}
+
+.search-bar {
+display: block;
 }
