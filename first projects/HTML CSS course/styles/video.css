@@ -57,6 +57,14 @@ grid-template-columns: 50px 1fr;
 
 .video-time {
     position: absolute;
-    bottom: 20px;
-    right: 20px;
+    bottom: 10px;
+    right: 10px;
+    background-color: rgba(0,0,0,0.55);
+    color: white;
+    font-family: Roberto, Arial;
+    font-size: 12px;
+    padding: 4px;
+    font-weight: 500;
+    border-radius: 4px;
+
 }
