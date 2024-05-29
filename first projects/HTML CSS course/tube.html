@@ -1,268 +1,46 @@
-<!DOCTYPE html>
 
-<html>
+.video-grid {
+display: grid;
+grid-template-columns: 1fr 1fr 1fr;
+max-width: 800px;
+column-gap: 16px;
+row-gap: 40px;
+}
 
-<head>
+.thumbnail {
+width: 100%;
+}
 
-<link rel="stylesheet" href="styles\video.css">
-<link rel="stylesheet" href="styles\header.css">
-<link rel="stylesheet" href="styles\general.css">
-<link rel="stylesheet" href="styles\sidebar.css">
-<title> tube </title>
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
-
-</head>
-
-
-<body>
-
-<div class="header">
-
-<div class="left-section">
-
-<img class="hamburger" src="https://static.vecteezy.com/system/resources/previews/021/190/402/original/hamburger-menu-filled-icon-in-transparent-background-basic-app-and-web-ui-bold-line-icon-eps10-free-vector.jpg">
-
-<img class="logo" src="https://logodownload.org/wp-content/uploads/2014/10/youtube-logo-9.png">
+.thumbnail-row {
+margin-bottom: 12px;
+}
 
 
-</div>
+.video-author, .video-stats {
+color: rgb(96, 96, 96);
+font-size: 12px;
+}
 
-<div class="middle-section">
-<input class="search-bar" type="text" placeholder="Search">
-
-<button class="search">
-<img class="search-icon" src="https://icon-library.com/images/search-icon-png-transparent/search-icon-png-transparent-18.jpg">
-</button>
-
-<button class="microphone">
-<img class="microphone-icon" src="https://spng.pngfind.com/pngs/s/611-6110388_recording-icon-png-microphone-svg-icon-transparent-png.png">
-</button>
-
-</div>
-
-<div class="right-section">
-<button class="create-button">
-  <img class="create-icon" src="https://cdn.icon-icons.com/icons2/1856/PNG/512/video-call_117410.png">
-</button>
-
-<button class="dots-button">
-  <img class="dots-icon" src="https://cdn.iconscout.com/icon/free/png-256/free-dots-nine-3602636-3003318.png">
-</button>
+.video-author {
+margin-bottom: 4px;
+}
 
 
-  <div class="notification-button-container">
-  <img class="notification-icon" src="https://www.pngitem.com/pimgs/m/217-2170327_file-echo-bell2-svg-youtube-notification-bell-icon.png">
-
-  <div class="number-icon">
-    3
-  </div>
-
-  </div>
+.profile-picture {
+width: 40px;
+border-radius: 50px;
+}
 
 
+.video-title {
+margin-top: 0px;
+font-size: 14px;
+font-weight: 500;
+line-height: 20px;
+margin-bottom: 12px;
+}
 
-
-<button class="profile-image-button">
-  <img class="profile-image-icon" src="https://w7.pngwing.com/pngs/223/244/png-transparent-computer-icons-avatar-user-profile-avatar-heroes-rectangle-black-thumbnail.png">
-</button>
-
-</div>
-
-
-
-</div>
-
-<div class="side-bar">
-side bar
-</div>
-
-
-<div class="video-grid">
-
-<div class="video-preview">
-<div class="thumbnail-row">
-<img class="thumbnail"  src="https://www.esa.int/var/esa/storage/images/esa_multimedia/images/2017/11/autumn_fireball/17255671-1-eng-GB/Autumn_fireball.jpg">
-<div class="video-time">
-  18:20
-  </div>
-</div>
-
-<div class="video-info-grid">
-<div class="channel-picture"> 
-<img class="profile-picture" src="https://i.postimg.cc/Dy006qhM/149071.png">
-</div>
-<div class="video-info"> 
-<p class="video-title">
-  Talking Tech and AI with google CEO Sundar Pichai!
-</p>
-
-<p class="video-author">
-  Marques Brownlee
-</p>
-
-<p class="video-stats">
-3.4M views · 6 mounths ago
-</p>
-
-</div>
-</div>
-</div>
-
-<div class="video-preview">
-<div class="thumbnail-row">
-<img class="thumbnail"  src="https://wallpapercave.com/wp/wp2568544.jpg">
-
-<div class="video-time">
-14:20
-</div>
-
-</div>
-
-
-<div class="video-info-grid">
-<div class="channel-picture"> 
-<img class="profile-picture" src="https://w7.pngwing.com/pngs/178/419/png-transparent-man-illustration-computer-icons-avatar-login-user-avatar-child-web-design-face-thumbnail.png">
-</div>
-<div class="video-info"> 
-<p class="video-title">
-  Try Not to Laugh Challaenge #9
-</p>
-
-<p class="video-author">
-  Markiplier
-</p>
-
-<p class="video-stats">
-19M views · 4 years ago
-</p>
-
-</div>
-</div>
-</div>
-
-<div class="video-preview">
-  <div class="thumbnail-row">
-  <img class="thumbnail"  src="https://thumbs.dreamstime.com/b/falling-drop-rain-blue-earth-image-water-splash-crown-shape-water-splash-crown-shape-falling-drop-earth-140453719.jpg">
-  <div class="video-time">
-    5:10
-    </div>
-  </div>
-  
-  <div class="video-info-grid">
-  <div class="channel-picture"> 
-  <img class="profile-picture" src="https://w7.pngwing.com/pngs/481/915/png-transparent-computer-icons-user-avatar-woman-avatar-computer-business-conversation-thumbnail.png">
-  </div>
-  <div class="video-info"> 
-  <p class="video-title">
-    Crazy Tik Toks Taken Moments Before DISASTER
-  </p>
-  
-  <p class="video-author">
-    SSSsniperWolf
-  </p>
-  
-  <p class="video-stats">
-  12M views · 1 year ago
-  </p>
-  
-  </div>
-  </div>
-  </div>
-
-  <div class="video-preview">
-    <div class="thumbnail-row">
-    <img class="thumbnail"  src="https://www.esa.int/var/esa/storage/images/esa_multimedia/images/2017/11/autumn_fireball/17255671-1-eng-GB/Autumn_fireball.jpg">
-<div class="video-time">
-  14:20
-  </div>
-    </div>
-    
-    <div class="video-info-grid">
-    <div class="channel-picture"> 
-    <img class="profile-picture" src="https://i.postimg.cc/Dy006qhM/149071.png">
-    </div>
-    <div class="video-info"> 
-    <p class="video-title">
-      Talking Tech and AI with google CEO Sundar Pichai!
-    </p>
-    
-    <p class="video-author">
-      Marques Brownlee
-    </p>
-    
-    <p class="video-stats">
-    3.4M views · 6 mounths ago
-    </p>
-    
-    </div>
-    </div>
-    </div>
-    
-    <div class="video-preview">
-    <div class="thumbnail-row">
-    <img class="thumbnail"  src="https://wallpapercave.com/wp/wp2568544.jpg">
-    <div class="video-time">
-      1:20
-      </div>
-    </div>
-    
-    <div class="video-info-grid">
-    <div class="channel-picture"> 
-    <img class="profile-picture" src="https://w7.pngwing.com/pngs/178/419/png-transparent-man-illustration-computer-icons-avatar-login-user-avatar-child-web-design-face-thumbnail.png">
-    </div>
-    <div class="video-info"> 
-    <p class="video-title">
-      Try Not to Laugh Challaenge #9
-    </p>
-    
-    <p class="video-author">
-      Markiplier
-    </p>
-    
-    <p class="video-stats">
-    19M views · 4 years ago
-    </p>
-    
-    </div>
-    </div>
-    </div>
-    
-    <div class="video-preview">
-      <div class="thumbnail-row">
-      <img class="thumbnail"  src="https://thumbs.dreamstime.com/b/falling-drop-rain-blue-earth-image-water-splash-crown-shape-water-splash-crown-shape-falling-drop-earth-140453719.jpg">
-      <div class="video-time">
-        19:40
-        </div>
-      </div>
-      
-      <div class="video-info-grid">
-      <div class="channel-picture"> 
-      <img class="profile-picture" src="https://w7.pngwing.com/pngs/481/915/png-transparent-computer-icons-user-avatar-woman-avatar-computer-business-conversation-thumbnail.png">
-      </div>
-      <div class="video-info"> 
-      <p class="video-title">
-        Crazy Tik Toks Taken Moments Before DISASTER
-      </p>
-      
-      <p class="video-author">
-        SSSsniperWolf
-      </p>
-      
-      <p class="video-stats">
-      12M views · 1 year ago
-      </p>
-      
-      </div>
-      </div>
-      </div>
-    </div>
-
-
-</body>
-
-
-
-</html>
+.video-info-grid {
+display: grid;
+grid-template-columns: 50px 1fr;
+}
