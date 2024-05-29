@@ -1,5 +1,5 @@
 
-.side-bar {
+.sidebar {
     position: fixed;
     top: 55px;
     bottom: 0;
@@ -7,4 +7,19 @@
     width: 72px;
     background-color: white;
     
+}
+
+.sidebar-link {
+background-color: white;
+height: 76px;
+
+}
+
+.sidebar-link:hover {
+background-color: rgb(235, 235, 235);
+cursor: pointer;
+}
+
+.sidebar-link img {
+height: 24px;
 }
