@@ -50,6 +50,7 @@ line-height: 20px;
 margin-bottom: 12px;
 }
 
+
 .video-info-grid {
 display: grid;
 grid-template-columns: 50px 1fr;
@@ -67,4 +68,8 @@ grid-template-columns: 50px 1fr;
     font-weight: 500;
     border-radius: 4px;
 
+}
+
+.video-info a {
+    text-decoration: none;
 }
