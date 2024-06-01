@@ -73,3 +73,55 @@ grid-template-columns: 50px 1fr;
 .video-info a {
     text-decoration: none;
 }
+
+.author-preview {
+    width: 200px;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 2px 3px 10px rgba(0,0,0,0.3);
+    position: absolute;
+    top: 50px;
+    width: 200px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border-radius: 6px;
+    opacity: 0;
+    transition: opacity 0.18s;
+    pointer-events: none;
+}
+
+
+.author-preview .profile-picture {
+    margin-top: 4px;
+}
+
+.info-small-name {
+font-family: Roboto, Arial;
+font-weight: bold;
+}
+
+.info-small-subscribers {
+    font-family: Roboto, Arial;
+    font-size: 14px;
+    color: gray;
+}
+
+.info-small {
+line-height: 22px;
+    
+}
+
+.channel-picture-container {
+    position: relative;
+    display: inline-block;
+}
+
+.channel-picture-container:hover .author-preview {
+  opacity: 1;
+}
+
+
