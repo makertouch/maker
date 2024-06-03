@@ -12,3 +12,9 @@ font-family: Roboto, Arial;
 margin-top: 0;
 margin-bottom: 0;
 }
+
+@media (min-width: 700px) {
+    body {
+      margin-left: 120px;
+    }
+  }

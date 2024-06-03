@@ -10,6 +10,14 @@
     padding-top: 5px;
 }
 
+@media (min-width: 500px) {
+    .sidebar {
+    
+    width: 200px;
+    
+    }
+}
+
 .sidebar-link {
 background-color: white;
 height: 74px;
@@ -33,3 +41,4 @@ margin-bottom: 2px;
     font-family: Roboto, Arial;
     font-size: 11px;
 }
+
