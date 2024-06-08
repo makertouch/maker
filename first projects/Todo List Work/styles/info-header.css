@@ -1,0 +1,29 @@
+.info-header,
+.left-side,
+.right-side,
+.right-side div {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.left-side {
+    width: 200px;
+}
+
+.right-side {
+    width: 250px;
+}
+
+.right-side .notification {
+    margin-right: 5px;
+}
+
+.notification {
+    color: white;
+    font-weight: bold;
+    background-color: red;
+    border-radius: 10px;
+    width: 20px;
+    height: 20px;
+}
