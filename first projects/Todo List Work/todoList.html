@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="styles/todoList.css">
     <link rel="stylesheet" href="styles/info-header.css">
     <link rel="stylesheet" href="styles/main-header.css">
+    <link rel="stylesheet" href="styles/side-bar.css">
 </head>
 
 <body>
@@ -55,14 +56,81 @@
 
   
   <div class="sort">
-        <button>3D Prints</button>
-        <button>GlueBlock</button>
-        <button>Ploter</button>
-        <button>engineers</button>
-        <button>Urgent units</button>
+        <button class="print-sort">3D Prints</button>
+        <button class="glue-block-sort">GlueBlock</button>
+        <button class="ploter-sort">Ploter</button>
+        <button class="engineers-sort">Engineers</button>
+        <button class="urgent-units-sort">Urgent units</button>
 </div>
 </div>
 
+<div class="side-bar">
+    <div class="button-container">
+    <div>1</div>
+    <button class="print-button">3D Prints</button>
+    </div>
+
+    <div class="button-container">
+    <div>12</div>
+    <button class="glue-block-button"> Glue Block</button>
+    </div>
+
+    <div class="button-container">
+    <div>5</div>
+    <button class="ploter-button">Ploter</button>   
+    </div>
+    
+
+    <div class="button-container">
+    <div>20</div>
+    <button class="engineers-button">Engineers</button>
+    </div>
+
+    <div class="button-container">
+    <div>3</div>
+    <button class="urgent-units-button">Urgent units</button> 
+    </div>
+
+    <div class="button-container">
+    <div>13</div>
+     <button class="others-button">Others</button> 
+    </div>
+
+</div>
+
+<div class="todo-list-container">
+    <div class="title">All Tasks</div>
+<div class="todo">
+    <div class="left-part">
+    <input type="checkbox">
+    <div class="todo-3d-prints">
+        Make a 3D print for 2688
+    </div>
+    </div>
+
+    <div class="right-part">
+   <button class="button-edit">Edit</button> 
+    <button class="button-priority">Priority</button>
+</div>
+
+</div>
+
+<div class="todo">
+    <div class="left-part">
+    <input type="checkbox">
+    <div class="todo-glue-block">
+        GlueBlock for 2651
+    </div>
+    </div>
+
+    <div class="right-part">
+   <button class="button-edit">Edit</button> 
+    <button class="button-priority">Priority</button>
+</div>
+
+</div>
+
+</div>
 
 <script src="script/todoList.js"></script>
 

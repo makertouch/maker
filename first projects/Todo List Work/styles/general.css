@@ -2,4 +2,12 @@ body {
     font-family: Arial;
     padding-top: 40px;
     height: 2000px;
+    padding-top: 180px;
+    padding-left: 173px;
 }
+
+button {
+    border: none;
+    cursor: pointer;
+}
+
