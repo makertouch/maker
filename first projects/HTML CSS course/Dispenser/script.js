@@ -9,5 +9,11 @@ convertButton.addEventListener(`click`, () => {
 code = code.replace(/\s+/g, ' ').trim();
 
 const codeArray = code.split(` `);
-    console.log(codeArray);
+    
+});
+
+let html = ``;
+
+codeArray.forEach((part) => {
+   html += `${index} ${index+1} 0.200 9.000`
 });
