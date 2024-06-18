@@ -1,0 +1,8 @@
+body {
+    font-family: Arial;
+}
+
+.code-input input {
+    width: 300px;
+    height: 150px;
+}
