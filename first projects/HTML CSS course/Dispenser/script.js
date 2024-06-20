@@ -23,15 +23,18 @@ for (i = 0; i < codeArray.length; i += 2) {
 
 if (i + 1 < codeArray.length) { 
 
-let part1 = Number(codeArray[i]).toFixed(2);
-let part2 = Number(codeArray[i + 1]).toFixed(2);
+let part1 = Number(codeArray[i]);
+let part2 = Number(codeArray[i + 1]);
+
+
 
 html += 
 `<div>
-Dot ${part1 + 1} ${part2 + 3} 0.200 0.000
+Dot ${(part1 + 1).toFixed(3)} ${(part2 + 3).toFixed(3)} 0.200 0.000
 </div>`
 }
 }
+
 document.querySelector(`.result`).innerHTML = html;
 console.log(codeArray);
 }
