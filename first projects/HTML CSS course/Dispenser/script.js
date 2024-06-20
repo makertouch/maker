@@ -26,11 +26,12 @@ if (i + 1 < codeArray.length) {
 let part1 = Number(codeArray[i]);
 let part2 = Number(codeArray[i + 1]);
 
-
+const xPosition = (part1 + 1).toFixed(3);
+const yPosition = (part2 + 3).toFixed(3);
 
 html += 
 `<div>
-Dot ${(part1 + 1).toFixed(3)} ${(part2 + 3).toFixed(3)} 0.200 0.000
+Dot       ${xPosition}, ${yPosition}, 0.200, 0.000
 </div>`
 }
 }
