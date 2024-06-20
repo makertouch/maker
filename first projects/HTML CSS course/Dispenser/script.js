@@ -1,3 +1,13 @@
+const xFiducialAdd = document.querySelector(`.x-fiducial`);
+const yFiducialAdd = document.querySelector(`.y-fiducial`);
+
+const xPositionRemove = document.querySelector(`.x-position`);
+const yPositionRemove = document.querySelector(`.y-position`);
+
+const XYfiducial = xFiducialAdd.value + yFiducialAdd.value;
+const XYposition = xPositionRemove.value + yPositionRemove.value; 
+
+
 const inputCode = document.querySelector(`.code-input input`);
 const convertButton = document.querySelector(`.convert-button`);
 let codeArray;
@@ -10,6 +20,7 @@ code = code.replace(/\s+/g, ' ').trim();
 codeArray = code.split(` `);
 
  renderNumbers(codeArray);   
+
 
 });
 
