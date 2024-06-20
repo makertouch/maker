@@ -21,8 +21,6 @@ codeArray = code.split(` `);
 const XYfiducial = Number(xFiducialAdd.value) + Number(yFiducialAdd.value);
 const XYposition = Number(xPositionRemove.value) + Number(yPositionRemove.value); 
 
-console.log(XYfiducial); 
-
 
 });
 
@@ -30,7 +28,7 @@ console.log(XYfiducial);
 
 let html = ``;
 
-function renderNumbers(codeArray) {
+function renderNumbers(codeArray, XYfiducial, XYposition) {
 
 for (i = 0; i < codeArray.length; i += 2) {
 
