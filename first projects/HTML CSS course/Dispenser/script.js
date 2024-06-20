@@ -16,14 +16,7 @@ code = code.replace(/\s+/g, ' ').trim();
 
 codeArray = code.split(` `);
 
-   
-
-const XYfiducial = Number(xFiducialAdd.value) + Number(yFiducialAdd.value);
-const XYposition = Number(xPositionRemove.value) + Number(yPositionRemove.value);
-
-const totalCalculate = Number(XYfiducial) - Number(XYposition);
-
-renderNumbers(codeArray, totalCalculate);
+renderNumbers(codeArray);
 
 });
 
@@ -31,7 +24,7 @@ renderNumbers(codeArray, totalCalculate);
 
 let html = ``;
 
-function renderNumbers(codeArray, totalCalculate) {
+function renderNumbers(codeArray) {
 
 for (i = 0; i < codeArray.length; i += 2) {
 
@@ -52,7 +45,7 @@ Dot       ${xPosition},  ${yPosition},   0.200,   0.000
 
 document.querySelector(`.result`).innerHTML = html;
 console.log(codeArray);
-console.log(totalCalculate);
+
 }
 
 
