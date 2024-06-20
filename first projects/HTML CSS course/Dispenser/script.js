@@ -30,9 +30,9 @@ const xPosition = (part1 + 1).toFixed(3);
 const yPosition = (part2 + 3).toFixed(3);
 
 html += 
-`<div>
-Dot       ${xPosition}, ${yPosition}, 0.200, 0.000
-</div>`
+`<pre>
+Dot       ${xPosition},  ${yPosition},   0.200,   0.000
+</pre>`
 }
 }
 
