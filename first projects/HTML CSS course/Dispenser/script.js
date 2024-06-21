@@ -56,6 +56,24 @@ console.log(yTotal);
 
 }
 
+const screwType = document.querySelectorAll(`.screw-type`);
+
+screwType.forEach((screwButton) => {
+screwButton.addEventListener(`click`, () => {
+    if (screwButton.innerHTML === `Screw 2-56`) {
+        console.log(`Screw 2-56`);
+    } else if (screwButton.innerHTML === `Screw 1-64`) {
+        console.log(`Screw 1-64`);
+    } else if (screwButton.innerHTML === `Screw 0-80`) {
+        console.log(`Screw 0-80`);
+    } 
+});
+});
+
+function ChooseScrewType() {
+
+}
+
 
 
 
