@@ -21,7 +21,8 @@ code = code.replace(/\s+/g, ' ').trim();
 
 codeArray = code.split(` `);
 
-renderNumbers(xTotal, yTotal);
+renderNumbers(xTotal, yTotal, codeArray);
+
 
 });
 
@@ -29,9 +30,9 @@ renderNumbers(xTotal, yTotal);
 
 let html = ``;
 
-function renderNumbers(xTotal, yTotal) {
+function renderNumbers(xTotal, yTotal, codeArray) {
 
-for (i = 0; i < codeArray.length; i += 2) {
+for (let i = 0; i < codeArray.length; i += 2) {
 
 if (i + 1 < codeArray.length) { 
 
@@ -55,25 +56,32 @@ console.log(xTotal);
 console.log(yTotal);
 
 }
-
+/*
 const screwType = document.querySelectorAll(`.screw-type`);
 
 screwType.forEach((screwButton) => {
 screwButton.addEventListener(`click`, () => {
     if (screwButton.innerHTML === `Screw 2-56`) {
-        console.log(`Screw 2-56`);
+        ChooseScrewType(`256`);
     } else if (screwButton.innerHTML === `Screw 1-64`) {
-        console.log(`Screw 1-64`);
+        ChooseScrewType(`164`);
     } else if (screwButton.innerHTML === `Screw 0-80`) {
-        console.log(`Screw 0-80`);
+        ChooseScrewType(`080`);
     } 
 });
 });
 
-function ChooseScrewType() {
+function ChooseScrewType(screwSize) {
+    if (screwSize === `256`) {
+        xTotal = xTotal - Number(4);
+    } else if (screwSize === `164`) {
+        xTotal = xTotal - Number(2);
+    } else if (screwSize === `080`) {
+        xTotal = xTotal - Number(1);
+    }
 
 }
 
-
+*/
 
 
