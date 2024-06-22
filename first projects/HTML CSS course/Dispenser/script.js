@@ -1,4 +1,20 @@
 
+let screwChoise = 0;
+
+const screwType = document.querySelector(`.screw-type`);
+
+ 
+screwType.addEventListener(`change`, () => {
+
+    if (screwType.value === `2-56`) {
+        screwChoise = 4;
+    } else if (screwType.value === `1-64`) {
+        screwChoise = 2;
+    } else if (screwType.value === `0-80`) {
+        screwChoise = 1;
+    } 
+});
+
 
 const inputCode = document.querySelector(`.code-input input`);
 const convertButton = document.querySelector(`.convert-button`);
@@ -12,7 +28,7 @@ convertButton.addEventListener(`click`, () => {
     const xPositionRemove = document.querySelector(`.x-position`).value;
     const yPositionRemove = document.querySelector(`.y-position`).value;
     
-    const xTotal = Number(xFiducialAdd) - Math.abs(Number(xPositionRemove));
+    const xTotal = (Number(xFiducialAdd) - Math.abs(Number(xPositionRemove)) - Number(screwChoise));
     const yTotal = Number(yFiducialAdd) - Math.abs(Number(yPositionRemove));
 
     let code = inputCode.value;
@@ -56,32 +72,10 @@ console.log(xTotal);
 console.log(yTotal);
 
 }
-/*
-const screwType = document.querySelectorAll(`.screw-type`);
 
-screwType.forEach((screwButton) => {
-screwButton.addEventListener(`click`, () => {
-    if (screwButton.innerHTML === `Screw 2-56`) {
-        ChooseScrewType(`256`);
-    } else if (screwButton.innerHTML === `Screw 1-64`) {
-        ChooseScrewType(`164`);
-    } else if (screwButton.innerHTML === `Screw 0-80`) {
-        ChooseScrewType(`080`);
-    } 
-});
-});
 
-function ChooseScrewType(screwSize) {
-    if (screwSize === `256`) {
-        xTotal = xTotal - Number(4);
-    } else if (screwSize === `164`) {
-        xTotal = xTotal - Number(2);
-    } else if (screwSize === `080`) {
-        xTotal = xTotal - Number(1);
-    }
 
-}
 
-*/
+
 
 
