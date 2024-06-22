@@ -1,5 +1,6 @@
 body {
     font-family: Arial;
+    width: 1000px;
 }
 
 .add-code {
@@ -40,5 +41,18 @@ gap: 5px;
 
 .extra-data {
 display: grid;
-grid-template-columns: 250px 50px;
+grid-template-columns: 280px 280px;
+grid-template-rows: 120px 80px;
+gap: 15px;
+justify-content: center;
+}
+
+.fiducial,
+.position,
+.screws,
+.layer {
+    background-color: rgb(244, 244, 246);
+    padding: 20px 10px 10px 10px;
+    border-radius: 10px;
+    border: 2px solid rgb(225, 225, 230);
 }
