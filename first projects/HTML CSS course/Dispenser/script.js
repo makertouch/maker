@@ -2,7 +2,6 @@
 let screwChoise = 0;
 
 const screwType = document.querySelector(`.screw-type`);
-
  
 screwType.addEventListener(`change`, () => {
 
@@ -12,6 +11,8 @@ screwType.addEventListener(`change`, () => {
         screwChoise = 2;
     } else if (screwType.value === `0-80`) {
         screwChoise = 1;
+    } else if (screwType.value === `none`) {
+        screwChoise = 0;
     } 
 });
 
