@@ -1,13 +1,45 @@
 body {
-    font-family: Arial;
-    width: 1000px;
+    font-family: Arial, sans-serif;
+    background-color: rgb(123, 123, 248);
+    padding: 0;
+    margin: 0;
+}
+
+.container {
+    background-color: white !important;
+    margin-right: 150px;
+    margin-left: 150px;
+    min-height: 800px;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.55);
 }
 
 .add-code {
     width: 300px;
     height: 80px;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
+
+.title {
+    display: flex;
+    justify-content: center;
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    padding-top: 20px;
+}
+
+.title span {
+color: blue;
+}
+
+.x-fiducial, 
+.y-fiducial,
+.x-position,
+.y-position {
+    width: 200px;
+}
 
 .code-input {
 display: flex;
@@ -22,15 +54,19 @@ margin-top: 10px;
 margin-top: 10px;
 }
 
-.result {
+.result-container {
 margin-top: 10px;
+display: flex;
+justify-content: center;
 }
 
 
 
-.fiducial-input {
+.fiducial-input,
+.position-input {
 display: flex;
 flex-direction: column;
+row-gap: 10px;
 }
 
 .fiducial-input div, 
@@ -52,7 +88,10 @@ justify-content: center;
 .screws,
 .layer {
     background-color: rgb(244, 244, 246);
-    padding: 20px 10px 10px 10px;
+    padding: 20px 10px 15px 15px;
     border-radius: 10px;
     border: 2px solid rgb(225, 225, 230);
-}
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+}   
