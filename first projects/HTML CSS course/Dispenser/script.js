@@ -16,6 +16,27 @@ screwType.addEventListener(`change`, () => {
     } 
 });
 
+let layer = 0.100;
+
+const layerType = document.querySelector(`.layer-type`);
+
+layerType.addEventListener(`change`, () => {
+    if (layerType.value === `100`) {
+        layer = 0.100;
+    } else if (layerType.value === `200`) {
+        layer = 0.200;
+    } else if (layerType.value === `300`) {
+        layer = 0.300;
+    } else if (layerType.value === `400`) {
+        layer = 0.400;
+    } else if (layerType.value === `500`) {
+        layer = 0.500;
+    }  else if (layerType.value === `600`) {
+        layer = 0.600;
+    }
+} );
+
+
 
 const inputCode = document.querySelector(`.code-input input`);
 const convertButton = document.querySelector(`.convert-button`);
@@ -61,7 +82,7 @@ const yPosition = (part2 + yTotal).toFixed(3);
 
 html += 
 `<pre>
-Dot       ${xPosition},  ${yPosition},   0.200,   0.000
+Dot       ${xPosition},  ${yPosition},   ${layer.toFixed(3)},   0.000
 </pre>`
 }
 }
