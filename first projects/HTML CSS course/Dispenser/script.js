@@ -95,4 +95,11 @@ console.log(yTotal);
 
 }
 
+const clearButton = document.querySelector(`.clear-button`);
+
+clearButton.addEventListener(`click`, () => {
+    html = ``;
+    document.querySelector(`.result`).innerHTML = `
+    <div class="result">result will be displayed here</div>`;
+});
 

@@ -96,6 +96,10 @@ position: relative;
     font-size: 12px;
     font-weight: bold;
     cursor: pointer;
+    transition: color, 0.10s;
+}
+.clear-button:hover {
+    color: blue;
 }
 
 
