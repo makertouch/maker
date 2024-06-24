@@ -6,7 +6,7 @@ const screwType = document.querySelector(`.screw-type`);
 screwType.addEventListener(`change`, () => {
 
     if (screwType.value === `2-56`) {
-        screwChoise = 2;
+        screwChoise = 1.9;
     } else if (screwType.value === `1-64`) {
         screwChoise = 1;
     } else if (screwType.value === `0-80`) {
