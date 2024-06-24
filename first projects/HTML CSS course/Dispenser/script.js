@@ -10,7 +10,7 @@ screwType.addEventListener(`change`, () => {
     } else if (screwType.value === `1-64`) {
         screwChoise = 2;
     } else if (screwType.value === `0-80`) {
-        screwChoise = 1;
+        screwChoise = 1.22;
     } else if (screwType.value === `none`) {
         screwChoise = 0;
     } 
