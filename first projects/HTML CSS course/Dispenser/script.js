@@ -6,9 +6,9 @@ const screwType = document.querySelector(`.screw-type`);
 screwType.addEventListener(`change`, () => {
 
     if (screwType.value === `2-56`) {
-        screwChoise = 4;
-    } else if (screwType.value === `1-64`) {
         screwChoise = 2;
+    } else if (screwType.value === `1-64`) {
+        screwChoise = 1;
     } else if (screwType.value === `0-80`) {
         screwChoise = 1.22;
     } else if (screwType.value === `none`) {
@@ -94,10 +94,3 @@ console.log(xTotal);
 console.log(yTotal);
 
 }
-
-
-
-
-
-
-
