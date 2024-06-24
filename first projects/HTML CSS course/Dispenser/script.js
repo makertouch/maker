@@ -81,13 +81,11 @@ const xPosition = (part1 + (xTotal - defaultNum)).toFixed(3);
 const yPosition = (part2 + (yTotal - defaultNum)).toFixed(3);
 
 html += 
-`<pre>
-Dot       ${xPosition},  ${yPosition},   ${layer.toFixed(3)},   0.000
-</pre>`
+`Dot       ${xPosition},  ${yPosition},   ${layer.toFixed(3)},   0.000\n`;
 }
 }
 
-document.querySelector(`.result`).innerHTML = html;
+document.querySelector(`.result`).innerHTML = `<pre>${html}</pre>`;
 
 console.log(codeArray);
 console.log(xTotal);
@@ -103,3 +101,21 @@ clearButton.addEventListener(`click`, () => {
     <div class="result">result will be displayed here</div>`;
 });
 
+const copyButton = document.querySelector(`.copy-button`);
+
+copyButton.addEventListener(`click`, () => {
+    // Create a temporary textarea element
+    const tempTextarea = document.createElement(`textarea`);
+    tempTextarea.value = html;
+    document.body.appendChild(tempTextarea);
+    
+    // Select the text and copy it to the clipboard
+    tempTextarea.select();
+    document.execCommand(`copy`);
+    
+    // Remove the temporary textarea element
+    document.body.removeChild(tempTextarea);
+    
+    // Provide feedback to the user (optional)
+    alert(`Copied to clipboard!`);
+});
