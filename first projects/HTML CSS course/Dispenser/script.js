@@ -50,8 +50,8 @@ convertButton.addEventListener(`click`, () => {
     const xPositionRemove = document.querySelector(`.x-position`).value;
     const yPositionRemove = document.querySelector(`.y-position`).value;
     
-    const xTotal = (Number(xFiducialAdd) - Math.abs(Number(xPositionRemove)) - Number(screwChoise));
-    const yTotal = Number(yFiducialAdd) - Math.abs(Number(yPositionRemove));
+    const xTotal = (Number(xFiducialAdd) + Number(xPositionRemove) - Number(screwChoise));
+    const yTotal = Number(yFiducialAdd) + Number(yPositionRemove);
 
     let code = inputCode.value;
 
@@ -65,7 +65,7 @@ renderNumbers(xTotal, yTotal, codeArray);
 });
 
 
-
+const defaultNum = Number(5.3);
 let html = ``;
 
 function renderNumbers(xTotal, yTotal, codeArray) {
@@ -77,8 +77,8 @@ if (i + 1 < codeArray.length) {
 let part1 = Number(codeArray[i]);
 let part2 = Number(codeArray[i + 1]);
 
-const xPosition = (part1 + xTotal).toFixed(3);
-const yPosition = (part2 + yTotal).toFixed(3);
+const xPosition = (part1 + (xTotal - defaultNum)).toFixed(3);
+const yPosition = (part2 + (yTotal - defaultNum)).toFixed(3);
 
 html += 
 `<pre>
