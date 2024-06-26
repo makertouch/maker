@@ -118,6 +118,10 @@ line-height: 30px;
     color: rgb(7, 130, 30);
 }
 
+.copy-button-clicked {
+    color: rgb(7, 130, 30);
+}
+
 
 .fiducial-input,
 .position-input {

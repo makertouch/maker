@@ -43,7 +43,7 @@ const convertButton = document.querySelector(`.convert-button`);
 let codeArray;
 
 convertButton.addEventListener(`click`, () => {
-
+    copyButton.classList.remove(`copy-button-clicked`);
     const xFiducialAdd = document.querySelector(`.x-fiducial`).value;
     const yFiducialAdd = document.querySelector(`.y-fiducial`).value;
     
@@ -96,6 +96,7 @@ console.log(yTotal);
 const clearButton = document.querySelector(`.clear-button`);
 
 clearButton.addEventListener(`click`, () => {
+    copyButton.classList.remove(`copy-button-clicked`);
     html = ``;
     document.querySelector(`.result`).innerHTML = `
     <div class="result">result will be displayed here</div>`;
@@ -104,6 +105,7 @@ clearButton.addEventListener(`click`, () => {
 const copyButton = document.querySelector(`.copy-button`);
 
 copyButton.addEventListener(`click`, () => {
+    copyButton.classList.add(`copy-button-clicked`);
     // Create a temporary textarea element
     const tempTextarea = document.createElement(`textarea`);
     tempTextarea.value = html;
@@ -115,7 +117,5 @@ copyButton.addEventListener(`click`, () => {
     
     // Remove the temporary textarea element
     document.body.removeChild(tempTextarea);
-    
-    // Provide feedback to the user (optional)
-    alert(`Copied to clipboard!`);
+
 });
