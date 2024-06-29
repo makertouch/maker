@@ -19,55 +19,153 @@ const urgentButton = document.querySelector(`.urgent-units-sort`);
 
 addButton.addEventListener(`click`, () => {
     others.push(task.value);
+    renderHTML();
 });
 
 printsButton.addEventListener(`click`, () => {
     if (task.value) {
-    prints.push(task.value);
-    renderHTML();
+        prints.push(task.value);
+        renderHTML();
     }
 });
 
 glueBlockButton.addEventListener(`click`, () => {
-    glueBlock.push(task.value);
+    if (task.value) {
+        glueBlock.push(task.value);
+        renderHTML();
+    }
 });
 
 ploterButton.addEventListener(`click`, () => {
-    ploter.push(task.value);
+    if (task.value) {
+        ploter.push(task.value);
+        renderHTML();
+    }
 });
 
 engineersButton.addEventListener(`click`, () => {
-    engineers.push(task.value);
+    if (task.value) {
+        engineers.push(task.value);
+        renderHTML();
+    }
 });
 
 urgentButton.addEventListener(`click`, () => {
-    urgent.push(task.value);
+    if (task.value) {
+        urgent.push(task.value);
+        renderHTML();
+    }
 });
 
 let html = ``;
 
 function renderHTML() {
-    html = ``;   
+    let html = ``;
+
     prints.forEach((task) => {
-    html += `
+        html += `
 <div class="todo">
-<div class="left-part">
-<input type="checkbox">
-<div class="todo-3d-prints">
-    ${task}
+    <div class="left-part">
+        <input type="checkbox">
+        <div class="todo-3d-prints">
+            ${task}
+        </div>
+    </div>
+    <div class="right-part">
+        <button class="button-edit">Edit</button>
+        <button class="button-priority">Priority</button>
+    </div>
 </div>
-</div>
+        `;
+    });
 
-<div class="right-part">
-<button class="button-edit">Edit</button> 
-<button class="button-priority">Priority</button>
+    glueBlock.forEach((task) => {
+        html += `
+<div class="todo">
+    <div class="left-part">
+        <input type="checkbox">
+        <div class="todo-glue-block">
+            ${task}
+        </div>
+    </div>
+    <div class="right-part">
+        <button class="button-edit">Edit</button>
+        <button class="button-priority">Priority</button>
+    </div>
 </div>
+        `;
+    });
 
+    ploter.forEach((task) => {
+        html += `
+<div class="todo">
+    <div class="left-part">
+        <input type="checkbox">
+        <div class="todo-ploter">
+            ${task}
+        </div>
+    </div>
+    <div class="right-part">
+        <button class="button-edit">Edit</button>
+        <button class="button-priority">Priority</button>
+    </div>
 </div>
-    `; 
-});
+        `;
+    });
+
+    engineers.forEach((task) => {
+        html += `
+<div class="todo">
+    <div class="left-part">
+        <input type="checkbox">
+        <div class="todo-engineers">
+            ${task}
+        </div>
+    </div>
+    <div class="right-part">
+        <button class="button-edit">Edit</button>
+        <button class="button-priority">Priority</button>
+    </div>
+</div>
+        `;
+    });
+
+    urgent.forEach((task) => {
+        html += `
+<div class="todo">
+    <div class="left-part">
+        <input type="checkbox">
+        <div class="todo-urgent">
+            ${task}
+        </div>
+    </div>
+    <div class="right-part">
+        <button class="button-edit">Edit</button>
+        <button class="button-priority">Priority</button>
+    </div>
+</div>
+        `;
+    });
+
+    others.forEach((task) => {
+        html += `
+<div class="todo">
+    <div class="left-part">
+        <input type="checkbox">
+        <div class="todo-others">
+            ${task}
+        </div>
+    </div>
+    <div class="right-part">
+        <button class="button-edit">Edit</button>
+        <button class="button-priority">Priority</button>
+    </div>
+</div>
+        `;
+    });
 
 document.querySelector(`.todo-list-container`).innerHTML = html;
+task.value = ``;
 }
 
  
