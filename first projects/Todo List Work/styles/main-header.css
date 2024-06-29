@@ -106,3 +106,10 @@
 .urgent-units-sort:hover {
     background-color: rgb(207, 246, 215);
 }
+
+
+
+.text-input {
+    padding-left: 8px;
+    font-size: 15px;
+}
