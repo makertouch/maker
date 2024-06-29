@@ -56,14 +56,14 @@ transition: background-color 0.15s;
     cursor: pointer;
 }
 
-.todo-3d-prints,
+.todo-prints,
 .print-sort,
 .print-button {
     font-weight: bold;
     color: rgba(136, 27, 170, 0.999);
 }
 
-.todo-glue-block,
+.todo-glueBlock,
 .glue-block-sort,
 .glue-block-button {
     font-weight: bold;
@@ -84,7 +84,7 @@ transition: background-color 0.15s;
     color: rgba(11, 145, 130, 0.822)
 }
 
-.todo-urgent-units,
+.todo-urgent,
 .urgent-units-sort,
 .urgent-units-button {
     font-weight: bold;
