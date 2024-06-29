@@ -6,8 +6,8 @@ const engineers = [];
 const urgent = [];
 const others = [];
 
+const task = document.querySelector(`.text-input`);
 
-let task = document.querySelector(`.text-input`);
 
 const addButton = document.querySelector(`.add-button`);
 const printsButton = document.querySelector(`.print-sort`);
@@ -22,8 +22,10 @@ addButton.addEventListener(`click`, () => {
 });
 
 printsButton.addEventListener(`click`, () => {
+    if (task.value) {
     prints.push(task.value);
     renderHTML();
+    }
 });
 
 glueBlockButton.addEventListener(`click`, () => {
