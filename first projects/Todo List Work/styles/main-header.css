@@ -51,6 +51,11 @@
     color: white;
     background-color: blue;
     width: 60px;
+    transition: background-color 0.15s;
+}
+
+.add-button:hover {
+    background-color: rgb(5, 5, 220);
 }
 
 .sort button {
