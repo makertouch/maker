@@ -8,6 +8,35 @@
     display: flex;
 }
 
+.right-part button {
+    background-color: rgb(67, 118, 157);
+    border-radius: 3px;
+    height: 20px;
+    color: white;
+    font-weight: bold;
+    margin-left: 5px;
+}
+
+
+.right-part .button-edit {
+background-color: rgb(103, 103, 240);
+transition: background-color 0.15s;
+}
+
+.right-part .button-edit:hover {
+    background-color: rgb(47, 47, 235);
+}
+
+
+.right-part .button-priority {
+    background-color: rgb(238, 129, 129);
+    transition: background-color 0.15s;
+    }
+
+.right-part .button-priority:hover {
+    background-color: rgb(220, 62, 62);
+    }
+
 .title {
     display: flex;
     justify-content: center;
