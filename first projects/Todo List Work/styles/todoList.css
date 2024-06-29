@@ -6,6 +6,7 @@
 
 .left-part {
     display: flex;
+    cursor: default;
 }
 
 .right-part button {
@@ -52,6 +53,7 @@ transition: background-color 0.15s;
 .todo input {
     margin-right: 15px;
     width: 20px;
+    cursor: pointer;
 }
 
 .todo-3d-prints,
