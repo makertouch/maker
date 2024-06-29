@@ -67,11 +67,11 @@
 }
 
 .todo {
-    box-shadow: 0 2px 1px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
     border: 1px solid #e0e0e0;    
     border-right: none;
     border-left: none;
-    background-color: rgb(255, 255, 255);  
+    background-color: rgb(243, 246, 248);  
     padding-right: 25px; 
     padding-left: 25px;
 }
