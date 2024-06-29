@@ -66,7 +66,6 @@ function renderHTML() {
 });
 
 document.querySelector(`.todo-list-container`).innerHTML = html;
-task.value = ``;
 }
 
  
