@@ -9,6 +9,7 @@
     justify-content: space-between;
     padding: 20px 20px 20px 20px;
     box-shadow: 0px 1px 0px rgba(45, 43, 43, 0.188);
+    background-color: #3e5a75;
 }
 
 .add-task {
