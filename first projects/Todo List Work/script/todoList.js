@@ -98,27 +98,27 @@ const sideBarButtons = {
 	}
 
 	sideBarButtons.printSidebar.addEventListener(`click`, () => {
-	categoryButtons(`prints`, `print`);
+	categoryButtons(`prints`);
 	});
 
     sideBarButtons.glueBlockSideBar.addEventListener(`click`, () => {
-    categoryButtons(`glueBlock`, `glue-block`);
+    categoryButtons(`glueBlock`);
     });
 
     sideBarButtons.ploterSideBar.addEventListener(`click`, () => {
-    categoryButtons(`ploter`, `ploter`);
+    categoryButtons(`ploter`);
     });
     
     sideBarButtons.engineersSideBar.addEventListener(`click`, () => {   
-    categoryButtons(`engineers`, `engineers`);
+    categoryButtons(`engineers`);
     });
    
     sideBarButtons.urgentUnits.addEventListener(`click`, () => {
-    categoryButtons(`urgent`, `urgent-units`);
+    categoryButtons(`urgent`);
     });
     
     sideBarButtons.others.addEventListener(`click`, () => {
-    categoryButtons(`others`, `others`);
+    categoryButtons(`others`);
     });
         
     
@@ -126,15 +126,15 @@ const sideBarButtons = {
 
     let categoryHTML = ``;
 
-	function categoryButtons(array, buttonClass) {
+	function categoryButtons(arrayAndClass) {
         categoryHTML = ``;
 
-	tasks[array].forEach((element) => {
+	tasks[arrayAndClass].forEach((element) => {
 	categoryHTML += `
     <div class="todo">
     <div class="left-part">
         <input type="checkbox">
-        <div class="todo-${buttonClass}-container">
+        <div class="todo-${arrayAndClass}">
             ${element}
         </div>
     </div>
