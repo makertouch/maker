@@ -18,20 +18,6 @@ const buttons = {
     urgentButton: document.querySelector(`.urgent-units-sort`)
 };
 
-const tasksList = [];
-
-function addTaskToCategory(category) {
-    if (taskInput.value) {
-        const newTask = {
-            task: taskInput.value,
-            category: category,
-            timestamp: new Date().getTime()
-        };
-        tasks[category].unshift(newTask.task);  // Add to the specific category array
-        tasksList.unshift(newTask);  // Add to the overall list with timestamp
-        renderHTML();
-    }
-}
 
 buttons.addButton.addEventListener('click', () => {
     addTaskToCategory('others');
@@ -57,19 +43,34 @@ buttons.urgentButton.addEventListener('click', () => {
     addTaskToCategory('urgent');
 });
 
+const tasksList = [];
+
+function addTaskToCategory(category) {
+    if (taskInput.value) {
+        const newTask = {
+            task: taskInput.value,
+            category: category,
+            timestamp: new Date().getTime()
+        };
+        tasks[category].unshift(newTask.task);  // Add to the specific category array
+        tasksList.unshift(newTask);  // Add to the overall list with timestamp
+        renderHTML();
+    }
+}
+
 function renderHTML() {
     let html = '';
 
     // Sort tasksList by timestamp in descending order
     const sortedTasks = tasksList.sort((a, b) => b.timestamp - a.timestamp);
 
-    sortedTasks.forEach(taskObj => {
+    sortedTasks.forEach(newTaskListObj => {
         html += `
 <div class="todo">
     <div class="left-part">
         <input type="checkbox">
-        <div class="todo-${taskObj.category}">
-            ${taskObj.task}
+        <div class="todo-${newTaskListObj.category}">
+            ${newTaskListObj.task}
         </div>
     </div>
     <div class="right-part">
