@@ -98,13 +98,54 @@ const sideBarButtons = {
 	}
 
 	sideBarButtons.printSidebar.addEventListener(`click`, () => {
-	categoryButtons(prints);
+	categoryButtons(`prints`, `print`);
 	});
+
+    sideBarButtons.glueBlockSideBar.addEventListener(`click`, () => {
+    categoryButtons(`glueBlock`, `glue-block`);
+    });
+
+    sideBarButtons.ploterSideBar.addEventListener(`click`, () => {
+    categoryButtons(`ploter`, `ploter`);
+    });
+    
+    sideBarButtons.engineersSideBar.addEventListener(`click`, () => {   
+    categoryButtons(`engineers`, `engineers`);
+    });
+   
+    sideBarButtons.urgentUnits.addEventListener(`click`, () => {
+    categoryButtons(`urgent`, `urgent-units`);
+    });
+    
+    sideBarButtons.others.addEventListener(`click`, () => {
+    categoryButtons(`others`, `others`);
+    });
+        
+    
 	
-	function categoryButtons(button) {
-	tasks.prints.forEach((print) => {
-	console.log(`loop works`);
+
+    let categoryHTML = ``;
+
+	function categoryButtons(button, buttonClass) {
+        categoryHTML = ``;
+
+	tasks[button].forEach((element) => {
+	categoryHTML += `
+    <div class="todo">
+    <div class="left-part">
+        <input type="checkbox">
+        <div class="todo-${buttonClass}-container">
+            ${element}
+        </div>
+    </div>
+    <div class="right-part">
+        <button class="button-edit">Edit</button>
+        <button class="button-priority">Priority</button>
+    </div>
+</div>
+    `;
 	});
+    document.querySelector(`.todo-list-container`).innerHTML = categoryHTML;
 	}
 
 
