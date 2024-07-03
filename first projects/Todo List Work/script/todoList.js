@@ -84,3 +84,32 @@ function renderHTML() {
     document.querySelector(`.todo-list-container`).innerHTML = html;
     taskInput.value = '';
 }
+
+
+//side bar part
+
+const sideBarButtons = {
+	printSidebar: document.querySelector(`.print-button`),
+	glueBlockSideBar: document.querySelector(`.glue-block-button`),
+	ploterSideBar: document.querySelector(`.ploter-button`),
+	engineersSideBar: document.querySelector(`.engineers-button`),
+	urgentUnits: document.querySelector(`.urgent-units-button`),
+	others: document.querySelector(`.others-button`)
+	}
+
+	sideBarButtons.printSidebar.addEventListener(`click`, () => {
+	categoryButtons(prints);
+	});
+	
+	function categoryButtons(button) {
+	tasks.prints.forEach((print) => {
+	console.log(`loop works`);
+	});
+	}
+
+
+//	sideBarButtons.glueBlockSideBar
+//	sideBarButtons.ploterSideBar
+//	sideBarButtons.engineersSideBar
+//	sideBarButtons.urgentUnits
+//	sideBarButtons.others
