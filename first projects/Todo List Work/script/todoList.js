@@ -89,12 +89,12 @@ function renderHTML() {
 //side bar part
 
 const sideBarButtons = {
-	printSidebar: document.querySelector(`.print-button`),
-	glueBlockSideBar: document.querySelector(`.glue-block-button`),
-	ploterSideBar: document.querySelector(`.ploter-button`),
-	engineersSideBar: document.querySelector(`.engineers-button`),
-	urgentUnits: document.querySelector(`.urgent-units-button`),
-	others: document.querySelector(`.others-button`)
+	printSidebar: document.querySelector(`.js-print`),
+	glueBlockSideBar: document.querySelector(`.js-glue-block`),
+	ploterSideBar: document.querySelector(`.js-ploter`),
+	engineersSideBar: document.querySelector(`.js-engineers`),
+	urgentUnits: document.querySelector(`.js-urgent-units`),
+	others: document.querySelector(`.js-others`)
 	}
 
 	sideBarButtons.printSidebar.addEventListener(`click`, () => {
@@ -126,10 +126,10 @@ const sideBarButtons = {
 
     let categoryHTML = ``;
 
-	function categoryButtons(button, buttonClass) {
+	function categoryButtons(array, buttonClass) {
         categoryHTML = ``;
 
-	tasks[button].forEach((element) => {
+	tasks[array].forEach((element) => {
 	categoryHTML += `
     <div class="todo">
     <div class="left-part">
