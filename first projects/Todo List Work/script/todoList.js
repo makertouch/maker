@@ -15,7 +15,7 @@ const buttons = {
     glueBlockButton: document.querySelector(`.glue-block-sort`),
     ploterButton: document.querySelector(`.ploter-sort`),
     engineersButton: document.querySelector(`.engineers-sort`),
-    urgentButton: document.querySelector(`.urgent-units-sort`)
+    urgentButton: document.querySelector(`.urgent-units-sort`),
 };
 
 
@@ -124,10 +124,10 @@ const sideBarButtons = {
     
 	
 
-    let categoryHTML = ``;
+   
 
 	function categoryButtons(arrayButtonClass) {
-        categoryHTML = ``;
+        let categoryHTML = ``;
 
 	tasks[arrayButtonClass].forEach((element) => {
 	categoryHTML += `
