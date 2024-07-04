@@ -146,4 +146,6 @@ transition: background-color 0.15s;
     color: #2196F3;
     border-radius: 5px;
     border: 1px solid;
+    margin-right: 60px;
+    margin-left: 60px;
 }

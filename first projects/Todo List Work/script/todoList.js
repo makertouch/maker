@@ -83,6 +83,8 @@ function renderHTML() {
 
     document.querySelector(`.todo-list-container`).innerHTML = html;
     taskInput.value = '';
+    
+    return html;
 }
 
 
@@ -121,10 +123,6 @@ const sideBarButtons = {
     categoryButtons(`others`);
     });
         
-    
-	
-
-   
 
 	function categoryButtons(arrayButtonClass) {
         let categoryHTML = ``;
@@ -156,3 +154,12 @@ const sideBarButtons = {
 	}
 
 	}
+
+    const infoHeader = {
+        allTasks: document.querySelector(`.js-all-tasks`),
+        topPriorities: document.querySelector(`.js-top-priorities`)
+    }
+
+    infoHeader.allTasks.addEventListener(`click`, () => {
+        document.querySelector(`.todo-list-container`).innerHTML = renderHTML();
+    });
