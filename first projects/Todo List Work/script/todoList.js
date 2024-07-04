@@ -97,9 +97,9 @@ const sideBarButtons = {
 	others: document.querySelector(`.js-others`)
 	}
 
-	sideBarButtons.printSidebar.addEventListener(`click`, () => {
-	categoryButtons(`prints`);
-	});
+    sideBarButtons.printSidebar.addEventListener(`click`, () => {
+    categoryButtons(`prints`);
+    });
 
     sideBarButtons.glueBlockSideBar.addEventListener(`click`, () => {
     categoryButtons(`glueBlock`);
@@ -126,15 +126,15 @@ const sideBarButtons = {
 
     let categoryHTML = ``;
 
-	function categoryButtons(arrayAndClass) {
+	function categoryButtons(arrayButtonClass) {
         categoryHTML = ``;
 
-	tasks[arrayAndClass].forEach((element) => {
+	tasks[arrayButtonClass].forEach((element) => {
 	categoryHTML += `
     <div class="todo">
     <div class="left-part">
         <input type="checkbox">
-        <div class="todo-${arrayAndClass}">
+        <div class="todo-${arrayButtonClass}">
             ${element}
         </div>
     </div>
@@ -145,12 +145,14 @@ const sideBarButtons = {
 </div>
     `;
 	});
-    document.querySelector(`.todo-list-container`).innerHTML = categoryHTML;
+
+	if (tasks[arrayButtonClass].length > 0) {
+    	document.querySelector(`.todo-list-container`).innerHTML = categoryHTML;
+	console.log(arrayButtonClass);
+	} else {
+	document.querySelector(`.todo-list-container`).innerHTML = `
+ 	<div class="no-tasks"> No Tasks </div>
+	`;
 	}
 
-
-//	sideBarButtons.glueBlockSideBar
-//	sideBarButtons.ploterSideBar
-//	sideBarButtons.engineersSideBar
-//	sideBarButtons.urgentUnits
-//	sideBarButtons.others
+	}

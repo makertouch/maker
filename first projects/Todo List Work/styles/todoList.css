@@ -134,3 +134,16 @@ transition: background-color 0.15s;
 .glue-block-sort {
     background-color: rgb(237, 241, 248);
 }
+
+.no-tasks {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    line-height: 40px;
+    background-color: #15d17a0d;
+    font-weight: bold;
+    font-size: 17px;
+    color: #2196F3;
+    border-radius: 5px;
+    border: 1px solid;
+}
