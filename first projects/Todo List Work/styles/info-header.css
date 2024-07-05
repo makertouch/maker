@@ -33,9 +33,30 @@
     padding-bottom: 1px;
 }
 
+.top {
+    color: white;
+    font-weight: bold;
+    font-size: 14px;
+    background-color: red;
+    border-radius: 10px;
+    width: 13px;
+    height: 19px;
+    max-width: 40px;
+    min-width: 20px;
+    border: none;
+    position: relative;
+    margin-right: 4px;
+    margin-top: 1px;
+}
+
+.top-number {
+    position: absolute;
+    right: 6px;
+    top: 1px;
+    font-size: 12px;
+}
 
 
-.notification,
 .button-container div {
     color: white;
     font-weight: bold;

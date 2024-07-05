@@ -157,9 +157,11 @@ const sideBarButtons = {
 
     const infoHeader = {
         allTasks: document.querySelector(`.js-all-tasks`),
+        allTasksNotifications: document.querySelector(`.all-tasks-notification`),
         topPriorities: document.querySelector(`.js-top-priorities`)
     }
 
     infoHeader.allTasks.addEventListener(`click`, () => {
         document.querySelector(`.todo-list-container`).innerHTML = renderHTML();
     });
+
