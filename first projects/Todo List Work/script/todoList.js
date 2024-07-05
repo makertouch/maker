@@ -64,6 +64,7 @@ function addTaskToCategory(category) {
     }
 }
 
+
 function renderHTML() {
     let html = '';
 
