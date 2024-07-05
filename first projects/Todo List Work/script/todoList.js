@@ -21,26 +21,32 @@ const buttons = {
 
 buttons.addButton.addEventListener('click', () => {
     addTaskToCategory('others');
+    renderNotifications();
 });
 
 buttons.printsButton.addEventListener('click', () => {
     addTaskToCategory('prints');
+    renderNotifications();
 });
 
 buttons.glueBlockButton.addEventListener('click', () => {
     addTaskToCategory('glueBlock');
+    renderNotifications();
 });
 
 buttons.ploterButton.addEventListener('click', () => {
     addTaskToCategory('ploter');
+    renderNotifications();
 });
 
 buttons.engineersButton.addEventListener('click', () => {
     addTaskToCategory('engineers');
+    renderNotifications();
 });
 
 buttons.urgentButton.addEventListener('click', () => {
     addTaskToCategory('urgent');
+    renderNotifications();
 });
 
 const tasksList = [];
@@ -157,11 +163,23 @@ const sideBarButtons = {
 
     const infoHeader = {
         allTasks: document.querySelector(`.js-all-tasks`),
-        allTasksNotifications: document.querySelector(`.all-tasks-notification`),
+        allTasksNote: document.querySelector(`.all-tasks-note`),
+        allTasksNum: document.querySelector(`.all-tasks-note .top-number`),
         topPriorities: document.querySelector(`.js-top-priorities`)
     }
 
     infoHeader.allTasks.addEventListener(`click`, () => {
         document.querySelector(`.todo-list-container`).innerHTML = renderHTML();
     });
+    
 
+    function renderNotifications() {
+
+        let countAllTask = 0;
+
+        tasksList.forEach((task) => {
+            countAllTask += 1;
+        });
+        
+        infoHeader.allTasksNum.innerHTML = countAllTask;
+    }
