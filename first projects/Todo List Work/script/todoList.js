@@ -7,6 +7,8 @@ const tasks = {
     others: []
 };
 
+const allPriority = [];
+
 const taskInput = document.querySelector(`.text-input`);
 
 const buttons = {
@@ -174,9 +176,30 @@ const sideBarButtons = {
     infoHeader.allTasks.addEventListener(`click`, () => {
         document.querySelector(`.todo-list-container`).innerHTML = renderHTML();
     });
-
+//new part
     infoHeader.topPriorities.addEventListener(`click`, () => {
-        console.log(`loop of the tasks`);
+        
+        let topPrioritiesHTML = ``;
+
+        allPriority.forEach((priority) => {
+            topPrioritiesHTML += `
+            <div class="todo">
+    <div class="left-part">
+        <input type="checkbox">
+        <div class="todo-${priority.category}">
+            ${priority.task}
+        </div>
+    </div>
+    <div class="right-part">
+        <button class="button-edit" data-edit-id="${priority.taskId}">Edit</button>
+        <button class="button-priority" data-priority-id="${priority.taskId}">Priority</button>
+    </div>
+</div>
+`
+        });
+
+        document.querySelector(`.todo-list-container`).innerHTML = topPrioritiesHTML;
+
     });
     
 
@@ -191,8 +214,6 @@ const sideBarButtons = {
         infoHeader.allTasksNum.innerHTML = countAllTask;
     }
 
-        const allPriority = [];
-        
         function activeButtons() {
         document.querySelectorAll(`.button-priority`).forEach((button) => {
             button.addEventListener(`click`, () => {
@@ -201,7 +222,7 @@ const sideBarButtons = {
                     if (task.taskId === priorityId) {
                         allPriority.unshift(task);
                     }
-                    console.log(`update the notification number`);
+                   
                 });
     
             });
