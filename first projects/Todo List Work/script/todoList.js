@@ -21,32 +21,32 @@ const buttons = {
 
 buttons.addButton.addEventListener('click', () => {
     addTaskToCategory('others');
-    renderNotifications();
+    renderAllTasks();
 });
 
 buttons.printsButton.addEventListener('click', () => {
     addTaskToCategory('prints');
-    renderNotifications();
+    renderAllTasks();
 });
 
 buttons.glueBlockButton.addEventListener('click', () => {
     addTaskToCategory('glueBlock');
-    renderNotifications();
+    renderAllTasks();
 });
 
 buttons.ploterButton.addEventListener('click', () => {
     addTaskToCategory('ploter');
-    renderNotifications();
+    renderAllTasks();
 });
 
 buttons.engineersButton.addEventListener('click', () => {
     addTaskToCategory('engineers');
-    renderNotifications();
+    renderAllTasks();
 });
 
 buttons.urgentButton.addEventListener('click', () => {
     addTaskToCategory('urgent');
-    renderNotifications();
+    renderAllTasks();
 });
 
 const tasksList = [];
@@ -56,7 +56,8 @@ function addTaskToCategory(category) {
         const newTask = {
             task: taskInput.value,
             category: category,
-            timestamp: new Date().getTime()
+            timestamp: new Date().getTime(),
+            taskId: Math.random().toFixed(3)
         };
         tasks[category].unshift(newTask.task);  // Add to the specific category array
         tasksList.unshift(newTask);  // Add to the overall list with timestamp
@@ -81,8 +82,8 @@ function renderHTML() {
         </div>
     </div>
     <div class="right-part">
-        <button class="button-edit">Edit</button>
-        <button class="button-priority">Priority</button>
+        <button class="button-edit" data-edit-id="${newTaskListObj.taskId}">Edit</button>
+        <button class="button-priority" data-priority-id="${newTaskListObj.taskId}">Priority</button>
     </div>
 </div>
         `;
@@ -90,6 +91,7 @@ function renderHTML() {
 
     document.querySelector(`.todo-list-container`).innerHTML = html;
     taskInput.value = '';
+    activeButtons();
     
     return html;
 }
@@ -172,9 +174,13 @@ const sideBarButtons = {
     infoHeader.allTasks.addEventListener(`click`, () => {
         document.querySelector(`.todo-list-container`).innerHTML = renderHTML();
     });
+
+    infoHeader.topPriorities.addEventListener(`click`, () => {
+        console.log(`loop of the tasks`);
+    });
     
 
-    function renderNotifications() {
+    function renderAllTasks() {
 
         let countAllTask = 0;
 
@@ -183,4 +189,22 @@ const sideBarButtons = {
         });
         
         infoHeader.allTasksNum.innerHTML = countAllTask;
+    }
+
+        const allPriority = [];
+        
+        function activeButtons() {
+        document.querySelectorAll(`.button-priority`).forEach((button) => {
+            button.addEventListener(`click`, () => {
+                const priorityId = button.dataset.priorityId;
+                tasksList.forEach((task) => {
+                    if (task.taskId === priorityId) {
+                        allPriority.unshift(task);
+                    }
+                    console.log(`update the notification number`);
+                });
+    
+            });
+        });
+
     }
