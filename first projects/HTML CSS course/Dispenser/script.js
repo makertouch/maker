@@ -8,7 +8,7 @@ screwType.addEventListener(`change`, () => {
     if (screwType.value === `2-56`) {
         screwChoise = 1.9;
     } else if (screwType.value === `1-64`) {
-        screwChoise = 1;
+        screwChoise = 1.5;
     } else if (screwType.value === `0-80`) {
         screwChoise = 1.22;
     } else if (screwType.value === `none`) {
@@ -47,20 +47,18 @@ convertButton.addEventListener(`click`, () => {
     const xFiducialAdd = document.querySelector(`.x-fiducial`).value;
     const yFiducialAdd = document.querySelector(`.y-fiducial`).value;
     
-    const xPositionRemove = document.querySelector(`.x-position`).value;
-    const yPositionRemove = document.querySelector(`.y-position`).value;
+    const xMovePosition = document.querySelector(`.x-position`).value;
+    const yMovePosition = document.querySelector(`.y-position`).value;
     
-    const xTotal = (Number(xFiducialAdd) + Number(xPositionRemove) - Number(screwChoise));
-    const yTotal = Number(yFiducialAdd) + Number(yPositionRemove);
+    const xTotal = (Number(xFiducialAdd) + Number(xMovePosition) - Number(screwChoise));
+    const yTotal = Number(yFiducialAdd) + Number(yMovePosition);
 
     let code = inputCode.value;
 
 code = code.replace(/\s+/g, ' ').trim();
-
 codeArray = code.split(` `);
-
-renderNumbers(xTotal, yTotal, codeArray);
-
+renderNumbersDots(xTotal, yTotal, codeArray);
+renderNumbersCircles(xTotal, yTotal, codeArray);
 
 });
 
@@ -68,7 +66,7 @@ renderNumbers(xTotal, yTotal, codeArray);
 const defaultNum = Number(5.3);
 let html = ``;
 
-function renderNumbers(xTotal, yTotal, codeArray) {
+function renderNumbersDots(xTotal, yTotal, codeArray) {
 
 for (let i = 0; i < codeArray.length; i += 2) {
 
@@ -90,8 +88,33 @@ document.querySelector(`.result`).innerHTML = `<pre>${html}</pre>`;
 console.log(codeArray);
 console.log(xTotal);
 console.log(yTotal);
+}
+
+// new circles part
+
+let htmlCircles = ``;
+
+function renderNumbersCircles(xTotal, yTotal, codeArray) {
+
+for (let i = 0; i < codeArray.length; i += 2) {
+
+if (i + 1 < codeArray.length) { 
+
+let part1 = Number(codeArray[i]);
+let part2 = Number(codeArray[i + 1]);
+
+const xPosition = (part1 + (xTotal - defaultNum)).toFixed(3);
+const yPosition = (part2 + (yTotal - defaultNum)).toFixed(3);
+
+htmlCircles += 
+`Circle   ${xPosition},  ${yPosition},  ${(Number(xPosition) + Number(screwChoise)).toFixed(3)}, ${yPosition},   0.000, 1,   0.000\n`;
 
 }
+}
+
+}
+
+
 
 const clearButton = document.querySelector(`.clear-button`);
 
@@ -119,3 +142,20 @@ copyButton.addEventListener(`click`, () => {
     document.body.removeChild(tempTextarea);
 
 });
+
+const dotsTab = document.querySelector(`.result-tabs .dots`);
+
+dotsTab.addEventListener(`click`, () => {
+
+document.querySelector(`.result`).innerHTML = `<pre>${html}</pre>`;
+
+});
+
+const circlesTab = document.querySelector(`.result-tabs .circles`);
+
+circlesTab.addEventListener(`click`, () => {
+
+document.querySelector(`.result`).innerHTML = `<pre>${htmlCircles}</pre>`;
+});
+
+
