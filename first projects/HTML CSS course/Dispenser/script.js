@@ -37,6 +37,8 @@ layerType.addEventListener(`change`, () => {
 } );
 
 
+const dotsTab = document.querySelector(`.result-tabs .dots`);
+const circlesTab = document.querySelector(`.result-tabs .circles`);
 
 const inputCode = document.querySelector(`.code-input input`);
 const convertButton = document.querySelector(`.convert-button`);
@@ -59,6 +61,10 @@ code = code.replace(/\s+/g, ' ').trim();
 codeArray = code.split(` `);
 renderNumbersDots(xTotal, yTotal, codeArray);
 renderNumbersCircles(xTotal, yTotal, codeArray);
+
+//For having Dots tab clicked by defult;
+dotsTab.classList.add('tab-on');
+circlesTab.classList.remove('tab-on');
 
 });
 
@@ -121,6 +127,7 @@ const clearButton = document.querySelector(`.clear-button`);
 clearButton.addEventListener(`click`, () => {
     copyButton.classList.remove(`copy-button-clicked`);
     html = ``;
+    htmlCircles = ``;
     document.querySelector(`.result`).innerHTML = `
     <div class="result">result will be displayed here</div>`;
 });
@@ -143,19 +150,26 @@ copyButton.addEventListener(`click`, () => {
 
 });
 
-const dotsTab = document.querySelector(`.result-tabs .dots`);
+dotsTab.classList.add('tab-on');
 
 dotsTab.addEventListener(`click`, () => {
 
 document.querySelector(`.result`).innerHTML = `<pre>${html}</pre>`;
-
+  
+  dotsTab.classList.add('tab-on');
+  circlesTab.classList.remove('tab-on');
+ 
 });
 
-const circlesTab = document.querySelector(`.result-tabs .circles`);
+
 
 circlesTab.addEventListener(`click`, () => {
 
 document.querySelector(`.result`).innerHTML = `<pre>${htmlCircles}</pre>`;
+
+circlesTab.classList.add(`tab-on`);
+dotsTab.classList.remove('tab-on');
+
 });
 
 
