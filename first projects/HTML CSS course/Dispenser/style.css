@@ -48,6 +48,7 @@ input {
     font-weight: bold;
     margin-bottom: 40px;
     padding-top: 40px;
+    cursor: default;
 }
 
 .title span {
@@ -225,12 +226,28 @@ background-color: blue;
 color: white;
 }
 
-.copy-rights {
-position: fixed;
-bottom: 2px;
-left: 13px;
-color: white;
-font-size: 12px;
+.copy-rights-container {
+    display: flex;
+    position: fixed;
+    bottom: 5px;
+    left: 25px;
+    line-height: 15px;
+    align-items: center;
+    flex-direction: column;
+    cursor: default;
+
+}
+
+.copy-rights,
+.second-row {
+    font-size: 10.5px;
+    color: rgb(92, 91, 91);
+    color: white;
+}
+
+.second-row {
+    bottom: 5px;
+    left: 47px;
 }
 
 
