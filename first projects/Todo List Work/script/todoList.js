@@ -136,9 +136,10 @@ const sideBarButtons = {
         
 
 	function categoryButtons(arrayButtonClass) {
+
         let categoryHTML = ``;
 
-	tasks[arrayButtonClass].forEach((element) => {
+	tasksLIST[arrayButtonClass].forEach((element) => {
 	categoryHTML += `
     <div class="todo">
     <div class="left-part">
@@ -156,8 +157,9 @@ const sideBarButtons = {
 	});
 
 	if (tasks[arrayButtonClass].length > 0) {
-    	document.querySelector(`.todo-list-container`).innerHTML = categoryHTML;
-	console.log(arrayButtonClass);
+
+        document.querySelector(`.todo-list-container`).innerHTML = categoryHTML;
+        activeButtons();
 	} else {
 	document.querySelector(`.todo-list-container`).innerHTML = `
  	<div class="no-tasks"> No Tasks </div>
@@ -175,6 +177,7 @@ const sideBarButtons = {
 
     infoHeader.allTasks.addEventListener(`click`, () => {
         document.querySelector(`.todo-list-container`).innerHTML = renderHTML();
+        activeButtons();
     });
 //new part
     infoHeader.topPriorities.addEventListener(`click`, () => {
@@ -199,7 +202,7 @@ const sideBarButtons = {
         });
 
         document.querySelector(`.todo-list-container`).innerHTML = topPrioritiesHTML;
-
+        activeButtons();
     });
     
 
@@ -221,6 +224,7 @@ const sideBarButtons = {
                 tasksList.forEach((task) => {
                     if (task.taskId === priorityId) {
                         allPriority.unshift(task);
+                        console.log(`task pushed`);
                     }
                    
                 });
