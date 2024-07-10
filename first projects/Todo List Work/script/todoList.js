@@ -64,6 +64,7 @@ function addTaskToCategory(category) {
         tasks[category].unshift({task: newTask.task, id: newTask.taskId});  // Add to the specific category array
         tasksList.unshift(newTask);  // Add to the overall list with timestamp
         renderHTML();
+	categoryNote(category);
     }
 }
 
@@ -171,7 +172,8 @@ const sideBarButtons = {
         allTasks: document.querySelector(`.js-all-tasks`),
         allTasksNote: document.querySelector(`.all-tasks-note`),
         allTasksNum: document.querySelector(`.all-tasks-note .top-number`),
-        topPriorities: document.querySelector(`.js-top-priorities`)
+        topPriorities: document.querySelector(`.js-top-priorities`),
+	topPrioritiesNum: document.querySelector(`.js-top-priorities .top-number`)
     }
 
     infoHeader.allTasks.addEventListener(`click`, () => {
@@ -216,19 +218,43 @@ const sideBarButtons = {
         infoHeader.allTasksNum.innerHTML = countAllTask;
     }
 
-        function activeButtons() {
-        document.querySelectorAll(`.button-priority`).forEach((button) => {
-            button.addEventListener(`click`, () => {
-                const priorityId = button.dataset.priorityId;
+    function renderAllPriorities() {
+
+        let countAllPriorities = 0;
+
+        allPriority.forEach((priority) => {
+            countAllPriorities += 1;
+        });
+        
+        infoHeader.topPrioritiesNum.innerHTML = countAllPriorities;
+    }
+
+function activeButtons() {
+    document.querySelectorAll(`.button-priority`).forEach((button) => {
+        button.addEventListener(`click`, () => {
+            const priorityId = button.dataset.priorityId;
+
+            // Check if the task is already in the allPriority array 
+            const isAlreadyPriority = allPriority.some((task) => task.taskId === priorityId);
+
+            if (!isAlreadyPriority) {
                 tasksList.forEach((task) => {
                     if (task.taskId === priorityId) {
                         allPriority.unshift(task);
                         console.log(`task pushed`);
+                        renderAllPriorities();
                     }
-                   
                 });
-    
-            });
+            } else {
+                console.log(`Task with id ${priorityId} is already a priority`);
+            }
         });
+    });
+}
 
-    }
+function categoryNote(category) {
+
+const categoryNum = tasks[category].length;
+document.querySelector(`.${category}`).innerHTML = categoryNum;
+
+}
