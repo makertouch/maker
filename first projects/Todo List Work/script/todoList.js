@@ -93,7 +93,7 @@ function renderHTML() {
 
     document.querySelector(`.todo-list-container`).innerHTML = html;
     taskInput.value = '';
-    activeButtons();
+    activeButtons(sortedTasks);
     
     return html;
 }
@@ -136,10 +136,9 @@ const sideBarButtons = {
         
 
 	function categoryButtons(arrayButtonClass) {
-
         let categoryHTML = ``;
 
-	tasksLIST[arrayButtonClass].forEach((element) => {
+	tasks[arrayButtonClass].forEach((element) => {
 	categoryHTML += `
     <div class="todo">
     <div class="left-part">
@@ -159,7 +158,7 @@ const sideBarButtons = {
 	if (tasks[arrayButtonClass].length > 0) {
 
         document.querySelector(`.todo-list-container`).innerHTML = categoryHTML;
-        activeButtons();
+        
 	} else {
 	document.querySelector(`.todo-list-container`).innerHTML = `
  	<div class="no-tasks"> No Tasks </div>
@@ -177,7 +176,6 @@ const sideBarButtons = {
 
     infoHeader.allTasks.addEventListener(`click`, () => {
         document.querySelector(`.todo-list-container`).innerHTML = renderHTML();
-        activeButtons();
     });
 //new part
     infoHeader.topPriorities.addEventListener(`click`, () => {
@@ -202,7 +200,7 @@ const sideBarButtons = {
         });
 
         document.querySelector(`.todo-list-container`).innerHTML = topPrioritiesHTML;
-        activeButtons();
+
     });
     
 
@@ -217,11 +215,11 @@ const sideBarButtons = {
         infoHeader.allTasksNum.innerHTML = countAllTask;
     }
 
-        function activeButtons() {
+        function activeButtons(sortedTasks) {
         document.querySelectorAll(`.button-priority`).forEach((button) => {
             button.addEventListener(`click`, () => {
                 const priorityId = button.dataset.priorityId;
-                tasksList.forEach((task) => {
+                sortedTasks.forEach((task) => {
                     if (task.taskId === priorityId) {
                         allPriority.unshift(task);
                         console.log(`task pushed`);
