@@ -17,7 +17,7 @@ const buttons = {
     glueBlockButton: document.querySelector(`.glue-block-sort`),
     ploterButton: document.querySelector(`.ploter-sort`),
     engineersButton: document.querySelector(`.engineers-sort`),
-    urgentButton: document.querySelector(`.urgent-units-sort`),
+    urgentButton: document.querySelector(`.urgent-units-sort`)
 };
 
 
@@ -61,7 +61,7 @@ function addTaskToCategory(category) {
             timestamp: new Date().getTime(),
             taskId: Math.random().toFixed(3)
         };
-        tasks[category].unshift(newTask.task);  // Add to the specific category array
+        tasks[category].unshift({task: newTask.task, id: newTask.taskId});  // Add to the specific category array
         tasksList.unshift(newTask);  // Add to the overall list with timestamp
         renderHTML();
     }
@@ -93,7 +93,7 @@ function renderHTML() {
 
     document.querySelector(`.todo-list-container`).innerHTML = html;
     taskInput.value = '';
-    activeButtons(sortedTasks);
+    activeButtons();
     
     return html;
 }
@@ -144,12 +144,12 @@ const sideBarButtons = {
     <div class="left-part">
         <input type="checkbox">
         <div class="todo-${arrayButtonClass}">
-            ${element}
+            ${element.task}
         </div>
     </div>
     <div class="right-part">
-        <button class="button-edit">Edit</button>
-        <button class="button-priority">Priority</button>
+        <button class="button-edit" data-edit-id="${element.id}">Edit</button>
+        <button class="button-priority" data-priority-id="${element.id}">Priority</button>
     </div>
 </div>
     `;
@@ -158,7 +158,7 @@ const sideBarButtons = {
 	if (tasks[arrayButtonClass].length > 0) {
 
         document.querySelector(`.todo-list-container`).innerHTML = categoryHTML;
-        
+        activeButtons();
 	} else {
 	document.querySelector(`.todo-list-container`).innerHTML = `
  	<div class="no-tasks"> No Tasks </div>
@@ -176,6 +176,7 @@ const sideBarButtons = {
 
     infoHeader.allTasks.addEventListener(`click`, () => {
         document.querySelector(`.todo-list-container`).innerHTML = renderHTML();
+        activeButtons();
     });
 //new part
     infoHeader.topPriorities.addEventListener(`click`, () => {
@@ -200,7 +201,7 @@ const sideBarButtons = {
         });
 
         document.querySelector(`.todo-list-container`).innerHTML = topPrioritiesHTML;
-
+        activeButtons();
     });
     
 
@@ -215,11 +216,11 @@ const sideBarButtons = {
         infoHeader.allTasksNum.innerHTML = countAllTask;
     }
 
-        function activeButtons(sortedTasks) {
+        function activeButtons() {
         document.querySelectorAll(`.button-priority`).forEach((button) => {
             button.addEventListener(`click`, () => {
                 const priorityId = button.dataset.priorityId;
-                sortedTasks.forEach((task) => {
+                tasksList.forEach((task) => {
                     if (task.taskId === priorityId) {
                         allPriority.unshift(task);
                         console.log(`task pushed`);
