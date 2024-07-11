@@ -1,3 +1,13 @@
+const tasksList = JSON.parse(localStorage.getItem(`tasksList`)) || [];
+const allPriority = JSON.parse(localStorage.getItem(`allPriority`)) || [];
+
+// active all the functions while the arrays are full from the JSON.
+document.addEventListener('DOMContentLoaded', () => {
+    renderHTML();
+    renderAllTasks();
+    renderAllPriorities();
+    
+});
 
 const tasks = {
     prints: [],
@@ -9,9 +19,6 @@ const tasks = {
 };
 
 
-const tasksList = JSON.parse(localStorage.getItem(`tasksList`)) || [];
-
-const allPriority = [];
 
 const taskInput = document.querySelector(`.text-input`);
 
@@ -68,7 +75,7 @@ function addTaskToCategory(category) {
         tasksList.unshift(newTask);  // Add to the overall list with timestamp
         renderHTML();
 	categoryNote(category);
-	saveToSotrage(tasksList);
+	saveToStorage(tasksList);
     }
 }
 
@@ -206,6 +213,7 @@ const sideBarButtons = {
         });
 
         document.querySelector(`.todo-list-container`).innerHTML = topPrioritiesHTML;
+        saveToStoragePriority(allPriority);
         activeButtons();
     });
     
@@ -246,6 +254,7 @@ function activeButtons() {
                         allPriority.unshift(task);
                         console.log(`task pushed`);
                         renderAllPriorities();
+                        saveToStoragePriority(allPriority);
                     }
                 });
             } else {
@@ -259,12 +268,16 @@ function categoryNote(category) {
 
 const categoryNum = tasks[category].length;
 document.querySelector(`.${category}`).innerHTML = categoryNum;
-
 }
 
-function saveToSotrage(tasksList) {
+function saveToStorage(tasksList) {
 localStorage.setItem(`tasksList`, JSON.stringify(tasksList));
 }
 
+function saveToStoragePriority(allPriority) {
+    localStorage.setItem(`allPriority`, JSON.stringify(allPriority));
+    }
 
-
+    function saveToStorageCategoryNum(categoryNum) {
+        localStorage.setItem(`categoryNum`, JSON.stringify(categoryNum));
+        }
