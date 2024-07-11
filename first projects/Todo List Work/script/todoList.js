@@ -1,3 +1,4 @@
+
 const tasks = {
     prints: [],
     glueBlock: [],
@@ -6,6 +7,9 @@ const tasks = {
     urgent: [],
     others: []
 };
+
+
+const tasksList = JSON.parse(localStorage.getItem(`tasksList`)) || [];
 
 const allPriority = [];
 
@@ -51,7 +55,6 @@ buttons.urgentButton.addEventListener('click', () => {
     renderAllTasks();
 });
 
-const tasksList = [];
 
 function addTaskToCategory(category) {
     if (taskInput.value) {
@@ -65,6 +68,7 @@ function addTaskToCategory(category) {
         tasksList.unshift(newTask);  // Add to the overall list with timestamp
         renderHTML();
 	categoryNote(category);
+	saveToSotrage(tasksList);
     }
 }
 
@@ -95,7 +99,6 @@ function renderHTML() {
     document.querySelector(`.todo-list-container`).innerHTML = html;
     taskInput.value = '';
     activeButtons();
-    
     return html;
 }
 
@@ -258,3 +261,10 @@ const categoryNum = tasks[category].length;
 document.querySelector(`.${category}`).innerHTML = categoryNum;
 
 }
+
+function saveToSotrage(tasksList) {
+localStorage.setItem(`tasksList`, JSON.stringify(tasksList));
+}
+
+
+
