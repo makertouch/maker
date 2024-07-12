@@ -1,15 +1,6 @@
 const tasksList = JSON.parse(localStorage.getItem(`tasksList`)) || [];
 const allPriority = JSON.parse(localStorage.getItem(`allPriority`)) || [];
-
-// active all the functions while the arrays are full from the JSON.
-document.addEventListener('DOMContentLoaded', () => {
-    renderHTML();
-    renderAllTasks();
-    renderAllPriorities();
-    
-});
-
-const tasks = {
+const tasks = JSON.parse(localStorage.getItem(`tasks`)) || {
     prints: [],
     glueBlock: [],
     ploter: [],
@@ -17,6 +8,17 @@ const tasks = {
     urgent: [],
     others: []
 };
+
+
+// active all the functions while the arrays are full from the JSON.
+document.addEventListener('DOMContentLoaded', () => {
+    renderHTML();
+    renderAllTasks();
+    renderAllPriorities();
+    updateCategoryNotes();
+});
+
+
 
 
 
@@ -75,7 +77,8 @@ function addTaskToCategory(category) {
         tasksList.unshift(newTask);  // Add to the overall list with timestamp
         renderHTML();
 	categoryNote(category);
-	saveToStorage(tasksList);
+	saveToStorageTasks(tasks);
+    saveToStorage(tasksList);
     }
 }
 
@@ -265,9 +268,15 @@ function activeButtons() {
 }
 
 function categoryNote(category) {
-
 const categoryNum = tasks[category].length;
 document.querySelector(`.${category}`).innerHTML = categoryNum;
+}
+
+function updateCategoryNotes() {
+    const categories = ['prints', 'glueBlock', 'ploter', 'engineers', 'urgent', 'others'];
+    categories.forEach(category => {
+        categoryNote(category);
+    });
 }
 
 function saveToStorage(tasksList) {
@@ -278,6 +287,7 @@ function saveToStoragePriority(allPriority) {
     localStorage.setItem(`allPriority`, JSON.stringify(allPriority));
     }
 
-    function saveToStorageCategoryNum(categoryNum) {
-        localStorage.setItem(`categoryNum`, JSON.stringify(categoryNum));
-        }
+function saveToStorageTasks(tasks) {
+     localStorage.setItem(`tasks`, JSON.stringify(tasks));
+    }
+
