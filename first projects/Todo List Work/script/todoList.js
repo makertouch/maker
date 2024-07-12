@@ -10,12 +10,17 @@ const tasks = JSON.parse(localStorage.getItem(`tasks`)) || {
 };
 
 
-// active all the functions while the arrays are full from the JSON.
+// we use this instead of calling to all functions because the js loaded faster then the DOM Elements.
+//The DOMContentLoaded event ensures that JavaScript code runs only 
+//after the entire HTML document has been loaded and parsed.
+
+//Two actions: load the DOM, run JavaScript in it.
+
 document.addEventListener('DOMContentLoaded', () => {
     renderHTML();
     renderAllTasks();
     renderAllPriorities();
-    updateCategoryNotes();
+    updateCategoryNotes(); //UpdateCategoryNotes or directly call categoryNote for each category here
 });
 
 
