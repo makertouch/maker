@@ -98,7 +98,7 @@ function renderHTML() {
         html += `
 <div class="todo">
     <div class="left-part">
-        <input type="checkbox">
+        <input type="checkbox" data-checkbox-id="${newTaskListObj.taskId}">
         <div class="todo-${newTaskListObj.category}">
             ${newTaskListObj.task}
         </div>
@@ -161,7 +161,7 @@ const sideBarButtons = {
 	categoryHTML += `
     <div class="todo">
     <div class="left-part">
-        <input type="checkbox">
+        <input type="checkbox" data-checkbox-id="${element.id}">
         <div class="todo-${arrayButtonClass}">
             ${element.task}
         </div>
@@ -207,7 +207,7 @@ const sideBarButtons = {
             topPrioritiesHTML += `
             <div class="todo">
     <div class="left-part">
-        <input type="checkbox">
+        <input type="checkbox" data-priority-id="${priority.taskId}">
         <div class="todo-${priority.category}">
             ${priority.task}
         </div>
