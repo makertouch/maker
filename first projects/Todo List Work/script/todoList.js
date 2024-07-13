@@ -1,5 +1,5 @@
-const tasksList = JSON.parse(localStorage.getItem(`tasksList`)) || [];
-const allPriority = JSON.parse(localStorage.getItem(`allPriority`)) || [];
+let tasksList = JSON.parse(localStorage.getItem(`tasksList`)) || [];
+let allPriority = JSON.parse(localStorage.getItem(`allPriority`)) || [];
 const tasks = JSON.parse(localStorage.getItem(`tasks`)) || {
     prints: [],
     glueBlock: [],
@@ -98,14 +98,14 @@ function renderHTML() {
         html += `
 <div class="todo">
     <div class="left-part">
-        <input type="checkbox" data-checkbox-id="${newTaskListObj.taskId}">
+        <input type="checkbox" class="checkbox" data-task-id="${newTaskListObj.taskId}">
         <div class="todo-${newTaskListObj.category}">
             ${newTaskListObj.task}
         </div>
     </div>
     <div class="right-part">
-        <button class="button-edit" data-edit-id="${newTaskListObj.taskId}">Edit</button>
-        <button class="button-priority" data-priority-id="${newTaskListObj.taskId}">Priority</button>
+        <button class="button-edit" data-task-id="${newTaskListObj.taskId}">Edit</button>
+        <button class="button-priority" data-task-id="${newTaskListObj.taskId}">Priority</button>
     </div>
 </div>
         `;
@@ -161,21 +161,20 @@ const sideBarButtons = {
 	categoryHTML += `
     <div class="todo">
     <div class="left-part">
-        <input type="checkbox" data-checkbox-id="${element.id}">
+        <input type="checkbox" class="checkbox" data-task-id="${element.id}">
         <div class="todo-${arrayButtonClass}">
             ${element.task}
         </div>
     </div>
     <div class="right-part">
-        <button class="button-edit" data-edit-id="${element.id}">Edit</button>
-        <button class="button-priority" data-priority-id="${element.id}">Priority</button>
+        <button class="button-edit" data-task-id="${element.id}">Edit</button>
+        <button class="button-priority" data-task-id="${element.id}">Priority</button>
     </div>
 </div>
     `;
 	});
 
 	if (tasks[arrayButtonClass].length > 0) {
-
         document.querySelector(`.todo-list-container`).innerHTML = categoryHTML;
         activeButtons();
 	} else {
@@ -207,14 +206,14 @@ const sideBarButtons = {
             topPrioritiesHTML += `
             <div class="todo">
     <div class="left-part">
-        <input type="checkbox" data-priority-id="${priority.taskId}">
+        <input type="checkbox" class="checkbox" data-task-id="${priority.taskId}">
         <div class="todo-${priority.category}">
             ${priority.task}
         </div>
     </div>
     <div class="right-part">
-        <button class="button-edit" data-edit-id="${priority.taskId}">Edit</button>
-        <button class="button-priority" data-priority-id="${priority.taskId}">Priority</button>
+        <button class="button-edit" data-task-id="${priority.taskId}">Edit</button>
+        <button class="button-priority" data-task-id="${priority.taskId}">Priority</button>
     </div>
 </div>
 `
@@ -251,7 +250,7 @@ const sideBarButtons = {
 function activeButtons() {
     document.querySelectorAll(`.button-priority`).forEach((button) => {
         button.addEventListener(`click`, () => {
-            const priorityId = button.dataset.priorityId;
+            const priorityId = button.dataset.taskId;
 
             // Check if the task is already in the allPriority array 
             const isAlreadyPriority = allPriority.some((task) => task.taskId === priorityId);
@@ -270,7 +269,34 @@ function activeButtons() {
             }
         });
     });
-}
+
+
+       document.querySelectorAll(`.checkbox`).forEach((checkbox) => {
+    checkbox.addEventListener(`click`, () => {
+        const checkBoxId = checkbox.dataset.taskId;
+        
+        tasksList = tasksList.filter(task => task.taskId !== checkBoxId);
+        allPriority = allPriority.filter(priority => priority.taskId !== checkBoxId);
+
+        // Remove task from tasks object categories
+        for (const category in tasks) {
+            if (tasks.hasOwnProperty(category)) {
+                tasks[category] = tasks[category].filter(task => task.id !== checkBoxId);
+            }
+        }
+
+        saveToStorage(tasksList);
+        saveToStoragePriority(allPriority);
+        saveToStorageTasks(tasks);
+
+        // Re-render the updated lists
+        renderHTML();
+        updateCategoryNotes();
+        renderAllTasks();
+        renderAllPriorities();
+        });
+        });
+        }
 
 function categoryNote(category) {
 const categoryNum = tasks[category].length;
