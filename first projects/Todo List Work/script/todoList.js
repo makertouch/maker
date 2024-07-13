@@ -265,6 +265,11 @@ function activeButtons() {
                     }
                 });
             } else {
+
+                allPriority = allPriority.filter((task) => task.taskId !== priorityId);
+                renderAllPriorities();
+                saveToStoragePriority(allPriority);
+
                 console.log(`Task with id ${priorityId} is already a priority`);
             }
         });
