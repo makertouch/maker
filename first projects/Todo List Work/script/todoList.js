@@ -1,3 +1,4 @@
+
 let tasksList = JSON.parse(localStorage.getItem(`tasksList`)) || [];
 let allPriority = JSON.parse(localStorage.getItem(`allPriority`)) || [];
 const tasks = JSON.parse(localStorage.getItem(`tasks`)) || {
@@ -267,11 +268,14 @@ function activeButtons() {
             } else {
 
                 allPriority = allPriority.filter((task) => task.taskId !== priorityId);
-                renderAllPriorities();
                 saveToStoragePriority(allPriority);
+                renderAllPriorities();
 
                 console.log(`Task with id ${priorityId} is already a priority`);
             }
+            saveToStoragePriority(allPriority);
+            updateCategoryNotes();
+            
         });
     });
 
