@@ -270,7 +270,27 @@ function activeButtons() {
                 allPriority = allPriority.filter((task) => task.taskId !== priorityId);
                 saveToStoragePriority(allPriority);
                 renderAllPriorities();
+// test
 
+let topPrioritiesHTML = [];
+allPriority.forEach((priority) => {
+    topPrioritiesHTML += `
+    <div class="todo">
+<div class="left-part">
+<input type="checkbox" class="checkbox" data-task-id="${priority.taskId}">
+<div class="todo-${priority.category}">
+    ${priority.task}
+</div>
+</div>
+<div class="right-part">
+<button class="button-edit" data-task-id="${priority.taskId}">Edit</button>
+<button class="button-priority" data-task-id="${priority.taskId}">Priority</button>
+</div>
+</div>
+`
+});
+
+document.querySelector(`.todo-list-container`).innerHTML = topPrioritiesHTML;
                 console.log(`Task with id ${priorityId} is already a priority`);
             }
             saveToStoragePriority(allPriority);
