@@ -59,8 +59,7 @@ convertButton.addEventListener(`click`, () => {
 
 code = code.replace(/\s+/g, ' ').trim();
 codeArray = code.split(` `);
-renderNumbersDots(xTotal, yTotal, codeArray);
-renderNumbersCircles(xTotal, yTotal, codeArray);
+renderNumbers(xTotal, yTotal, codeArray);
 
 //For having Dots tab clicked by defult;
 dotsTab.classList.add('tab-on');
@@ -71,8 +70,10 @@ circlesTab.classList.remove('tab-on');
 
 const defaultNum = Number(5.3);
 let html = ``;
+let htmlCircles = ``;
 
-function renderNumbersDots(xTotal, yTotal, codeArray) {
+function renderNumbers
+(xTotal, yTotal, codeArray) {
 
 for (let i = 0; i < codeArray.length; i += 2) {
 
@@ -86,6 +87,10 @@ const yPosition = (part2 + (yTotal - defaultNum)).toFixed(3);
 
 html += 
 `Dot       ${xPosition},  ${yPosition},   ${layer.toFixed(3)},   0.000\n`;
+
+htmlCircles += 
+`Circle   ${xPosition},  ${yPosition},  ${(Number(xPosition) + Number(screwChoise)).toFixed(3)}, ${yPosition},   0.000, 1,   0.000\n`;
+
 }
 }
 
@@ -97,29 +102,6 @@ console.log(yTotal);
 }
 
 // new circles part
-
-let htmlCircles = ``;
-
-function renderNumbersCircles(xTotal, yTotal, codeArray) {
-
-for (let i = 0; i < codeArray.length; i += 2) {
-
-if (i + 1 < codeArray.length) { 
-
-let part1 = Number(codeArray[i]);
-let part2 = Number(codeArray[i + 1]);
-
-const xPosition = (part1 + (xTotal - defaultNum)).toFixed(3);
-const yPosition = (part2 + (yTotal - defaultNum)).toFixed(3);
-
-htmlCircles += 
-`Circle   ${xPosition},  ${yPosition},  ${(Number(xPosition) + Number(screwChoise)).toFixed(3)}, ${yPosition},   0.000, 1,   0.000\n`;
-
-}
-}
-
-}
-
 
 
 const clearButton = document.querySelector(`.clear-button`);
