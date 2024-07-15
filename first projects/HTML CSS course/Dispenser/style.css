@@ -250,4 +250,21 @@ color: white;
     left: 47px;
 }
 
+.title-fiducial {
+display: flex;
+column-gap: 6px;
+align-items: center;
+}
 
+.info {
+display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: blue;
+    color: white;
+    width: 18px;
+    height: 18px;
+    border-radius: 20px;
+    font-size: 15px;
+    cursor: pointer;
+}
