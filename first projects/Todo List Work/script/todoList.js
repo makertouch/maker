@@ -26,8 +26,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-
-
 const taskInput = document.querySelector(`.text-input`);
 
 const buttons = {
@@ -77,7 +75,7 @@ function addTaskToCategory(category) {
             task: taskInput.value,
             category: category,
             timestamp: new Date().getTime(),
-            taskId: Math.random().toFixed(3)
+            taskId: String((Math.random().toFixed(3)) * 1000)
         };
         tasks[category].unshift({task: newTask.task, id: newTask.taskId});  // Add to the specific category array
         tasksList.unshift(newTask);  // Add to the overall list with timestamp
@@ -97,7 +95,7 @@ function renderHTML() {
 
     sortedTasks.forEach(newTaskListObj => {
         html += `
-<div class="todo">
+<div class="todo todo-${newTaskListObj.taskId}">
     <div class="left-part">
         <input type="checkbox" class="checkbox" data-task-id="${newTaskListObj.taskId}">
         <div class="todo-${newTaskListObj.category}">
@@ -160,7 +158,7 @@ const sideBarButtons = {
 
 	tasks[arrayButtonClass].forEach((element) => {
 	categoryHTML += `
-    <div class="todo">
+    <div class="todo todo-${element.id}">
     <div class="left-part">
         <input type="checkbox" class="checkbox" data-task-id="${element.id}">
         <div class="todo-${arrayButtonClass}">
@@ -205,7 +203,7 @@ const sideBarButtons = {
 
         allPriority.forEach((priority) => {
             topPrioritiesHTML += `
-            <div class="todo">
+            <div class="todo todo-${priority.taskId}">
     <div class="left-part">
         <input type="checkbox" class="checkbox" data-task-id="${priority.taskId}">
         <div class="todo-${priority.category}">
@@ -252,7 +250,12 @@ function activeButtons() {
     document.querySelectorAll(`.button-priority`).forEach((button) => {
         button.addEventListener(`click`, () => {
             const priorityId = button.dataset.taskId;
-
+		
+	const priorityButtonClass = document.querySelector(`.todo-${priorityId}`);
+	priorityButtonClass.classList.add(`todo-priority-hide`);
+	
+		
+		
             // Check if the task is already in the allPriority array 
             const isAlreadyPriority = allPriority.some((task) => task.taskId === priorityId);
 
@@ -267,34 +270,16 @@ function activeButtons() {
                 });
             } else {
 
-                allPriority = allPriority.filter((task) => task.taskId !== priorityId);
+		allPriority = allPriority.filter((task) => task.taskId !== priorityId);
                 saveToStoragePriority(allPriority);
                 renderAllPriorities();
-// test
 
-let topPrioritiesHTML = [];
-allPriority.forEach((priority) => {
-    topPrioritiesHTML += `
-    <div class="todo">
-<div class="left-part">
-<input type="checkbox" class="checkbox" data-task-id="${priority.taskId}">
-<div class="todo-${priority.category}">
-    ${priority.task}
-</div>
-</div>
-<div class="right-part">
-<button class="button-edit" data-task-id="${priority.taskId}">Edit</button>
-<button class="button-priority" data-task-id="${priority.taskId}">Priority</button>
-</div>
-</div>
-`
-});
 
-document.querySelector(`.todo-list-container`).innerHTML = topPrioritiesHTML;
                 console.log(`Task with id ${priorityId} is already a priority`);
             }
             saveToStoragePriority(allPriority);
             updateCategoryNotes();
+		
             
         });
     });
@@ -350,4 +335,3 @@ function saveToStoragePriority(allPriority) {
 function saveToStorageTasks(tasks) {
      localStorage.setItem(`tasks`, JSON.stringify(tasks));
     }
-
