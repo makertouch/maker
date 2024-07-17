@@ -250,13 +250,17 @@ color: white;
     left: 47px;
 }
 
-.title-fiducial {
+.title-fiducial,
+.position-container {
 display: flex;
+align-items: center;
 column-gap: 6px;
 align-items: center;
+position: relative;
 }
 
-.info {
+.info-position,
+.info-fiducial {
 display: flex;
     flex-direction: column;
     align-items: center;
@@ -267,5 +271,22 @@ display: flex;
     border-radius: 20px;
     font-size: 15px;
     cursor: pointer;
-	margin-bottom: 1px;
+    margin-bottom: 1px;
+}
+
+.layout-info {
+position: absolute;
+    width: 104px;
+    height: 50px;
+    background-color: #00000091;
+    color: white;
+    left: -112px;
+    bottom: 15px;
+    border-radius: 5px 5px 0;
+    display: flex;
+    align-items: center;
+    font-size: 11px;
+    font-family: Arial;
+    padding-left: 8px;
+    line-height: 14px;
 }
