@@ -1,337 +1,165 @@
 
-let tasksList = JSON.parse(localStorage.getItem(`tasksList`)) || [];
-let allPriority = JSON.parse(localStorage.getItem(`allPriority`)) || [];
-const tasks = JSON.parse(localStorage.getItem(`tasks`)) || {
-    prints: [],
-    glueBlock: [],
-    ploter: [],
-    engineers: [],
-    urgent: [],
-    others: []
-};
+let screwChoise = 0;
 
+const screwType = document.querySelector(`.screw-type`);
+ 
+screwType.addEventListener(`change`, () => {
 
-// we use this instead of calling to all functions because the js loaded faster then the DOM Elements.
-//The DOMContentLoaded event ensures that JavaScript code runs only 
-//after the entire HTML document has been loaded and parsed.
-
-//Two actions: load the DOM, run JavaScript in it.
-
-document.addEventListener('DOMContentLoaded', () => {
-    renderHTML();
-    renderAllTasks();
-    renderAllPriorities();
-    updateCategoryNotes(); //UpdateCategoryNotes or directly call categoryNote for each category here
+    if (screwType.value === `2-56`) {
+        screwChoise = 1.9;
+    } else if (screwType.value === `1-64`) {
+        screwChoise = 1.5;
+    } else if (screwType.value === `0-80`) {
+        screwChoise = 1.22;
+    } else if (screwType.value === `none`) {
+        screwChoise = 0;
+    } 
 });
 
+let layer = 0.100;
 
+const layerType = document.querySelector(`.layer-type`);
 
-const taskInput = document.querySelector(`.text-input`);
-
-const buttons = {
-    addButton: document.querySelector(`.add-button`),
-    printsButton: document.querySelector(`.print-sort`),
-    glueBlockButton: document.querySelector(`.glue-block-sort`),
-    ploterButton: document.querySelector(`.ploter-sort`),
-    engineersButton: document.querySelector(`.engineers-sort`),
-    urgentButton: document.querySelector(`.urgent-units-sort`)
-};
-
-
-buttons.addButton.addEventListener('click', () => {
-    addTaskToCategory('others');
-    renderAllTasks();
-});
-
-buttons.printsButton.addEventListener('click', () => {
-    addTaskToCategory('prints');
-    renderAllTasks();
-});
-
-buttons.glueBlockButton.addEventListener('click', () => {
-    addTaskToCategory('glueBlock');
-    renderAllTasks();
-});
-
-buttons.ploterButton.addEventListener('click', () => {
-    addTaskToCategory('ploter');
-    renderAllTasks();
-});
-
-buttons.engineersButton.addEventListener('click', () => {
-    addTaskToCategory('engineers');
-    renderAllTasks();
-});
-
-buttons.urgentButton.addEventListener('click', () => {
-    addTaskToCategory('urgent');
-    renderAllTasks();
-});
-
-
-function addTaskToCategory(category) {
-    if (taskInput.value) {
-        const newTask = {
-            task: taskInput.value,
-            category: category,
-            timestamp: new Date().getTime(),
-            taskId: String((Math.random().toFixed(3)) * 1000)
-        };
-        tasks[category].unshift({task: newTask.task, id: newTask.taskId});  // Add to the specific category array
-        tasksList.unshift(newTask);  // Add to the overall list with timestamp
-        renderHTML();
-	categoryNote(category);
-	saveToStorageTasks(tasks);
-    saveToStorage(tasksList);
+layerType.addEventListener(`change`, () => {
+    if (layerType.value === `100`) {
+        layer = 0.100;
+    } else if (layerType.value === `200`) {
+        layer = 0.200;
+    } else if (layerType.value === `300`) {
+        layer = 0.300;
+    } else if (layerType.value === `400`) {
+        layer = 0.400;
+    } else if (layerType.value === `500`) {
+        layer = 0.500;
+    }  else if (layerType.value === `600`) {
+        layer = 0.600;
     }
-}
+} );
 
 
-function renderHTML() {
-    let html = '';
+const dotsTab = document.querySelector(`.result-tabs .dots`);
+const circlesTab = document.querySelector(`.result-tabs .circles`);
 
-    // Sort tasksList by timestamp in descending order
-    const sortedTasks = tasksList.sort((a, b) => b.timestamp - a.timestamp);
+const inputCode = document.querySelector(`.code-input input`);
+const convertButton = document.querySelector(`.convert-button`);
+let codeArray;
 
-    sortedTasks.forEach(newTaskListObj => {
-        html += `
-<div class="todo todo-${newTaskListObj.taskId}">
-    <div class="left-part">
-        <input type="checkbox" class="checkbox" data-task-id="${newTaskListObj.taskId}">
-        <div class="todo-${newTaskListObj.category}">
-            ${newTaskListObj.task}
-        </div>
-    </div>
-    <div class="right-part">
-        <button class="button-edit" data-task-id="${newTaskListObj.taskId}">Edit</button>
-        <button class="button-priority" data-task-id="${newTaskListObj.taskId}">Priority</button>
-    </div>
-</div>
-        `;
-    });
-
-    document.querySelector(`.todo-list-container`).innerHTML = html;
-    taskInput.value = '';
-    activeButtons();
-    return html;
-}
-
-
-//side bar part
-
-const sideBarButtons = {
-	printSidebar: document.querySelector(`.js-print`),
-	glueBlockSideBar: document.querySelector(`.js-glue-block`),
-	ploterSideBar: document.querySelector(`.js-ploter`),
-	engineersSideBar: document.querySelector(`.js-engineers`),
-	urgentUnits: document.querySelector(`.js-urgent-units`),
-	others: document.querySelector(`.js-others`)
-	}
-
-    sideBarButtons.printSidebar.addEventListener(`click`, () => {
-    categoryButtons(`prints`);
-    });
-
-    sideBarButtons.glueBlockSideBar.addEventListener(`click`, () => {
-    categoryButtons(`glueBlock`);
-    });
-
-    sideBarButtons.ploterSideBar.addEventListener(`click`, () => {
-    categoryButtons(`ploter`);
-    });
+convertButton.addEventListener(`click`, () => {
+    copyButton.classList.remove(`copy-button-clicked`);
+    const xFiducialAdd = document.querySelector(`.x-fiducial`).value;
+    const yFiducialAdd = document.querySelector(`.y-fiducial`).value;
     
-    sideBarButtons.engineersSideBar.addEventListener(`click`, () => {   
-    categoryButtons(`engineers`);
-    });
-   
-    sideBarButtons.urgentUnits.addEventListener(`click`, () => {
-    categoryButtons(`urgent`);
-    });
+    const xMovePosition = document.querySelector(`.x-position`).value;
+    const yMovePosition = document.querySelector(`.y-position`).value;
     
-    sideBarButtons.others.addEventListener(`click`, () => {
-    categoryButtons(`others`);
-    });
-        
+    const xTotal = (Number(xFiducialAdd) + Number(xMovePosition) - Number(screwChoise));
+    const yTotal = Number(yFiducialAdd) + Number(yMovePosition);
 
-	function categoryButtons(arrayButtonClass) {
-        let categoryHTML = ``;
+    let code = inputCode.value;
 
-	tasks[arrayButtonClass].forEach((element) => {
-	categoryHTML += `
-    <div class="todo todo-${element.id}">
-    <div class="left-part">
-        <input type="checkbox" class="checkbox" data-task-id="${element.id}">
-        <div class="todo-${arrayButtonClass}">
-            ${element.task}
-        </div>
-    </div>
-    <div class="right-part">
-        <button class="button-edit" data-task-id="${element.id}">Edit</button>
-        <button class="button-priority" data-task-id="${element.id}">Priority</button>
-    </div>
-</div>
-    `;
-	});
+code = code.replace(/\s+/g, ' ').trim();
+codeArray = code.split(` `);
+renderNumbers(xTotal, yTotal, codeArray);
 
-	if (tasks[arrayButtonClass].length > 0) {
-        document.querySelector(`.todo-list-container`).innerHTML = categoryHTML;
-        activeButtons();
-	} else {
-	document.querySelector(`.todo-list-container`).innerHTML = `
- 	<div class="no-tasks"> No Tasks </div>
-	`;
-	}
+//For having Dots tab clicked by defult;
+dotsTab.classList.add('tab-on');
+circlesTab.classList.remove('tab-on');
 
-	}
+});
 
-    const infoHeader = {
-        allTasks: document.querySelector(`.js-all-tasks`),
-        allTasksNote: document.querySelector(`.all-tasks-note`),
-        allTasksNum: document.querySelector(`.all-tasks-note .top-number`),
-        topPriorities: document.querySelector(`.js-top-priorities`),
-	topPrioritiesNum: document.querySelector(`.js-top-priorities .top-number`)
-    }
 
-    infoHeader.allTasks.addEventListener(`click`, () => {
-        document.querySelector(`.todo-list-container`).innerHTML = renderHTML();
-        activeButtons();
-    });
-//new part
-    infoHeader.topPriorities.addEventListener(`click`, () => {
-        
-        let topPrioritiesHTML = ``;
+const defaultNum = Number(5.3);
+let html = ``;
+let htmlCircles = ``;
 
-        allPriority.forEach((priority) => {
-            topPrioritiesHTML += `
-            <div class="todo todo-${priority.taskId}">
-    <div class="left-part">
-        <input type="checkbox" class="checkbox" data-task-id="${priority.taskId}">
-        <div class="todo-${priority.category}">
-            ${priority.task}
-        </div>
-    </div>
-    <div class="right-part">
-        <button class="button-edit" data-task-id="${priority.taskId}">Edit</button>
-        <button class="button-priority" data-task-id="${priority.taskId}">Priority</button>
-    </div>
-</div>
-`
-        });
+function renderNumbers
+(xTotal, yTotal, codeArray) {
 
-        document.querySelector(`.todo-list-container`).innerHTML = topPrioritiesHTML;
-        saveToStoragePriority(allPriority);
-        activeButtons();
-    });
+for (let i = 0; i < codeArray.length; i += 2) {
+
+if (i + 1 < codeArray.length) { 
+
+let part1 = Number(codeArray[i]);
+let part2 = Number(codeArray[i + 1]);
+
+const xPosition = (part1 + (xTotal - defaultNum)).toFixed(3);
+const yPosition = (part2 + (yTotal - defaultNum)).toFixed(3);
+
+html += 
+`Dot       ${xPosition},  ${yPosition},   ${layer.toFixed(3)},   0.000\n`;
+
+htmlCircles += 
+`Circle   ${xPosition},  ${yPosition},  ${(Number(xPosition) + Number(screwChoise)).toFixed(3)}, ${yPosition},   0.000, 1,   0.000\n`;
+
+}
+}
+
+document.querySelector(`.result`).innerHTML = `<pre>${html}</pre>`;
+
+console.log(codeArray);
+console.log(xTotal);
+console.log(yTotal);
+}
+
+// new circles part
+
+
+const clearButton = document.querySelector(`.clear-button`);
+
+clearButton.addEventListener(`click`, () => {
+    copyButton.classList.remove(`copy-button-clicked`);
+    html = ``;
+    htmlCircles = ``;
+    document.querySelector(`.result`).innerHTML = `
+    <div class="result">result will be displayed here</div>`;
+});
+
+const copyButton = document.querySelector(`.copy-button`);
+
+copyButton.addEventListener(`click`, () => {
+    copyButton.classList.add(`copy-button-clicked`);
+    // Create a temporary textarea element
+    const tempTextarea = document.createElement(`textarea`);
     
-
-    function renderAllTasks() {
-
-        let countAllTask = 0;
-
-        tasksList.forEach((task) => {
-            countAllTask += 1;
-        });
-        
-        infoHeader.allTasksNum.innerHTML = countAllTask;
+    if (circlesTab.classList.contains(`tab-on`)) {
+    tempTextarea.value = htmlCircles;
+    } else {
+    tempTextarea.value = html;
     }
 
-    function renderAllPriorities() {
+    document.body.appendChild(tempTextarea);
+    
+    // Select the text and copy it to the clipboard
+    tempTextarea.select();
+    document.execCommand(`copy`);
+    
+    // Remove the temporary textarea element
+    document.body.removeChild(tempTextarea);
 
-        let countAllPriorities = 0;
+});
 
-        allPriority.forEach((priority) => {
-            countAllPriorities += 1;
-        });
-        
-        infoHeader.topPrioritiesNum.innerHTML = countAllPriorities;
-    }
+dotsTab.classList.add('tab-on');
 
-function activeButtons() {
-    document.querySelectorAll(`.button-priority`).forEach((button) => {
-        button.addEventListener(`click`, () => {
-            const priorityId = button.dataset.taskId;
-		
-	const priorityButtonClass = document.querySelector(`.todo-${priorityId}`);
-	priorityButtonClass.classList.add(`todo-priority-hide`);
-	
-		
-		
-            // Check if the task is already in the allPriority array 
-            const isAlreadyPriority = allPriority.some((task) => task.taskId === priorityId);
+dotsTab.addEventListener(`click`, () => {
 
-            if (!isAlreadyPriority) {
-                tasksList.forEach((task) => {
-                    if (task.taskId === priorityId) {
-                        allPriority.unshift(task);
-                        console.log(`task pushed`);
-                        renderAllPriorities();
-                        saveToStoragePriority(allPriority);
-                    }
-                });
-            } else {
-
-		allPriority = allPriority.filter((task) => task.taskId !== priorityId);
-                saveToStoragePriority(allPriority);
-                renderAllPriorities();
+document.querySelector(`.result`).innerHTML = `<pre>${html}</pre>`
+ 
+  dotsTab.classList.add('tab-on');
+  circlesTab.classList.remove('tab-on');
+  copyButton.classList.remove(`copy-button-clicked`);
+ 
+});
 
 
-                console.log(`Task with id ${priorityId} is already a priority`);
-            }
-            saveToStoragePriority(allPriority);
-            updateCategoryNotes();
-		
-            
-        });
-    });
+
+circlesTab.addEventListener(`click`, () => {
+
+document.querySelector(`.result`).innerHTML = `<pre>${htmlCircles}</pre>`;
+
+  circlesTab.classList.add(`tab-on`);
+  dotsTab.classList.remove('tab-on');
+  copyButton.classList.remove(`copy-button-clicked`);
+
+});
 
 
-       document.querySelectorAll(`.checkbox`).forEach((checkbox) => {
-    checkbox.addEventListener(`click`, () => {
-        const checkBoxId = checkbox.dataset.taskId;
-        
-        tasksList = tasksList.filter(task => task.taskId !== checkBoxId);
-        allPriority = allPriority.filter(priority => priority.taskId !== checkBoxId);
-
-        // Remove task from tasks object categories
-        for (const category in tasks) {
-            if (tasks.hasOwnProperty(category)) {
-                tasks[category] = tasks[category].filter(task => task.id !== checkBoxId);
-            }
-        }
-
-        saveToStorage(tasksList);
-        saveToStoragePriority(allPriority);
-        saveToStorageTasks(tasks);
-
-        // Re-render the updated lists
-        renderHTML();
-        updateCategoryNotes();
-        renderAllTasks();
-        renderAllPriorities();
-        });
-        });
-        }
-
-function categoryNote(category) {
-const categoryNum = tasks[category].length;
-document.querySelector(`.${category}`).innerHTML = categoryNum;
-}
-
-function updateCategoryNotes() {
-    const categories = ['prints', 'glueBlock', 'ploter', 'engineers', 'urgent', 'others'];
-    categories.forEach(category => {
-        categoryNote(category);
-    });
-}
-
-function saveToStorage(tasksList) {
-localStorage.setItem(`tasksList`, JSON.stringify(tasksList));
-}
-
-function saveToStoragePriority(allPriority) {
-    localStorage.setItem(`allPriority`, JSON.stringify(allPriority));
-    }
-
-function saveToStorageTasks(tasks) {
-     localStorage.setItem(`tasks`, JSON.stringify(tasks));
-    }
