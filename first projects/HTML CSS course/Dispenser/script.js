@@ -120,7 +120,13 @@ copyButton.addEventListener(`click`, () => {
     copyButton.classList.add(`copy-button-clicked`);
     // Create a temporary textarea element
     const tempTextarea = document.createElement(`textarea`);
+    
+    if (circlesTab.classList.contains(`tab-on`)) {
+    tempTextarea.value = htmlCircles;
+    } else {
     tempTextarea.value = html;
+    }
+
     document.body.appendChild(tempTextarea);
     
     // Select the text and copy it to the clipboard
@@ -136,10 +142,11 @@ dotsTab.classList.add('tab-on');
 
 dotsTab.addEventListener(`click`, () => {
 
-document.querySelector(`.result`).innerHTML = `<pre>${html}</pre>`;
-  
+document.querySelector(`.result`).innerHTML = `<pre>${html}</pre>`
+ 
   dotsTab.classList.add('tab-on');
   circlesTab.classList.remove('tab-on');
+  copyButton.classList.remove(`copy-button-clicked`);
  
 });
 
@@ -149,8 +156,9 @@ circlesTab.addEventListener(`click`, () => {
 
 document.querySelector(`.result`).innerHTML = `<pre>${htmlCircles}</pre>`;
 
-circlesTab.classList.add(`tab-on`);
-dotsTab.classList.remove('tab-on');
+  circlesTab.classList.add(`tab-on`);
+  dotsTab.classList.remove('tab-on');
+  copyButton.classList.remove(`copy-button-clicked`);
 
 });
 
