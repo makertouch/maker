@@ -1,128 +1,148 @@
-<!DOCTYPE html>
+<!DOCTYPE HTML>
 
 <html>
 
 <head>
-    <title>Todo List</title>
-    <link rel="stylesheet" href="styles/general.css">
-    <link rel="stylesheet" href="styles/todoList.css">
-    <link rel="stylesheet" href="styles/info-header.css">
-    <link rel="stylesheet" href="styles/main-header.css">
-    <link rel="stylesheet" href="styles/side-bar.css">
-</head>
+<div class="container">
 
+<title>Dispenser Machine</title>
+
+<link rel="stylesheet" href="style.css">
+
+</head>
+ 
 <body>
 
-<div class="info-header">
-    <div class="left-side">
-        <div class="time">
-            14:32
-        </div>
-        <div class="day">
-            Sunday
-        </div>
-        <div class="tempature">
-            24°
-        </div>
-    </div>
+    <header class="title">
+        <span>Di</span>spenser<span>&nbsp;Ma</span>chine	
+    </header>
 
-    <div class="right-side">
-        <div class="js-top-priorities"> 
-         <div class="top top-priorities-notification">
-            <div class="top-number">0</div>
-        </div>
-          <div class="selector">Top Priorities</div>
-          </div>
+<div class="extra-data">
 
-        <div class="js-all-tasks"> 
-         <div class="top all-tasks-note">
-            <div class="top-number">0</div>
-        </div>
-         <div class="selector">All Tasks</div>
-         </div>
-    </div>
+<div class="fiducial">
 
+<div class="title-fiducial">
+<div class="info-fiducial">!</div>
+<div class="layout-info">
+Position of the block's zero point in the machine
 </div>
 
-<div class="main-header">
+<div> Fiducial </div>
+</div>
 
-  <div class="add-task">
-   
-    <div class="input-container">
-        <input class="text-input" type="text" placeholder="Task">
-        <button class="add-button">
-            ADD
-        </button>
-    </div>
+<div class="fiducial-input">
+<div> 
+<div> X </div> 
+<input type="text" class="x-fiducial"> 
+</div>
 
-  </div>  
+<div> 
+<div> Y </div> 
+<input type="text" class="y-fiducial"> 
+</div>
 
-  
-  <div class="sort">
-        <button class="print-sort">3D Prints</button>
-        <button class="glue-block-sort">GlueBlock</button>
-        <button class="ploter-sort">Ploter</button>
-        <button class="engineers-sort">Engineers</button>
-        <button class="urgent-units-sort">Urgent units</button>
 </div>
 </div>
 
-<div class="side-bar">
-    <div class="button-container js-print">
-    <div class="prints">0</div>
-    <button class="print-button">3D Prints</button>
-    </div>
 
-    <div class="button-container js-glue-block">
-    <div class="glueBlock">0</div>
-    <button class="glue-block-button"> Glue Block</button>
-    </div>
+<div class="position">
+<div class="position-container">
+<div class="info-position">!</div>
+<div class="layout-info2">
+Moves all Dots/Circles/Shapes as one group
+</div>
+<div> Move Position <span style="font-size: 12px;"> (Optional) </span> </div>
+</div>
 
-    <div class="button-container js-ploter">
-    <div class="ploter">0</div>
-    <button class="ploter-button">Ploter</button>   
-    </div>
-    
 
-    <div class="button-container js-engineers">
-    <div class="engineers">0</div>
-    <button class="engineers-button">Engineers</button>
-    </div>
+<div class="position-input">
+<div> 
+<div> X </div> 
+<input type="text" class="x-position"> 
+</div>
 
-    <div class="button-container js-urgent-units">
-    <div class="urgent">0</div>
-    <button class="urgent-units-button">Urgent units</button> 
-    </div>
+<div> 
+<div> Y </div> 
+<input type="text" class="y-position"> 
+</div>
 
-    <div class="button-container js-others">
-    <div class="others">0</div>
-     <button class="others-button">Others</button> 
-    </div>
+</div>
+
+</div>
+
+<div class="screws">
+    <div class="screw-title">Screw type</div>
+
+
+<div>
+
+  <select class="screw-type">  
+    <option value="none">None</option> 
+    <option value="2-56">Screw 2-56</option>     
+    <option value="1-64">Screw 1-64</option>   
+    <option value="0-80">Screw 0-80</option>
+  </select> 
+
+</div>
+
+</div>
+
+<div class="layer">
+    <div class="layer-title">Layer</div>
+<div>
+
+  <select class="layer-type">   
+    <option value="100">100</option>     
+    <option value="200">200</option>   
+    <option value="300">300</option>
+    <option value="400">400</option>
+    <option value="500">500</option>
+    <option value="600">600</option>
+  </select> 
+
+</div>
+
+</div>
+
+
+
+</div>
+
+
+<div class="code-input">
+
+<input type="text" class="add-code" placeholder="Enter Code">
+
+<button class="convert-button">Convert to PCB</button>
+
+</div>
+
+<div class="result-tabs-container">
+<div class="result-tabs">
+<button class="dots"> Dots </button>
+<button class="circles"> Circles </button>
+</div>
+</div>
+
+<div class="result-container">
+<div class="result">result will be displayed here</div>
+<button class="clear-button"> Clear </button>
+<button class="copy-button"> Copy </button>
+</div>
+</div>
+
     <div class="copy-rights-container">
     <div class="copy-rights">© Made by Hen Topolanski.</div>
     <div class="second-row"> Feel free to modify.</div>
 </div>
-</div>
 
-<div class="todo-list-container">
-    <div class="title">No tasks</div>
-
-
-</div>
-
-
-
-</div>
-
-</div>
-
-<script src="script/todoList.js"></script>
-
+<script src="script.js"></script>
 
 </body>
 
 
 
+
+
+
 </html>
-
-
