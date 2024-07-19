@@ -319,11 +319,8 @@ function activeButtons() {
 
 function categoryNote(category) {
     const categoryNum = tasks[category].length;
-    if (categoryNum) {
     document.querySelector(`.${category}`).innerHTML = categoryNum;
-} else {
-noteElement.classList.add(`button-container-hide`);
-}}
+}
 
 function updateCategoryNotes() {
     const categories = ['prints', 'glueBlock', 'ploter', 'engineers', 'urgent', 'others'];
