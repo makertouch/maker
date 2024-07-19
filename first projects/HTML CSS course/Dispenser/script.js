@@ -72,12 +72,10 @@ const defaultNum = Number(5.3);
 let html = ``;
 let htmlCircles = ``;
 
-function renderNumbers
-(xTotal, yTotal, codeArray) {
+function renderNumbers(xTotal, yTotal, codeArray) {
 
 for (let i = 0; i < codeArray.length; i += 2) {
-
-if (i + 1 < codeArray.length) { 
+if (i + 1 < codeArray.length) {  // if I add 1 to the index - would it be room for one more?
 
 let part1 = Number(codeArray[i]);
 let part2 = Number(codeArray[i + 1]);
