@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
     updateCategoryNotes(); //UpdateCategoryNotes or directly call categoryNote for each category here
 });
 
-
+const noteElement = document.querySelector(`.button-container div`);
 
 const taskInput = document.querySelector(`.text-input`);
 
@@ -70,6 +70,7 @@ buttons.urgentButton.addEventListener('click', () => {
 
 
 function addTaskToCategory(category) {
+    noteElement.classList.add(`button-container-show`);
     if (taskInput.value) {
         const newTask = {
             task: taskInput.value,
@@ -317,9 +318,12 @@ function activeButtons() {
         }
 
 function categoryNote(category) {
-const categoryNum = tasks[category].length;
-document.querySelector(`.${category}`).innerHTML = categoryNum;
-}
+    const categoryNum = tasks[category].length;
+    if (categoryNum) {
+    document.querySelector(`.${category}`).innerHTML = categoryNum;
+} else {
+noteElement.classList.add(`button-container-hide`);
+}}
 
 function updateCategoryNotes() {
     const categories = ['prints', 'glueBlock', 'ploter', 'engineers', 'urgent', 'others'];

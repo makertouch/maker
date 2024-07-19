@@ -9,7 +9,7 @@
     padding: 20px 20px 20px 20px;
     box-shadow: 0px 1px 0px rgba(45, 43, 43, 0.188);
     background: linear-gradient(0deg, blue 0%, #0000ffbf 0%, #b5bbe5 100%, white 100%);
-    border-radius: 0 0 20px 20px;
+    border-radius: 0 0 0 20px;
 }
 
 .add-task {
@@ -28,7 +28,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-top: 12px;
+    margin-top: 18px;
     padding-left: 40px;
     column-gap: 10px;
 
