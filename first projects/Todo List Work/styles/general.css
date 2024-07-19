@@ -6,6 +6,11 @@ body {
     padding-left: 173px;
 }
 
+.main-container {
+    background-color: white;
+
+}
+
 button {
     border: none;
     cursor: pointer;

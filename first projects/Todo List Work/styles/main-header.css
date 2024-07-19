@@ -3,13 +3,13 @@
     right: 0;
     left: 180px;
     top: 30px;
-    height: 80px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     padding: 20px 20px 20px 20px;
     box-shadow: 0px 1px 0px rgba(45, 43, 43, 0.188);
-    background-color: #0e917338;
+    background: linear-gradient(0deg, blue 0%, #0000ffbf 0%, #b5bbe5 100%, white 100%);
+    border-radius: 0 0 20px 20px;
 }
 
 .add-task {
@@ -61,6 +61,7 @@
 
 .sort button {
     padding: 6px 15px 6px 15px;
+    border-radius: 15px;
 }
 
 .print-sort {
