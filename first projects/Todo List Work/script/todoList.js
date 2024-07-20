@@ -22,9 +22,10 @@ document.addEventListener('DOMContentLoaded', () => {
     renderAllTasks();
     renderAllPriorities();
     updateCategoryNotes(); //UpdateCategoryNotes or directly call categoryNote for each category here
+    checkNotes();
 });
 
-const noteElement = document.querySelector(`.button-container div`);
+
 
 const taskInput = document.querySelector(`.text-input`);
 
@@ -70,7 +71,6 @@ buttons.urgentButton.addEventListener('click', () => {
 
 
 function addTaskToCategory(category) {
-    noteElement.classList.add(`button-container-show`);
     if (taskInput.value) {
         const newTask = {
             task: taskInput.value,
@@ -84,6 +84,7 @@ function addTaskToCategory(category) {
 	categoryNote(category);
 	saveToStorageTasks(tasks);
     saveToStorage(tasksList);
+    checkNotes();
     }
 }
 
@@ -313,6 +314,7 @@ function activeButtons() {
         updateCategoryNotes();
         renderAllTasks();
         renderAllPriorities();
+        checkNotes();
         });
         });
         }
@@ -339,4 +341,18 @@ function saveToStoragePriority(allPriority) {
 
 function saveToStorageTasks(tasks) {
      localStorage.setItem(`tasks`, JSON.stringify(tasks));
+    }
+   
+    checkNotes();
+    function checkNotes() {
+        const noteElements = document.querySelectorAll(`.button-container div`);
+        noteElements.forEach((noteElement) => {
+            const note = noteElement.innerHTML.trim();
+            if (note === `0`) {
+                noteElement.classList.add(`button-container-hide`);
+            } else {
+                noteElement.classList.remove(`button-container-hide`);
+            }
+            }
+        );
     }
