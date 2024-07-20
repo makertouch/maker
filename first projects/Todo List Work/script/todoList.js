@@ -97,7 +97,7 @@ function renderHTML() {
 
     sortedTasks.forEach(newTaskListObj => {
         html += `
-<div class="todo todo-${newTaskListObj.taskId}">
+<div class="todo">
     <div class="left-part">
         <input type="checkbox" class="checkbox" data-task-id="${newTaskListObj.taskId}">
         <div class="todo-${newTaskListObj.category}">
@@ -106,7 +106,7 @@ function renderHTML() {
     </div>
     <div class="right-part">
         <button class="button-edit" data-task-id="${newTaskListObj.taskId}">Edit</button>
-        <button class="button-priority" data-task-id="${newTaskListObj.taskId}">Priority</button>
+        <button class="button-priority todo-${newTaskListObj.taskId}" data-task-id="${newTaskListObj.taskId}">Priority</button>
     </div>
 </div>
         `;
@@ -160,7 +160,7 @@ const sideBarButtons = {
 
 	tasks[arrayButtonClass].forEach((element) => {
 	categoryHTML += `
-    <div class="todo todo-${element.id}">
+    <div class="todo">
     <div class="left-part">
         <input type="checkbox" class="checkbox" data-task-id="${element.id}">
         <div class="todo-${arrayButtonClass}">
@@ -169,7 +169,7 @@ const sideBarButtons = {
     </div>
     <div class="right-part">
         <button class="button-edit" data-task-id="${element.id}">Edit</button>
-        <button class="button-priority" data-task-id="${element.id}">Priority</button>
+        <button class="button-priority todo-${element.id}" data-task-id="${element.id}">Priority</button>
     </div>
 </div>
     `;
@@ -205,7 +205,7 @@ const sideBarButtons = {
 
         allPriority.forEach((priority) => {
             topPrioritiesHTML += `
-            <div class="todo todo-${priority.taskId}">
+            <div class="todo">
     <div class="left-part">
         <input type="checkbox" class="checkbox" data-task-id="${priority.taskId}">
         <div class="todo-${priority.category}">
@@ -214,7 +214,7 @@ const sideBarButtons = {
     </div>
     <div class="right-part">
         <button class="button-edit" data-task-id="${priority.taskId}">Edit</button>
-        <button class="button-priority" data-task-id="${priority.taskId}">Priority</button>
+        <button class="button-priority todo-${priority.taskId}" data-task-id="${priority.taskId}">Priority</button>
     </div>
 </div>
 `
@@ -253,10 +253,13 @@ function activeButtons() {
         button.addEventListener(`click`, () => {
             const priorityId = button.dataset.taskId;
 		
-	//const priorityButtonClass = document.querySelector(`.todo-${priorityId}`);
-	//priorityButtonClass.classList.add(`todo-priority-hide`);
+	const priorityButtonClass = document.querySelector(`.todo-${priorityId}`);
+    
+	priorityButtonClass.classList.toggle(`todo-priority-show`);
+
+    saveToStoragePriorityButton(priorityButtonClass);
+
 	
-		
 		
             // Check if the task is already in the allPriority array 
             const isAlreadyPriority = allPriority.some((task) => task.taskId === priorityId);
@@ -342,6 +345,10 @@ function saveToStoragePriority(allPriority) {
 function saveToStorageTasks(tasks) {
      localStorage.setItem(`tasks`, JSON.stringify(tasks));
     }
+
+function saveToStoragePriorityButton(priorityButtonClass) {
+    localStorage.setItem(`priorityButtonClass`, JSON.stringify(priorityButtonClass));
+}
    
     checkNotes();
     function checkNotes() {
@@ -356,3 +363,33 @@ function saveToStorageTasks(tasks) {
             }
         );
     }
+
+    function updateDateTime() {
+        // Get current date and time
+        const now = new Date();
+    
+        // Format time as HH:MM
+        const hours = now.getHours().toString().padStart(2, '0');
+        const minutes = now.getMinutes().toString().padStart(2, '0');
+        const timeString = `${hours}:${minutes}`;
+    
+        // Format day of the week
+        const daysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+        const dayString = daysOfWeek[now.getDay()];
+    
+        // Format date as Month Day
+        const options = { month: 'long', day: 'numeric' };
+        const dateString = now.toLocaleDateString('en-US', options);
+    
+        // Set values in the HTML
+        document.querySelector('.time').textContent = timeString;
+        document.querySelector('.day').textContent = dayString;
+        document.querySelector('.date').textContent = dateString;
+    }
+    
+    // Initial call to set the values immediately
+    updateDateTime();
+    
+    // Update every minute
+    setInterval(updateDateTime, 10000);
+    

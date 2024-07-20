@@ -39,6 +39,11 @@ transition: background-color 0.15s;
     background-color: rgb(220, 62, 62);
     }
 
+.todo-priority-show {
+    background-color: rgb(220, 62, 62) !important;
+}
+
+
 .title {
     display: flex;
     justify-content: center;

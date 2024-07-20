@@ -22,10 +22,12 @@
 
 .left-side {
     width: 200px;
+    font-weight: 600;
 }
 
 .right-side {
     width: 250px;
+    font-weight: 600;
 }
 
 .right-side .notification {
