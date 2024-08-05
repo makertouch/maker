@@ -1,0 +1,68 @@
+<html>
+  <head>
+    <title>Untitled</title>
+	
+	<style>
+	body {
+	font-family: Arial;
+		}
+	</style>	
+
+  </head>
+  <body>
+
+ 	<?php
+	  $items = [
+	  [
+	  "name" => "Hary Potter",
+	  "releaseYear" => 1968,
+	  "author" => "Philip K",
+	  "purchaseUrl" => "https://google.com"
+	  ] , [
+	  "name" => "Mario",
+	  "releaseYear" => 2024,
+	  "author" => "Andy Weir",
+	  "purchaseUrl" => "https://google.com"
+	  ] , [
+	  "name" => "Prison Break",
+	  "releaseYear" => 2024,
+	  "author" => "Andy Weir",
+	  "purchaseUrl" => "https://google.com"
+	  ] , [
+	  "name" => "Lost",
+	  "releaseYear" => 2004,
+	  "author" => "Chuck loory",
+	  "purchaseUrl" => "https://google.com"
+	  ]
+	  ];
+
+	
+	function filter($items, $fn) {
+
+		$filteredItems = [];
+
+		foreach ($items as $item) {
+		if ($fn($item)) {	  
+
+			$filteredItems[] = $item;
+
+	}}
+	return $filteredItems;
+};
+	  
+	$filteredBooks = filter($items, function($book) {
+	return $book["releaseYear"] >= 2000;
+	});
+
+	foreach ($filteredBooks as $book) { ?> 
+	<a href="<?= $book["purchaseUrl"] ?>"> <?= $book["name"] ?> </a>
+	<div> <?= $book["releaseYear"] ?> </div>
+	<div> <?= $book["author"] ?> </div>
+
+ <?php	} ?>	  
+	  
+	
+
+	  
+  </body>
+</html>
