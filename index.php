@@ -37,12 +37,12 @@
 	  ];
 
 	
-	function filter($items, $fn) {
+	function filter($items, $function) {
 
 		$filteredItems = [];
 
 		foreach ($items as $item) {
-		if ($fn($item)) {	  
+		if ($function($item)) {	  
 
 			$filteredItems[] = $item;
 
