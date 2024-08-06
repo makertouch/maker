@@ -51,9 +51,11 @@
 };
 	  // start reading the code here
 	  
-	$filteredBooks = filter($books, function($book) {
+	$filteredBooks = filter($books, function($book) {  // $book can be any name
 	return $book["releaseYear"] >= 2000;
 	});
+	  
+	  //
 
 	foreach ($filteredBooks as $book) { ?> 
 	<a href="<?= $book["purchaseUrl"] ?>"> <?= $book["name"] ?> </a>
