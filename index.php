@@ -12,7 +12,7 @@
   <body>
 
  	<?php
-	  $items = [
+	  $books = [
 	  [
 	  "name" => "Hary Potter",
 	  "releaseYear" => 1968,
@@ -20,7 +20,7 @@
 	  "purchaseUrl" => "https://google.com"
 	  ] , [
 	  "name" => "Mario",
-	  "releaseYear" => 2024,
+	  "releaseYearI-598259/11" => 2024,
 	  "author" => "Andy Weir",
 	  "purchaseUrl" => "https://google.com"
 	  ] , [
@@ -50,7 +50,7 @@
 	return $filteredItems;
 };
 	  
-	$filteredBooks = filter($items, function($book) {
+	$filteredBooks = filter($books, function($book) {
 	return $book["releaseYear"] >= 2000;
 	});
 
