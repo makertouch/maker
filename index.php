@@ -37,25 +37,22 @@
 	  ];
 
 	
-	function filter($items, $function) {
+	function filter($items, $fn) {
 
 		$filteredItems = [];
 
 		foreach ($items as $item) {
-		if ($function($item)) {	  
+		if ($fn($item)) {	  
 
 			$filteredItems[] = $item;
 
 	}}
 	return $filteredItems;
 };
-	  // start reading the code here
 	  
-	$filteredBooks = filter($books, function($book) {  // $book can be any name
+	$filteredBooks = filter($books, function($book) {
 	return $book["releaseYear"] >= 2000;
 	});
-	  
-	  //
 
 	foreach ($filteredBooks as $book) { ?> 
 	<a href="<?= $book["purchaseUrl"] ?>"> <?= $book["name"] ?> </a>
