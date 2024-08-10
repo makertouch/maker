@@ -78,7 +78,7 @@ function renderNumbers(xTotal, yTotal, codeArray) {
     let screwGroup = 1;
 
      // added before the loop starts.
-    htmlDots += `Begin screws${screwGroup}
+    htmlDots += `Begin screws
 DotWidth 0.100
 Height 0.000
 Move Height 0.000
