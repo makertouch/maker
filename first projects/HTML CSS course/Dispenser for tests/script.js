@@ -75,6 +75,7 @@ let htmlCircles = ``;
 function renderNumbers(xTotal, yTotal, codeArray) {
 
     let lineCounter = -1;
+    let screwGroup = 0;
 
      // added before the loop starts.
     htmlDots += `start\n`;
@@ -89,6 +90,7 @@ const xPosition = (part1 + (xTotal - defaultNum)).toFixed(3);
 const yPosition = (part2 + (yTotal - defaultNum)).toFixed(3);
 
 lineCounter += 1;
+screwGroup += 1;
 
 if (lineCounter === 50) {
     htmlDots += `end\nstart\n`;
@@ -175,5 +177,3 @@ document.querySelector(`.result`).innerHTML = `<pre>${htmlCircles}</pre>`;
   copyButton.classList.remove(`copy-button-clicked`);
 
 });
-
-
