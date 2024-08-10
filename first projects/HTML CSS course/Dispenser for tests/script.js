@@ -75,6 +75,7 @@ let htmlCircles = ``;
 function renderNumbers(xTotal, yTotal, codeArray) {
 
     let lineCounter = -1;
+
      // added before the loop starts.
     html += `start\n`;
     htmlCircles +=`start\n`;
@@ -90,7 +91,7 @@ const yPosition = (part2 + (yTotal - defaultNum)).toFixed(3);
 
 lineCounter += 1;
 
-if (lineCounter === 5) {
+if (lineCounter === 50) {
     html += `end\nstart\n`;
     htmlCircles += `end\nstart\n`;
     lineCounter = 0;
