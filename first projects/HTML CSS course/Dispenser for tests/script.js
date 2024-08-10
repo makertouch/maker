@@ -138,7 +138,7 @@ copyButton.addEventListener(`click`, () => {
     if (circlesTab.classList.contains(`tab-on`)) {
     tempTextarea.value = htmlCircles;
     } else {
-    tempTextarea.value = html;
+    tempTextarea.value = htmlDots;
     }
 
     document.body.appendChild(tempTextarea);
@@ -156,7 +156,7 @@ dotsTab.classList.add('tab-on');
 
 dotsTab.addEventListener(`click`, () => {
 
-document.querySelector(`.result`).innerHTML = `<pre>${html}</pre>`
+document.querySelector(`.result`).innerHTML = `<pre>${htmlDots}</pre>`
  
   dotsTab.classList.add('tab-on');
   circlesTab.classList.remove('tab-on');
