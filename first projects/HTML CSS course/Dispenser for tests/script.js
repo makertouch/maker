@@ -69,7 +69,7 @@ circlesTab.classList.remove('tab-on');
 
 
 const defaultNum = Number(5.3);
-let html = ``;
+let htmlDots = ``;
 let htmlCircles = ``;
 
 function renderNumbers(xTotal, yTotal, codeArray) {
@@ -77,8 +77,7 @@ function renderNumbers(xTotal, yTotal, codeArray) {
     let lineCounter = -1;
 
      // added before the loop starts.
-    html += `start\n`;
-    htmlCircles +=`start\n`;
+    htmlDots += `start\n`;
 
 for (let i = 0; i < codeArray.length; i += 2) {
 if (i + 1 < codeArray.length) {  // if I add 1 to the index - would it be room for one more?
@@ -92,12 +91,11 @@ const yPosition = (part2 + (yTotal - defaultNum)).toFixed(3);
 lineCounter += 1;
 
 if (lineCounter === 50) {
-    html += `end\nstart\n`;
-    htmlCircles += `end\nstart\n`;
+    htmlDots += `end\nstart\n`;
     lineCounter = 0;
     } 
 
-html += 
+htmlDots += 
 `Dot       ${xPosition},  ${yPosition},   ${layer.toFixed(3)},   0.000\n`;
 
 htmlCircles += 
@@ -107,11 +105,10 @@ htmlCircles +=
 }
 
 // Added after the loop ends
-html += `end\n`;
-htmlCircles += `end\n`;
+htmlDots += `end\n`;
 
 
-document.querySelector(`.result`).innerHTML = `<pre>${html}</pre>`;
+document.querySelector(`.result`).innerHTML = `<pre>${htmlDots}</pre>`;
 
 console.log(codeArray);
 console.log(xTotal);
