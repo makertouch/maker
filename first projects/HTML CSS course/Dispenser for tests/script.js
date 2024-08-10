@@ -75,10 +75,12 @@ let htmlCircles = ``;
 function renderNumbers(xTotal, yTotal, codeArray) {
 
     let lineCounter = -1;
-    let screwGroup = 0;
+    let screwGroup = 1;
 
      // added before the loop starts.
-    htmlDots += `start\n`;
+    htmlDots += `Begin screws${screwGroup}
+start    0.000,   0.000
+`;
 
 for (let i = 0; i < codeArray.length; i += 2) {
 if (i + 1 < codeArray.length) {  // if I add 1 to the index - would it be room for one more?
@@ -90,10 +92,12 @@ const xPosition = (part1 + (xTotal - defaultNum)).toFixed(3);
 const yPosition = (part2 + (yTotal - defaultNum)).toFixed(3);
 
 lineCounter += 1;
-screwGroup += 1;
 
 if (lineCounter === 50) {
-    htmlDots += `end\nstart\n`;
+    htmlDots += `end
+Begin screws${screwGroup + 1}
+start    0.000,   0.000
+`;
     lineCounter = 0;
     } 
 
