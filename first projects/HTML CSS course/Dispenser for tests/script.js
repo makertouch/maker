@@ -122,7 +122,7 @@ const clearButton = document.querySelector(`.clear-button`);
 
 clearButton.addEventListener(`click`, () => {
     copyButton.classList.remove(`copy-button-clicked`);
-    html = ``;
+    htmlDots = ``;
     htmlCircles = ``;
     document.querySelector(`.result`).innerHTML = `
     <div class="result">result will be displayed here</div>`;
