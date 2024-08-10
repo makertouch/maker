@@ -49,8 +49,8 @@ convertButton.addEventListener(`click`, () => {
     const xFiducialAdd = document.querySelector(`.x-fiducial`).value;
     const yFiducialAdd = document.querySelector(`.y-fiducial`).value;
     
-    const xMovePosition = document.querySelector(`.x-position`).value;
-    const yMovePosition = document.querySelector(`.y-position`).value;
+    const xMovePosition = eval(document.querySelector(`.x-position`).value || 0);
+    const yMovePosition = eval(document.querySelector(`.y-position`).value || 0);
     
     const xTotal = (Number(xFiducialAdd) + Number(xMovePosition) - Number(screwChoise));
     const yTotal = Number(yFiducialAdd) + Number(yMovePosition);
