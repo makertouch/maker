@@ -1,0 +1,148 @@
+<!DOCTYPE HTML>
+
+<html>
+
+<head>
+<div class="container">
+
+<title>Dispenser Machine</title>
+
+<link rel="stylesheet" href="style.css">
+
+</head>
+ 
+<body>
+
+    <header class="title">
+        <span>Di</span>spenser<span>&nbsp;Ma</span>chine	
+    </header>
+
+<div class="extra-data">
+
+<div class="fiducial">
+
+<div class="title-fiducial">
+<div class="info-fiducial">!</div>
+<div class="layout-info">
+Position of the block's zero point in the machine
+</div>
+
+<div> Fiducial </div>
+</div>
+
+<div class="fiducial-input">
+<div> 
+<div> X </div> 
+<input type="text" class="x-fiducial"> 
+</div>
+
+<div> 
+<div> Y </div> 
+<input type="text" class="y-fiducial"> 
+</div>
+
+</div>
+</div>
+
+
+<div class="position">
+<div class="position-container">
+<div class="info-position">!</div>
+<div class="layout-info2">
+Moves all Dots/Circles/Shapes as one group
+</div>
+<div> Move Position <span style="font-size: 12px;"> (Optional) </span> </div>
+</div>
+
+
+<div class="position-input">
+<div> 
+<div> X </div> 
+<input type="text" class="x-position"> 
+</div>
+
+<div> 
+<div> Y </div> 
+<input type="text" class="y-position"> 
+</div>
+
+</div>
+
+</div>
+
+<div class="screws">
+    <div class="screw-title">Screw type</div>
+
+
+<div>
+
+  <select class="screw-type">  
+    <option value="none">None</option> 
+    <option value="2-56">Screw 2-56</option>     
+    <option value="1-64">Screw 1-64</option>   
+    <option value="0-80">Screw 0-80</option>
+  </select> 
+
+</div>
+
+</div>
+
+<div class="layer">
+    <div class="layer-title">Layer</div>
+<div>
+
+  <select class="layer-type">   
+    <option value="100">100</option>     
+    <option value="200">200</option>   
+    <option value="300">300</option>
+    <option value="400">400</option>
+    <option value="500">500</option>
+    <option value="600">600</option>
+  </select> 
+
+</div>
+
+</div>
+
+
+
+</div>
+
+
+<div class="code-input">
+
+<input type="text" class="add-code" placeholder="Enter Code">
+
+<button class="convert-button">Convert to PCB</button>
+
+</div>
+
+<div class="result-tabs-container">
+<div class="result-tabs">
+<button class="dots"> Dots </button>
+<button class="circles"> Circles </button>
+</div>
+</div>
+
+<div class="result-container">
+<div class="result">result will be displayed here</div>
+<button class="clear-button"> Clear </button>
+<button class="copy-button"> Copy </button>
+</div>
+</div>
+
+    <div class="copy-rights-container">
+    <div class="copy-rights">© Made by Hen Topolanski.</div>
+    <div class="second-row"> Feel free to modify.</div>
+</div>
+
+<script src="script.js"></script>
+
+</body>
+
+
+
+
+
+
+</html>
