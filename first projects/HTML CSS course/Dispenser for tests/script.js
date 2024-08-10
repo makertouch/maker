@@ -79,6 +79,9 @@ function renderNumbers(xTotal, yTotal, codeArray) {
 
      // added before the loop starts.
     htmlDots += `Begin screws${screwGroup}
+DotWidth 0.100
+Height 0.000
+Move Height 0.000
 start    0.000,   0.000
 `;
 
@@ -93,9 +96,12 @@ const yPosition = (part2 + (yTotal - defaultNum)).toFixed(3);
 
 lineCounter += 1;
 
-if (lineCounter === 50) {
+if (lineCounter === 45) {
     htmlDots += `end
-Begin screws${screwGroup + 1}
+Begin screws${screwGroup += 1}
+DotWidth 0.100
+Height 0.000
+Move Height 0.000
 start    0.000,   0.000
 `;
     lineCounter = 0;
