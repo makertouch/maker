@@ -14,7 +14,7 @@ screwType.addEventListener(`change`, () => {
     } else if (screwType.value === `none`) {
         screwChoise = 0;
     } 
-});
+}); 
 
 let layer = 0.100;
 
