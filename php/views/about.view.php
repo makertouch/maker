@@ -1,3 +1,4 @@
+
 <?php require('partial/head.php') ?>
 
 <?php require('partial/nav.php') ?>
@@ -10,4 +11,5 @@
     </div>
   </main>
 
-<?php require('partial/footer.php') ?>
+<?php require('partial/footer.php') 
+require 'functions.php'; ?>
