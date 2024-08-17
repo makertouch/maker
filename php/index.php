@@ -8,8 +8,7 @@ require 'functions.php';
 
 require 'views/index.view.php';
 
-echo 'hello'; 
-echo 'hello again';
+echo 'this is a test';
 
 ?>
 
