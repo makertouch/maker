@@ -1,14 +1,26 @@
-<?php require 'functions.php'; 
+<?php 
 
-$uri = $_SERVER['REQUEST_URI'];
+require 'functions.php'; 
 
-if ($uri === '/') {
-    require 'controllers/index.php';
-} else if ($uri === '/about') {
-    require 'controllers/about.php';
-} else if ($uri === '/contact') {
-    require 'controllers/contact.php';
+// require 'router.php';
+
+
+// connect to MySQL database.
+
+$dsn = "mysql:host=p3nlmysql139plsk.secureserver.net;port=3306;dbname=makertouch_tests;charset=utf8mb4;";
+
+
+$pdo = new PDO($dsn, 'makertouch', 'TopMaker10');
+
+
+$statement = $pdo -> prepare("SELECT * FROM posts");
+$statement->execute();
+
+
+$posts = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+foreach ($posts as $post) {
+    echo "<li>" . $post['title'] . "</li>"; 
 }
-
 
 ?>
