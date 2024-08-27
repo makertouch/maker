@@ -7,36 +7,43 @@
 <body>
 
 <script>
-    // Define the Book class
-    class Book {
-        constructor(name, author) {
-            this.name = name;
-            this.author = author;
-        }
-    }
 
-    // Define the Bookstore class
-    class Bookstore {
-        constructor(books) {
-            this.books = books; // Initialize with an array of Book instances
-        }
+class Bookstore {
 
-        listBooks() {
-            for (let i = 0; i < this.books.length; i++) {
-                console.log(`${this.books[i].name} by ${this.books[i].author}`);
-            }
-        }
-    }
+constructor(books) {
 
-    // Create instances of Book
-    const nineteen = new Book('1984', 'George Orwell');
-    const hp = new Book('Harry Potter', 'J.K Rowling');
+this.books = books;
 
-    // Create an instance of Bookstore with an array of Book instances
-    const bookstore = new Bookstore([nineteen, hp]);
+}
 
-    // List all books in the bookstore
-    bookstore.listBooks();
+listBooks() {
+
+for (let i = 0; i < this.books.length; i++) {
+
+console.log(`${this.books[i].name} by ${this.books[i].author}`);
+}
+}
+}
+
+class Book {
+
+constructor(name, author) {
+
+this.name = name;
+this.author = author;
+
+}
+}
+
+const nineteen = new Book('1984', 'George Orwell');
+const hp = new Book('Harry Potter', 'J.K Rowling');
+
+const bookstore = new Bookstore([nineteen, hp]);
+console.log(bookstore.books); // calling to property
+bookstore.listBooks(); // calling a method
+
+
+
 </script>
 
 </body>
