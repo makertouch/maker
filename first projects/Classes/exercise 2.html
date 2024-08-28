@@ -12,32 +12,25 @@ class Bookstore {
 constructor(books) {
 this.books = books;
 }
-
 listBooks() {
-
 this.books.forEach((book) => {
 book.displayBook();
 });
-
 }
 }
 
 class Book {                  
-
 constructor(name, author) {
 this.name = name;
 this.author = author;
 }
-
 displayBook() {
 console.log(`${this.name} by ${this.author}`);
 }
-
 }
 
 const nineteen = new Book('1984', 'George Orwell'); 
 const hp = new Book('Harry Potter', 'J.K Rowling');
-
 const bookstore = new Bookstore([nineteen, hp]);
 
 bookstore.listBooks(); // calling a method
