@@ -18,14 +18,14 @@ this.books = books;
 
 listBooks() {
 
-for (let i = 0; i < this.books.length; i++) {
+this.books.forEach((book) => {
+book.displayBook();
+});
 
-console.log(`${this.books[i].name} by ${this.books[i].author}`);
-}
 }
 }
 
-class Book {
+class Book {                  
 
 constructor(name, author) {
 
@@ -33,15 +33,22 @@ this.name = name;
 this.author = author;
 
 }
+
+displayBook() {
+console.log(`${this.name} by ${this.author}`);
+
+}
+
 }
 
 const nineteen = new Book('1984', 'George Orwell'); 
 const hp = new Book('Harry Potter', 'J.K Rowling');
 
 const bookstore = new Bookstore([nineteen, hp]);
+
 bookstore.listBooks(); // calling a method
 
-console.log(bookstore.books); // calling a property
+console.log(bookstore.books); // calling to property
 
 
 </script>
