@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DXF to PCB Converter</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        textarea {
+            width: 100%;
+            height: 300px;
+            margin-top: 20px;
+        }
+        #convertButton {
+            margin-top: 10px;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        #convertButton:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>DXF to PCB Converter</h1>
+    <input type="file" id="dxfFileInput" accept=".dxf" />
+    <button id="convertButton">Convert to G-code</button>
+    <textarea id="gcodeOutput" readonly placeholder="G-code will appear here..."></textarea>
+
+    <script src="https://cdn.jsdelivr.net/npm/dxf-parser/dist/dxf-parser.min.js"></script>
+    <script>
+        document.getElementById('convertButton').addEventListener('click', function() {
+            const fileInput = document.getElementById('dxfFileInput');
+            if (fileInput.files.length === 0) {
+                alert('Please select a DXF file.');
+                return;
+            }
+
+            const file = fileInput.files[0];
+            const reader = new FileReader();
+
+            reader.onload = function(e) {
+                const dxfString = e.target.result;
+                const parser = new DxfParser();
+                let dxf;
+                try {
+                    dxf = parser.parseSync(dxfString);
+                } catch (err) {
+                    alert('Error parsing DXF file: ' + err.message);
+                    return;
+                }
+
+                const gcode = dxfToGcode(dxf);
+                document.getElementById('gcodeOutput').value = gcode.join('\n');
+            };
+
+            reader.readAsText(file);
+        });
+
+        function dxfToGcode(dxf) {
+            const gcode = [];
+
+            gcode.push('G21 ; Set units to millimeters');
+            gcode.push('G90 ; Absolute positioning');
+
+            dxf.entities.forEach(entity => {
+                switch (entity.type) {
+                    case 'LINE':
+                        handleLine(entity, gcode);
+                        break;
+                    case 'ARC':
+                        handleArc(entity, gcode);
+                        break;
+                    case 'CIRCLE':
+                        handleCircle(entity, gcode);
+                        break;
+                }
+            });
+
+            gcode.push('M2 ; End of program');
+            return gcode;
+        }
+
+        function handleLine(entity, gcode) {
+            const start = entity.vertices[0];
+            const end = entity.vertices[1];
+            
+            gcode.push(`Line to X${start.x.toFixed(3)} Y${start.y.toFixed(3)}`); // Move to the starting point
+            gcode.push(`Line to X${end.x.toFixed(3)} Y${end.y.toFixed(3)}`); // Cut to the ending point
+        }
+
+        function handleArc(entity, gcode) {
+            const startAngle = entity.startAngle;
+            const endAngle = entity.endAngle;
+            const radius = entity.radius;
+            const center = entity.center;
+
+            const startX = (center.x + radius * Math.cos(startAngle * Math.PI / 180)).toFixed(3);
+            const startY = (center.y + radius * Math.sin(startAngle * Math.PI / 180)).toFixed(3);
+            const endX = (center.x + radius * Math.cos(endAngle * Math.PI / 180)).toFixed(3);
+            const endY = (center.y + radius * Math.sin(endAngle * Math.PI / 180)).toFixed(3);
+            
+            gcode.push(`Line to X${startX} Y${startY}`); // Move to the arc's start point
+            gcode.push(`Arc to X${endX} Y${endY} I${(center.x - startX).toFixed(3)} J${(center.y - startY).toFixed(3)}`); // Create an arc
+        }
+
+        function handleCircle(entity, gcode) {
+            const center = entity.center;
+            const radius = entity.radius;
+
+            const startX = (center.x + radius).toFixed(3);
+            const startY = center.y.toFixed(3);
+
+            gcode.push(`Line to X${startX} Y${startY}`); // Move to the circle's start point
+            gcode.push(`Circle X${startX} Y${startY} I-${radius.toFixed(3)} J0`); // Create a circle
+        }
+    </script>
+
+</body>
+</html>
