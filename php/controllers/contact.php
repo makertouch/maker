@@ -1,7 +1,8 @@
 <?php
-$title = "Contact Us";  
-?>
 
-<?php 
+$title = "Contact Us";  
+
+
 require 'views/contact.view.php';
+
 ?>

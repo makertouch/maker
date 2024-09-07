@@ -1,9 +1,10 @@
 <?php
-$title = "Home"; 
-?>
 
-<?php
+$title = "Home"; 
+
+
 require 'views/index.view.php';
+
 ?>
 
 

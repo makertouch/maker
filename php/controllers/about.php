@@ -1,7 +1,8 @@
 <?php
-$title = "About Us";  
-?>
 
-<?php 
+$title = "About Us";  
+
+
 require 'views/about.view.php';  
+
 ?>
