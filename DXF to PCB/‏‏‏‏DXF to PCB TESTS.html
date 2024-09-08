@@ -31,7 +31,7 @@
 
     <h1>DXF to PCB Converter</h1>
     <input type="file" id="dxfFileInput" accept=".dxf" />
-    <button id="convertButton">Convert to G-code</button>
+    <button id="convertButton">Convert to PCB</button>
     <textarea id="gcodeOutput" readonly placeholder="G-code will appear here..."></textarea>
 
     <script src="https://cdn.jsdelivr.net/npm/dxf-parser/dist/dxf-parser.min.js"></script>
@@ -67,8 +67,7 @@
         function dxfToGcode(dxf) {
             const gcode = [];
 
-            gcode.push('G21 ; Set units to millimeters');
-            gcode.push('G90 ; Absolute positioning');
+            gcode.push('Start    0.000,  0.000');
 
             dxf.entities.forEach(entity => {
                 switch (entity.type) {
@@ -84,7 +83,7 @@
                 }
             });
 
-            gcode.push('M2 ; End of program');
+            gcode.push('End');
             return gcode;
         }
 
@@ -92,8 +91,8 @@
             const start = entity.vertices[0];
             const end = entity.vertices[1];
             
-            gcode.push(`Line to X${start.x.toFixed(3)} Y${start.y.toFixed(3)}`); // Move to the starting point
-            gcode.push(`Line to X${end.x.toFixed(3)} Y${end.y.toFixed(3)}`); // Cut to the ending point
+            gcode.push(`LineTo ${start.x.toFixed(3)}, ${start.y.toFixed(3)},   0.000, 1,   0.000`); // Move to the starting point
+            gcode.push(`LineTo ${end.x.toFixed(3)}, ${end.y.toFixed(3)},   0.000, 1,   0.000`); // Cut to the ending point
         }
 
         function handleArc(entity, gcode) {
@@ -102,24 +101,39 @@
             const radius = entity.radius;
             const center = entity.center;
 
-            const startX = (center.x + radius * Math.cos(startAngle * Math.PI / 180)).toFixed(3);
-            const startY = (center.y + radius * Math.sin(startAngle * Math.PI / 180)).toFixed(3);
-            const endX = (center.x + radius * Math.cos(endAngle * Math.PI / 180)).toFixed(3);
-            const endY = (center.y + radius * Math.sin(endAngle * Math.PI / 180)).toFixed(3);
-            
-            gcode.push(`Line to X${startX} Y${startY}`); // Move to the arc's start point
-            gcode.push(`Arc to X${endX} Y${endY} I${(center.x - startX).toFixed(3)} J${(center.y - startY).toFixed(3)}`); // Create an arc
+            // Convert angles from degrees to radians
+            const startAngleRad = startAngle * Math.PI / 180;
+            const endAngleRad = endAngle * Math.PI / 180;
+
+            // Calculate start and end points of the arc
+            const startX = (center.x + radius * Math.cos(startAngleRad)).toFixed(3);
+            const startY = (center.y + radius * Math.sin(startAngleRad)).toFixed(3);
+            const endX = (center.x + radius * Math.cos(endAngleRad)).toFixed(3);
+            const endY = (center.y + radius * Math.sin(endAngleRad)).toFixed(3);
+
+            // Add start point to G-code
+            gcode.push(`End
+Start ${startX}, ${startY}`); // Move to the arc's start point
+
+            // Add arc command to G-code (example format; adjust if necessary for your machine/controller)
+            gcode.push(`ArcTo ${endX}, ${endY}, ${center.x.toFixed(3)}, ${center.y.toFixed(3)},   0.000, 1,   0.000`);
         }
 
         function handleCircle(entity, gcode) {
             const center = entity.center;
             const radius = entity.radius;
 
+            // Calculate the start point on the circumference of the circle
             const startX = (center.x + radius).toFixed(3);
             const startY = center.y.toFixed(3);
 
-            gcode.push(`Line to X${startX} Y${startY}`); // Move to the circle's start point
-            gcode.push(`Circle X${startX} Y${startY} I-${radius.toFixed(3)} J0`); // Create a circle
+            // Calculate the end point as the directly opposite point on the circumference
+            const endX = (center.x - radius).toFixed(3);
+            const endY = center.y.toFixed(3);
+
+            // Add circle commands to G-code
+            gcode.push(`LineTo ${startX}, ${startY},   0.000, 1,   0.000`); // Move to the circle's start point
+            gcode.push(`ArcTo ${startX}, ${startY}, ${center.x.toFixed(3)}, ${center.y.toFixed(3)},   0.000, 1,   0.000`); // Draw the circle with center and start point
         }
     </script>
 
