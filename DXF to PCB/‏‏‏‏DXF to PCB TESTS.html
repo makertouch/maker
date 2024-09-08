@@ -64,36 +64,46 @@
             reader.readAsText(file);
         });
 
-        function dxfToGcode(dxf) {
-            const gcode = [];
+function dxfToGcode(dxf) {
+    const gcode = [];
+    let isFirstLine = true;  // Flag to indicate if it's the first line entity
 
-            gcode.push('Start    0.000,  0.000');
+   
 
-            dxf.entities.forEach(entity => {
-                switch (entity.type) {
-                    case 'LINE':
-                        handleLine(entity, gcode);
-                        break;
-                    case 'ARC':
-                        handleArc(entity, gcode);
-                        break;
-                    case 'CIRCLE':
-                        handleCircle(entity, gcode);
-                        break;
-                }
-            });
-
-            gcode.push('End');
-            return gcode;
+    dxf.entities.forEach(entity => {
+        switch (entity.type) {
+            case 'LINE':
+                handleLine(entity, gcode, isFirstLine);
+                isFirstLine = false;  // Ensure "Start" is only used once
+                break;
+            case 'ARC':
+                handleArc(entity, gcode);
+                break;
+            case 'CIRCLE':
+                handleCircle(entity, gcode);
+                break;
         }
+    });
 
-        function handleLine(entity, gcode) {
-            const start = entity.vertices[0];
-            const end = entity.vertices[1];
-            
-            gcode.push(`LineTo ${start.x.toFixed(3)}, ${start.y.toFixed(3)},   0.000, 1,   0.000`); // Move to the starting point
-            gcode.push(`LineTo ${end.x.toFixed(3)}, ${end.y.toFixed(3)},   0.000, 1,   0.000`); // Cut to the ending point
-        }
+    gcode.push('End');
+    return gcode;
+}
+
+function handleLine(entity, gcode, isFirstLine) {
+    const start = entity.vertices[0];
+    const end = entity.vertices[1];
+
+    if (isFirstLine) {
+        // Use "Start" for the very first line
+        gcode.push(`Start ${start.x.toFixed(3)}, ${start.y.toFixed(3)},   0.000, 1,   0.000`);
+    } else {
+        // Use "LineTo" if not the first line
+        gcode.push(`LineTo ${start.x.toFixed(3)}, ${start.y.toFixed(3)},   0.000, 1,   0.000`);
+    }
+    
+    // Always use "LineTo" for the ending point
+    gcode.push(`LineTo ${end.x.toFixed(3)}, ${end.y.toFixed(3)},   0.000, 1,   0.000`);
+}
 
         function handleArc(entity, gcode) {
             const startAngle = entity.startAngle;
