@@ -66,28 +66,59 @@
 
 function dxfToGcode(dxf) {
     const gcode = [];
-    let isFirstLine = true;  // Flag to indicate if it's the first line entity
+    const lines = [];
+    const vertexMap = new Map(); // Map to track vertices and their connections
+    const edgeList = [];
 
-   
-
+    // Collect lines and map vertices
     dxf.entities.forEach(entity => {
-        switch (entity.type) {
-            case 'LINE':
-                handleLine(entity, gcode, isFirstLine);
-                isFirstLine = false;  // Ensure "Start" is only used once
-                break;
-            case 'ARC':
-                handleArc(entity, gcode);
-                break;
-            case 'CIRCLE':
-                handleCircle(entity, gcode);
-                break;
+        if (entity.type === 'LINE') {
+            const [start, end] = entity.vertices;
+            const startKey = `${start.x.toFixed(3)}, ${start.y.toFixed(3)}`;
+            const endKey = `${end.x.toFixed(3)}, ${end.y.toFixed(3)}`;
+            
+            if (!vertexMap.has(startKey)) vertexMap.set(startKey, []);
+            if (!vertexMap.has(endKey)) vertexMap.set(endKey, []);
+            
+            vertexMap.get(startKey).push(endKey);
+            vertexMap.get(endKey).push(startKey);
+
+            edgeList.push({ start: startKey, end: endKey });
         }
     });
+
+    // Find the starting point and ensure correct order
+    const startPoint = edgeList[0]?.start;
+    if (!startPoint) return ['End']; // No lines to process
+
+    const visited = new Set();
+    let currentPoint = startPoint;
+    let previousPoint = null;
+
+    // Format the start point with the full G-code
+    gcode.push(`Start ${currentPoint},   0.000, 1,   0.000`);
+
+    while (true) {
+        visited.add(currentPoint);
+        const nextPoints = vertexMap.get(currentPoint) || [];
+        const nextPoint = nextPoints.find(p => !visited.has(p));
+        
+        if (nextPoint) {
+            gcode.push(`LineTo ${nextPoint},   0.000, 1,   0.000`);
+            previousPoint = currentPoint;
+            currentPoint = nextPoint;
+        } else {
+            if (previousPoint) {
+                gcode.push(`LineTo ${startPoint},   0.000, 1,   0.000`);
+            }
+            break;
+        }
+    }
 
     gcode.push('End');
     return gcode;
 }
+
 
 function handleLine(entity, gcode, isFirstLine) {
     const start = entity.vertices[0];
