@@ -66,7 +66,6 @@
 
 function dxfToGcode(dxf) {
     const gcode = [];
-    const lines = [];
     const vertexMap = new Map(); // Map to track vertices and their connections
     const edgeList = [];
 
@@ -87,37 +86,72 @@ function dxfToGcode(dxf) {
         }
     });
 
-    // Find the starting point and ensure correct order
-    const startPoint = edgeList[0]?.start;
-    if (!startPoint) return ['End']; // No lines to process
+    // Function to generate G-code for a single shape
+    function generateShapeGCode(startPoint, shapeNumber) {
+        const shapeGcode = [];
+        const visited = new Set();
+        let currentPoint = startPoint;
+        let previousPoint = null;
 
-    const visited = new Set();
-    let currentPoint = startPoint;
-    let previousPoint = null;
+        shapeGcode.push(`Begin Round${shapeNumber}`);
+        shapeGcode.push('LineWidth 0.200');
+        shapeGcode.push('Height 0.000');
+        shapeGcode.push('Move Height 0.000');
+        shapeGcode.push(`Start ${currentPoint},   0.000, 1,   0.000`);
 
-    // Format the start point with the full G-code
-    gcode.push(`Start ${currentPoint},   0.000, 1,   0.000`);
-
-    while (true) {
-        visited.add(currentPoint);
-        const nextPoints = vertexMap.get(currentPoint) || [];
-        const nextPoint = nextPoints.find(p => !visited.has(p));
-        
-        if (nextPoint) {
-            gcode.push(`LineTo ${nextPoint},   0.000, 1,   0.000`);
-            previousPoint = currentPoint;
-            currentPoint = nextPoint;
-        } else {
-            if (previousPoint) {
-                gcode.push(`LineTo ${startPoint},   0.000, 1,   0.000`);
+        while (true) {
+            visited.add(currentPoint);
+            const nextPoints = vertexMap.get(currentPoint) || [];
+            const nextPoint = nextPoints.find(p => !visited.has(p));
+            
+            if (nextPoint) {
+                shapeGcode.push(`LineTo ${nextPoint},   0.000, 1,   0.000`);
+                previousPoint = currentPoint;
+                currentPoint = nextPoint;
+            } else {
+                if (previousPoint) {
+                    shapeGcode.push(`LineTo ${startPoint},   0.000, 1,   0.000`);
+                }
+                break;
             }
-            break;
         }
+
+        shapeGcode.push('End');
+        return shapeGcode;
     }
 
-    gcode.push('End');
+    const processedVertices = new Set();
+    let shapeNumber = 1;
+
+    // Identify and process each distinct shape
+    edgeList.forEach(edge => {
+        const startKey = edge.start;
+        if (!processedVertices.has(startKey)) {
+            // Generate G-code for a new shape
+            const shapeGcode = generateShapeGCode(startKey, shapeNumber);
+            gcode.push(...shapeGcode);
+            
+            // Mark all vertices of this shape as processed
+            const verticesToMark = [startKey];
+            while (verticesToMark.length > 0) {
+                const vertex = verticesToMark.pop();
+                if (!processedVertices.has(vertex)) {
+                    processedVertices.add(vertex);
+                    (vertexMap.get(vertex) || []).forEach(nextVertex => {
+                        if (!processedVertices.has(nextVertex)) {
+                            verticesToMark.push(nextVertex);
+                        }
+                    });
+                }
+            }
+            
+            shapeNumber++; // Increment the shape number for the next shape
+        }
+    });
+
     return gcode;
 }
+
 
 
 function handleLine(entity, gcode, isFirstLine) {
