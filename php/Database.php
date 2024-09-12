@@ -2,28 +2,40 @@
 
 class Database {
 
-    public $connection; // Created by me or automaticlly by PHP.
+    public $connection; // Created by me or automatically by PHP.
+    public $statement; 
 
-    public function __construct($config) {  // No need for $this->config because it's inside the constructor and there is no use for the other properties.
+    public function __construct($config) {  
         $dsn = "mysql:host={$config['host']};port={$config['port']};dbname={$config['dbname']};charset={$config['charset']}";
 
         $this->connection = new PDO($dsn, 'makertouch_tests', 'TopMaker', [
             PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
-            //(PDO::FETCH_ASSOC) is a constant property not an instance.
-
+            // (PDO::FETCH_ASSOC) is a constant property, not an instance.
         ]);
-       
     }
 
-    public function query($query, $params = []) { // if $params doesn't have value it will be [].
-        
-        $statement = $this->connection->prepare($query); // Here you pass a query.
-        $statement->execute($params); // execute() is not empty because of the placeholder.
+    public function query($query, $params = []) { 
+        $this->statement = $this->connection->prepare($query); 
+        $this->statement->execute($params); 
 
-        return $statement;
+        return $this;
     }
+    
+    public function find() {
+        return $this->statement->fetch(); 
+    }
+	
+	public function findOrFail() {
+		$result = $this->find();
+		
+		if (!result) { 
+		abort();
+		}
+		
+		return $result;
+	}
 }
 
-// conecting is basiclly: new PDO(dsn) - prepare(query) - execute(optional);
+// Connecting is basically: new PDO(dsn) - prepare(query) - execute(optional);
 
 ?>

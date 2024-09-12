@@ -29,13 +29,5 @@ abort(404);
 }
 }
 
-function abort($code) {
-	
-	http_response_code($code); // lating php know.
-	
-	require  "views/404.php";
-	
-	die();
-}
 
 ?>
