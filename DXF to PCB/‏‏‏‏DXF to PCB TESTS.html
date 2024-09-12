@@ -31,7 +31,7 @@
 
     <h1>DXF to PCB Converter</h1>
     <input type="file" id="dxfFileInput" accept=".dxf" />
-    <button id="convertButton">Convert to G-code</button>
+    <button id="convertButton">Convert to PCB</button>
     <textarea id="gcodeOutput" readonly placeholder="G-code will appear here..."></textarea>
 
     <script src="https://cdn.jsdelivr.net/npm/dxf-parser/dist/dxf-parser.min.js"></script>
@@ -64,37 +64,111 @@
             reader.readAsText(file);
         });
 
-        function dxfToGcode(dxf) {
-            const gcode = [];
+function dxfToGcode(dxf) {
+    const gcode = [];
+    const vertexMap = new Map(); // Map to track vertices and their connections
+    const edgeList = [];
 
-            gcode.push('G21 ; Set units to millimeters');
-            gcode.push('G90 ; Absolute positioning');
-
-            dxf.entities.forEach(entity => {
-                switch (entity.type) {
-                    case 'LINE':
-                        handleLine(entity, gcode);
-                        break;
-                    case 'ARC':
-                        handleArc(entity, gcode);
-                        break;
-                    case 'CIRCLE':
-                        handleCircle(entity, gcode);
-                        break;
-                }
-            });
-
-            gcode.push('M2 ; End of program');
-            return gcode;
-        }
-
-        function handleLine(entity, gcode) {
-            const start = entity.vertices[0];
-            const end = entity.vertices[1];
+    // Collect lines and map vertices
+    dxf.entities.forEach(entity => {
+        if (entity.type === 'LINE') {
+            const [start, end] = entity.vertices;
+            const startKey = `${start.x.toFixed(3)}, ${start.y.toFixed(3)}`;
+            const endKey = `${end.x.toFixed(3)}, ${end.y.toFixed(3)}`;
             
-            gcode.push(`Line to X${start.x.toFixed(3)} Y${start.y.toFixed(3)}`); // Move to the starting point
-            gcode.push(`Line to X${end.x.toFixed(3)} Y${end.y.toFixed(3)}`); // Cut to the ending point
+            if (!vertexMap.has(startKey)) vertexMap.set(startKey, []);
+            if (!vertexMap.has(endKey)) vertexMap.set(endKey, []);
+            
+            vertexMap.get(startKey).push(endKey);
+            vertexMap.get(endKey).push(startKey);
+
+            edgeList.push({ start: startKey, end: endKey });
         }
+    });
+
+    // Function to generate G-code for a single shape
+    function generateShapeGCode(startPoint, shapeNumber) {
+        const shapeGcode = [];
+        const visited = new Set();
+        let currentPoint = startPoint;
+        let previousPoint = null;
+
+        shapeGcode.push(`Begin Round${shapeNumber}`);
+        shapeGcode.push('LineWidth 0.200');
+        shapeGcode.push('Height 0.000');
+        shapeGcode.push('Move Height 0.000');
+        shapeGcode.push(`Start ${currentPoint},   0.000, 1,   0.000`);
+
+        while (true) {
+            visited.add(currentPoint);
+            const nextPoints = vertexMap.get(currentPoint) || [];
+            const nextPoint = nextPoints.find(p => !visited.has(p));
+            
+            if (nextPoint) {
+                shapeGcode.push(`LineTo ${nextPoint},   0.000, 1,   0.000`);
+                previousPoint = currentPoint;
+                currentPoint = nextPoint;
+            } else {
+                if (previousPoint) {
+                    shapeGcode.push(`LineTo ${startPoint},   0.000, 1,   0.000`);
+                }
+                break;
+            }
+        }
+
+        shapeGcode.push('End');
+        return shapeGcode;
+    }
+
+    const processedVertices = new Set();
+    let shapeNumber = 1;
+
+    // Identify and process each distinct shape
+    edgeList.forEach(edge => {
+        const startKey = edge.start;
+        if (!processedVertices.has(startKey)) {
+            // Generate G-code for a new shape
+            const shapeGcode = generateShapeGCode(startKey, shapeNumber);
+            gcode.push(...shapeGcode);
+            
+            // Mark all vertices of this shape as processed
+            const verticesToMark = [startKey];
+            while (verticesToMark.length > 0) {
+                const vertex = verticesToMark.pop();
+                if (!processedVertices.has(vertex)) {
+                    processedVertices.add(vertex);
+                    (vertexMap.get(vertex) || []).forEach(nextVertex => {
+                        if (!processedVertices.has(nextVertex)) {
+                            verticesToMark.push(nextVertex);
+                        }
+                    });
+                }
+            }
+            
+            shapeNumber++; // Increment the shape number for the next shape
+        }
+    });
+
+    return gcode;
+}
+
+
+
+function handleLine(entity, gcode, isFirstLine) {
+    const start = entity.vertices[0];
+    const end = entity.vertices[1];
+
+    if (isFirstLine) {
+        // Use "Start" for the very first line
+        gcode.push(`Start ${start.x.toFixed(3)}, ${start.y.toFixed(3)},   0.000, 1,   0.000`);
+    } else {
+        // Use "LineTo" if not the first line
+        gcode.push(`LineTo ${start.x.toFixed(3)}, ${start.y.toFixed(3)},   0.000, 1,   0.000`);
+    }
+    
+    // Always use "LineTo" for the ending point
+    gcode.push(`LineTo ${end.x.toFixed(3)}, ${end.y.toFixed(3)},   0.000, 1,   0.000`);
+}
 
         function handleArc(entity, gcode) {
             const startAngle = entity.startAngle;
@@ -102,24 +176,39 @@
             const radius = entity.radius;
             const center = entity.center;
 
-            const startX = (center.x + radius * Math.cos(startAngle * Math.PI / 180)).toFixed(3);
-            const startY = (center.y + radius * Math.sin(startAngle * Math.PI / 180)).toFixed(3);
-            const endX = (center.x + radius * Math.cos(endAngle * Math.PI / 180)).toFixed(3);
-            const endY = (center.y + radius * Math.sin(endAngle * Math.PI / 180)).toFixed(3);
-            
-            gcode.push(`Line to X${startX} Y${startY}`); // Move to the arc's start point
-            gcode.push(`Arc to X${endX} Y${endY} I${(center.x - startX).toFixed(3)} J${(center.y - startY).toFixed(3)}`); // Create an arc
+            // Convert angles from degrees to radians
+            const startAngleRad = startAngle * Math.PI / 180;
+            const endAngleRad = endAngle * Math.PI / 180;
+
+            // Calculate start and end points of the arc
+            const startX = (center.x + radius * Math.cos(startAngleRad)).toFixed(3);
+            const startY = (center.y + radius * Math.sin(startAngleRad)).toFixed(3);
+            const endX = (center.x + radius * Math.cos(endAngleRad)).toFixed(3);
+            const endY = (center.y + radius * Math.sin(endAngleRad)).toFixed(3);
+
+            // Add start point to G-code
+            gcode.push(`End
+Start ${startX}, ${startY}`); // Move to the arc's start point
+
+            // Add arc command to G-code (example format; adjust if necessary for your machine/controller)
+            gcode.push(`ArcTo ${endX}, ${endY}, ${center.x.toFixed(3)}, ${center.y.toFixed(3)},   0.000, 1,   0.000`);
         }
 
         function handleCircle(entity, gcode) {
             const center = entity.center;
             const radius = entity.radius;
 
+            // Calculate the start point on the circumference of the circle
             const startX = (center.x + radius).toFixed(3);
             const startY = center.y.toFixed(3);
 
-            gcode.push(`Line to X${startX} Y${startY}`); // Move to the circle's start point
-            gcode.push(`Circle X${startX} Y${startY} I-${radius.toFixed(3)} J0`); // Create a circle
+            // Calculate the end point as the directly opposite point on the circumference
+            const endX = (center.x - radius).toFixed(3);
+            const endY = center.y.toFixed(3);
+
+            // Add circle commands to G-code
+            gcode.push(`LineTo ${startX}, ${startY},   0.000, 1,   0.000`); // Move to the circle's start point
+            gcode.push(`ArcTo ${startX}, ${startY}, ${center.x.toFixed(3)}, ${center.y.toFixed(3)},   0.000, 1,   0.000`); // Draw the circle with center and start point
         }
     </script>
 
