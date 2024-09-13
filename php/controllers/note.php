@@ -11,6 +11,7 @@ $db = new Database($config['database']); // connects to the database.
 $note = $db->query('select * from notes where id= ?', [$id])->findOrFail();  // $note = [ "id" => "1", "body" => "message", "user_id" => "1"]
 
 // if there was no return $this in the query method:
+//	$db = new Database($config['database']);
 // $db->query('SELECT * FROM notes WHERE id = ?', [$id]); 
 // $note = $db->findOrFail();
 
