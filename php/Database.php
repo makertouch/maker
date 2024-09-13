@@ -26,7 +26,7 @@ class Database {
     }
 	
 	public function findOrFail() {
-		$result = $this->find();
+		$result = $this->find();  // local varible, $this referes to the Class
 		
 		if (!result) { 
 		abort();
