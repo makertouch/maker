@@ -17,8 +17,12 @@ class Database {
     public function query($query, $params = []) { 
         $this->statement = $this->connection->prepare($query); 
         $this->statement->execute($params); 
-
+        
         return $this;
+    }
+
+    public function get() {
+        return $this->statement->fetchAll();
     }
     
     public function find() {
@@ -26,14 +30,15 @@ class Database {
     }
 	
 	public function findOrFail() {
-		$result = $this->find();  // local varible, $this referes to the Class
+		$result = $this->find();
 		
-		if (!result) { 
-		abort();
+		if (!$result) { 
+		abort(Response::NOT_FOUND);
 		}
 		
 		return $result;
 	}
+    
 }
 
 // Connecting is basically: new PDO(dsn) - prepare(query) - execute(optional);
