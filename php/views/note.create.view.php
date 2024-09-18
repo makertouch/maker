@@ -1,28 +1,33 @@
-<?php require('partial/head.php') ?>
-
-<?php require('partial/nav.php') ?>
-
-<?php require('partial/header.php') ?>
-
-  <main>
- 
-<form method="POST">
-
-    <div style="margin-left: 28px; margin-top: 24px;">
-
-    <label for="body" style="display: block"> Description </label>
-    <textarea name="body" id="body"> </textarea>
-
-    <div>  
-    <button type="submit"> Create </button>
-    </div>
-
-    </div>
-
-</form>
+<?php
+$title = 'Create a Note';
 
 
+$config = require 'config.php';
 
-  </main>
+$db = new Database($config['database']); 
 
-<?php require('partial/footer.php') ?>
+require 'Validator.php';
+
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+	
+	$errors = [];
+	
+	
+	if(!Validator::string($_POST['body'], 1, 100)) {
+	$errors['body'] = 'A body of no more than 100 characters  is required';
+	}
+	
+	if(empty($errors)){
+		$db->query('INSERT INTO notes (body, user_id) VALUES(?, ?)', [
+		 $_POST['body'], 
+		 1
+	]);
+}; 
+
+	}	
+	
+
+require ("views/notes/create.view.php");
+
+?>
