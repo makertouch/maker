@@ -1,7 +1,7 @@
 <?php
 
 $title = "My Notes"; 
-
+// we call this index
 
 $config = require 'config.php';
 
