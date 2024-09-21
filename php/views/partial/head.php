@@ -4,7 +4,7 @@
 
 <title> <?php echo $title ?> </title>
 
-<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdn.tailwindcss.com?plugins=forms"></script>
 
 </head>
 

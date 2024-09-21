@@ -40,3 +40,18 @@ $posts = $db->query($query, [$id])->fetch(); // calls a mothod which gives all t
 dd($posts);
 
 ?>
+
+// form lesson
+<form method="POST">
+
+    <div style="margin-left: 28px; margin-top: 24px;">
+
+    <label for="body" style="display: block"> Description </label>
+    <textarea name="body" id="body"> </textarea>
+
+    <div>  
+    <button type="submit"> Create </button>
+    </div>
+
+    </div>
+</form>
