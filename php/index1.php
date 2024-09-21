@@ -43,5 +43,5 @@ $counter->decrement();
 $counter->getCount();
 $counter->reset();
 
-  // HELLO from local 3
+  // Last check
 ?>
