@@ -18,7 +18,7 @@ if (array_key_exists($uri, $routes)) {   // ($key, $array)  if this $key exists 
 	
 } else {
 
-abort(404);
+abort(Response::NOT_FOUND);
 	
 }
 }

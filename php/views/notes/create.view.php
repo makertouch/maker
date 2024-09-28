@@ -1,8 +1,8 @@
-<?php require('views/partial/head.php') ?>
+<?php require base_path('views/partial/head.php') ?>
 
-<?php require('views/partial/nav.php') ?>
+<?php require base_path('views/partial/nav.php') ?>
 
-<?php require('views/partial/header.php') ?>
+<?php require base_path('views/partial/header.php') ?>
 
   <main>
  
@@ -38,4 +38,4 @@
 
   </main>
 
-<?php require('views/partial/footer.php') ?>
+<?php require base_path('views/partial/footer.php') ?>

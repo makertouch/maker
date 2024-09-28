@@ -43,5 +43,5 @@ $counter->decrement();
 $counter->getCount();
 $counter->reset();
 
-  // Last check
+  // Last check final
 ?>
