@@ -4,13 +4,12 @@ $config = require base_path('config.php');
 
 $db = new Database($config['database']); 
 
-require 'Validator.php';
+$errors = [];
 
+require base_path('Validator.php');
 
+	
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-	
-	$errors = [];
-	
 	
 	if(!Validator::string($_POST['body'], 1, 100)) {
 	$errors['body'] = 'A body of no more than 100 characters  is required';
@@ -30,5 +29,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 		'title' => 'Create Note',
 		'errors' => $errors
 		]);
+
 
 ?>
