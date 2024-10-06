@@ -6,7 +6,7 @@ because the address might contain a query after: /about?foo=bar,
 and we want just the /about. */
 
 
-$routes = require ('routes.php');
+$routes = require base_path('routes.php');
 
 
 routeToController($uri, $routes);
