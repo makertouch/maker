@@ -14,7 +14,7 @@ routeToController($uri, $routes);
 function routeToController($uri, $routes) {
 if (array_key_exists($uri, $routes)) {   // ($key, $array)  if this $key exists in this $array
 	
-	require $routes[$uri];
+	require base_path($routes[$uri]);
 	
 } else {
 
