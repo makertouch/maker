@@ -6,8 +6,6 @@ $db = new Database($config['database']);
 
 $errors = [];
 
-require base_path('Validator.php');
-
 	
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 	
