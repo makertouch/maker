@@ -1,5 +1,7 @@
 <?php 
 
+namespace core;
+
 class Database {
 
     public $connection; // Created by me or automatically by PHP.
