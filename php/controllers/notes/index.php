@@ -1,6 +1,6 @@
 <?php
 
-use core\Database;
+use core\Database; //use core\Database; references Database in the core namespace without loading it.
 
 $config = require base_path('config.php');
 $db = new Database($config['database']); // connects to the database.
