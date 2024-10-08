@@ -1,8 +1,10 @@
 <?php
 
+use core\Database;
+
 $config = require base_path('config.php');
 
-$db = new core\Database($config['database']); 
+$db = new Database($config['database']); 
 
 $errors = [];
 
