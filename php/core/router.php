@@ -5,6 +5,7 @@ $uri = parse_url($_SERVER['REQUEST_URI'])['path'];
 because the address might contain a query after: /about?foo=bar,
 and we want just the /about. */
 
+use core\Response;
 
 $routes = require base_path('routes.php');
 
