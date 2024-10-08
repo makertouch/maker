@@ -2,7 +2,7 @@
 
 $config = require base_path('config.php');
 
-$db = new Database($config['database']); 
+$db = new core\Database($config['database']); 
 
 $errors = [];
 
