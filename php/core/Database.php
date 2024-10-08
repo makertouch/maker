@@ -2,6 +2,8 @@
 
 namespace core;
 
+use PDO; // For having an eccess to the global object outside the name space: core.
+
 class Database {
 
     public $connection; // Created by me or automatically by PHP.
