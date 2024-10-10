@@ -22,7 +22,7 @@ function abort($code) {
 	die();
 }
 
-function authorize($condition, $status = Response::FORBIDDEN) {
+function authorize($condition, $status = core\Response::FORBIDDEN) {
 if($condition) {   
 abort($status);
 }
