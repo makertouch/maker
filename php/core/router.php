@@ -3,7 +3,7 @@
 namespace core;
 
 class Router {
-    protected $routes = [];  // Protected means that there is no need to access this variable/method.
+    protected $routes = [];  // Protected means that there is no need to access this variable/method . 
 
     public function get($uri, $controller) {
         $this->routes[] = [
@@ -17,7 +17,7 @@ class Router {
         $this->routes[] = [
             'uri' => $uri,
             'controller' => $controller,
-            'method' => 'POST'
+            'method' => 'POST' 
         ];  
     } 
 
@@ -76,5 +76,6 @@ function routeToController($uri, $routes) {
         abort(Response::NOT_FOUND);
     }
 }
+    Router
 */
 ?>
