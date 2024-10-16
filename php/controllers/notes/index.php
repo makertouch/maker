@@ -1,6 +1,6 @@
 <?php
 
-use core\Database; 
+use core\Database; // imports Database from the core namespace without loading it.
 
 $config = require base_path('config.php');
 $db = new Database($config['database']); // creates an instance of core\Database.

@@ -7,7 +7,8 @@
   <main>
  
 
-<form method="POST">  
+<form method="POST">
+	<input type="hidden" name="_method" value="DELETE">
 <div style="width: 500px;">
         <div class="col-span-full" style="padding-left: 20px; padding-top: 20px;">
           <label for="body" class="block text-sm font-medium leading-6 text-gray-900">Body</label>

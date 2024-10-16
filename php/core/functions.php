@@ -15,9 +15,9 @@ function abort($code) {
 	
 	http_response_code($code); // lating php know.
 	if($code === 404) {
-	require  "views/404.php";
+	require  base_path("views/404.php");
 	} else if ($code === 403) {
-	require "views/403.php";
+	require base_path("views/403.php");
 	}
 	die();
 }
