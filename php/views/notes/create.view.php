@@ -5,7 +5,6 @@
 <?php require base_path('views/partial/header.php') ?>
 
   <main>
-
 <form method="POST">
 	<input type="hidden" name="_method" value="DELETE">
 <div style="width: 500px;">
@@ -21,8 +20,7 @@
 <?php if (isset($errors['body'])) { ?>
 <p class="text-red-500 text-xs mt-2"> <?= $errors['body'] ?> </p>
 <?php }
-	?>
-          
+	?>  
         </div>
 
   <div class="mt-6 flex items-center justify-end gap-x-6" style="margin-right: 80px;">
