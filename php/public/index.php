@@ -13,7 +13,7 @@ spl_autoload_register(function ($class) {   // $class = core\Database
  require base_path($result . '.php');
  });
 
-$router = new \core\router(); // We use \ before the Core if we are inside an existing name space.
+$router = new \core\Router(); // We use \ before the Core if we are inside an existing name space.
 
 $routes = require base_path('routes.php');
 $uri = parse_url($_SERVER['REQUEST_URI'])['path'];
@@ -22,6 +22,7 @@ $method = $_POST['_method'] ?? $_SERVER['REQUEST_METHOD']; // $_POST['_method'] 
 // $method = isset($_POST['_method']) ? $_POST['_method'] : $_SERVER['REQUEST_METHOD'];  
   
 
-$router->route($uri, $mothod);
+$router->route($uri, $method);
+
 
 ?>
