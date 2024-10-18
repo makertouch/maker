@@ -34,6 +34,8 @@ function base_path($path) {
 
 
 
+
+
 function view($path, $attribute = []) {
 
 	extract($attribute);
