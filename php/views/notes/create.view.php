@@ -37,6 +37,9 @@
 
 
 
+
+	  
+
   </main>
 
 <?php require base_path('views/partial/footer.php') ?>
