@@ -20,3 +20,4 @@ $db->query('delete from notes where id= ?', [$id]);
 header('location: /notes'); // Telling the browser go to the /notes URI.
 die(); // So the code wont continue to run after sending to another path.
 
+}
