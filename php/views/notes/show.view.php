@@ -16,7 +16,7 @@
    <p><?= $note['body'] ?> </p>
 
  <form method="POST" class="mt-6"> 
-
+ <input type="hidden" name="_method" value="DELETE">
  <button class="text-sm text-red-500">
 	  <!-- The input name will be $_SERVER['id'] -->
   <input type="hidden" name="id" value="<?= $note['id'] ?>">

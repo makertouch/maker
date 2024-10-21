@@ -32,9 +32,6 @@ class Database {
     public function find() {
         return $this->statement->fetch(); 
     }
-
-
-
 	
 	public function findOrFail() {
 		$result = $this->find();

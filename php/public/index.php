@@ -20,7 +20,8 @@ $uri = parse_url($_SERVER['REQUEST_URI'])['path'];
 $method = $_POST['_method'] ?? $_SERVER['REQUEST_METHOD']; // $_POST['_method'] isset and not null. no need :
 
 // $method = isset($_POST['_method']) ? $_POST['_method'] : $_SERVER['REQUEST_METHOD'];  
-  
+  				var_dump($method);
+			   var_dump($uri);
 
 $router->route($uri, $method);
 
